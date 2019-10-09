@@ -1,0 +1,98 @@
+<div>
+  <section class="handy-home {{currentStateHTML.name!='landing'?'handy-home-innerheader':''}}">
+    <div ng-if="currentStateHTML.name!='landing'" class="handyheader-heightfiller">
+    </div>
+    <section class="handy-home-header">
+      <div id="Scrollable" class="sidenav-wrap">
+        <h2 id="close" ui-sref="landing"><img src="{{rc.getsetting.logo}}"></h2>
+        <ul class="" ng-if="username ==''">
+          <li><a ui-sref="login()"><i class="fa fa-user" aria-hidden="true"></i> {{'LOGIN' | translate}}</a></li>
+          <li><a ui-sref="register()"><i class="fa fa-pencil" aria-hidden="true"></i> {{'SIGN_UP' | translate}}</a></li>
+        </ul>
+        <div class="after_side_login_cont">
+          <div class="after_side_login_innercont">
+            <ul class="after_side_login" ng-if="username!=''">
+              <li>
+                <a ui-sref="messages"> <i class="fa fa-envelope" aria-hidden="true"></i> {{'MESSAGES' | translate}} {{chatCount > 0 ? '(' + chatCount + ')' : ''}}
+                </a>
+              </li>
+              <li>
+                <a ui-sref="notifications"> <i class="fa fa-bell" aria-hidden="true"></i> {{'NOTIFICATIONS' | translate}} {{notifyCount > 0 ? '(' + notifyCount + ')' : ''}}
+                </a>
+              </li>
+              <li>
+                <a ui-sref="account.profile"> <i class="fa fa-user" aria-hidden="true"></i> {{'MY_ACCOUNT' | translate}}
+                </a>
+              </li>
+              <li>
+                <a href="#" ng-click="rc.logout()"> <i class="fa fa-sign-out" aria-hidden="true"></i> {{'Logout' | translate}}
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <nav class=" navbar  navbar-inverse {{currentStateHTML.name!='landing'?'fixed':''}}">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" id="open"> <!-- data-toggle="collapse" data-target="#myNavbar" -->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+            <a class="navbar-brand" ui-sref="landing">
+              <logo view="currentStateHTML.name" images="rc.getsetting.logos" />
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right" ng-if="username ==''">
+              <li><a ui-sref="login()"><span class=""><i class="fa fa-user on_scroll" aria-hidden="true"></i></span>{{'LOGIN' | translate}}</a></li>
+              <li><a ui-sref="register()"><span class=""><i class="fa fa-pencil on_scroll" aria-hidden="true"></i></span>{{'SIGN_UP' | translate}} </a></li>
+            </ul>
+            <!-- <h4 ng-if="siteglobals.currentUser.user_type == 'tasker' && siteglobals.currentUser.tasker_status == 1  && username!=''" class="center-tit">Since it is a demo, your account has been verified.<h4> -->
+            <div class="after_main_inner_login" ng-if="username!=''">
+
+              <div class="after_main_login_value">
+                <span class="hd_img">
+                    <img ng-src="{{ currAccAvatar }}" err-src="user">
+                  </span>
+                <span class="hd_name">
+                    <a href="#">{{username}}</a>
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                  </span>
+              </div>
+              <ul class="nav navbar-nav navbar-right" ng-if="username!=''">
+                <li>
+                  <a ui-sref="messages">
+                    <span class="icon entypo mail"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                    <span class="text">{{'MESSAGES' | translate}} {{chatCount > 0 ? '(' + chatCount + ')' : ''}} </span>
+                  </a>
+                </li>
+                <li>
+                  <a ui-sref="notifications">
+                    <span class="icon entypo mail"><i class="fa fa-bell" aria-hidden="true"></i></span>
+                    <span class="text">{{'NOTIFICATIONS' | translate}} {{notifyCount > 0 ? '(' + notifyCount + ')' : ''}} </span>
+                  </a>
+                </li>
+                <li>
+                  <a ui-sref="account.profile">
+                    <span class="icon entypo user"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <span class="text">{{'MY_ACCOUNT' | translate}}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" ng-click="rc.logout()">
+                    <span class="icon entypo logout"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                    <span class="text">{{'Logout' | translate}}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+  </section>
+</div>

@@ -1,0 +1,77 @@
+<div class="container-fluid" style="background-color:#fff;">
+    <div class="sub-tabs-menu">
+        <ul>
+            <li><a href="#" class="disabled-links"><i class="fa fa-pencil" aria-hidden="true"></i> 1. Fill Out Task Details</a></li>
+            <li><a href="#" class="disabled-links new-olds">2. View Taskers & Prices</a></li>
+        </ul>
+    </div>
+</div>
+<div class="tsk_cont">
+    <div class="container">
+        <div class="tsk_dtls ui-subtabs">
+            <div class="tsk_dtls_one">
+                <div class="tsk_dtls_one_tle">
+                    <h2>Describe Your Task</h2>
+                    <span>Based on the details entered below, we'll show you relevant Taskers for you to choose from.</span>
+                </div>
+                <div class="tsk_dtls_one_cont">
+                    <div class="tsk_dtls_one_cont_tle">
+                        Your Task Location
+                    </div>
+                    <div class="tsk_dtls_one_det_cont">
+                        <div class="tsk_dtls_one_det bor_cont">
+                            <div class="tsk_dtls_one_detl">
+                                <div class="tsk_dtls_one_det_lft">
+                                    <form name="taskbaseinfo" submit-validate role="form" novalidate>
+                                        <input name="city" class="location_city" required type="text" placeholder="{{'ENTER YOUR LOCATION'| translate}}" places-auto-complete
+                                            size=80 ng-model="TAC.showaddress" on-place-changed="TAC.placeChangeddd()"
+                                        />
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- <div class="tsk_dtls_one_detr">
+                                <div class="tsk_one_rgt_btn">
+                                    <a href="#" ng-click="TAC.Addaddress(TAC.details, taskbaseinfo.$valid)">{{'ADD_ADDRESS' | translate}}</a>
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- <div class="tsk_dtls_one_det addr" ng-repeat="address in TAC.addressList">
+                            <div class="tsk_dtls_one_detl">
+                                <div class="tsk_dtls_one_det_lft radio-design">
+                                    <label class="radio-item">
+                                        <span class="width-adju" tooltip-placement="top" uib-tooltip="{{address.address}}">{{address.address}}</span>
+                                        <input type="radio" class="custom_input" ng-model="TAC.filter.address" value="{{address._id}}" ng-change="TAC.placeChanged()" />
+                                        <span class="tsk_icon_adr"></span>
+                                    </label>
+                                </div>
+                                <br class="res_br" />
+                                <div ng-if="TAC.type == 1" class="tsk_dtls_one_det_rgt">
+                                    <div class="tsk_one_rgt_link custom_link_default">
+                                        <a href="#" ng-click="TAC.deleteaddress($index)">DELETE</a>
+                                        <a href="#" ng-click="TAC.makeDefault(address._id)" ng-if="address.status == '1'">MAKE AS DEFAULT</a>
+                                        <a href="#" ng-if="address.status != '1'" class="default_addrs">DEFAULT ADDRESS</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="tsk_dtls_one_cont_tle">
+                        Tell Us About Your Task
+                    </div>
+                    <div class="tsk_dtls_two_det_cont">
+                        <div class="tsk_dtls_two_txtarea">
+                            <textarea placeholder="Provide any additional instructions for your Tasker if you like, For example, if you have any pets, where to park, or how to get in."
+                                ng-model="TAC.filter.about"></textarea>
+                        </div>
+                    </div>
+                    <div class="tsk_pric_btn">
+                        <span class="tsk_pric_btn_inner">
+                    <a href="#" ng-click="TAC.SearchTasker()">See Taskers & Prices</a>
+                  </span>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

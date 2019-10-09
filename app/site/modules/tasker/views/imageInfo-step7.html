@@ -1,0 +1,81 @@
+<section>
+    <div class="applyto-tasker apply6">
+        <div class="container2">
+            <div class="full-holder">
+                <h1 class="top-texts">{{'APPLY_TO_BE_A_TASKER' | translate}}</h1>
+                <div class="tasker-pannel">
+                    <div class="tasker-head">
+                        <span class="left-tile">{{'UPLOAD_YOUR_PROFILE_PICTURE' | translate}}</span>
+                        <div class="right-progrs">
+                            <span class="completion-text">{{'APPLCATIONS_COMPLETION' | translate}}  60%</span>
+                            <div class="progressbar">
+                                <span style="width:60%"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tasker-body">
+                        <div class="left-pic">
+                            <!--<img ng-if="temp"  ngf-src="RGC.data.avatar">-->
+                            <img ng-if="visibleValue == false" ng-src="uploads/default/user.jpg">
+                            <img ng-if="!RGC.data.avatar=='' && visibleValue == false" class="img-square" ngf-src="RGC.data.avatar">
+                            <img style="max-width: 100% !important;" ng-if="visibleValue" class="img-square" ngf-src="RGC.myCroppedImage">
+                        </div>
+
+                        <div class="righ-side-pic">
+                            <div class="btn-contee">
+                                <div class="filetype-holdr">
+                                    <form name="imageForm">
+                                        <div ng-init="RGC.data.next='step8'" class="form-group">
+                                            <input class="bluebtn savdedit" ui-jq="filestyle" type="file" crop-img-change="handleFileSelect" ngf-change="fileupload($files, $event, $rejectedFiles);"
+                                                ngf-select="temp=true" ng-model="RGC.data.avatar" name="image" ngf-pattern="'image/*'"
+                                                ngf-max-size="1MB" ngf-model-invalid="errorFiles" accept="image/*" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}"
+                                                id="image" value="Upload" err-src>
+                                                <!-- <span class="help-block" ng-show="!imageForm.image.$invalid">{{'ALLOWED FILES: JPEG, PNG, JPG. MAX FILE SIZE 1MB' | translate}}</span>
+                                                <span class="help-block" ng-show="imageForm.image.$invalid" style="color:red">{{'ALLOWED FILES: JPEG, PNG, JPG. MAX FILE SIZE 1MB' | translate}}</span> -->
+                                                <span
+                                                ng-style="{
+                                                    'color': imageForm.image.$invalid || imageForm.image.$error.pattern || imageForm.image.$error.maxSize ? 'red' : 'black'
+                                                }"
+                                                >
+                                                    {{'Allowed files: jpeg, png, jpg. Max file size 1Mb' | translate}}
+                                                </span>
+                                            <!--<span class="help-block">{{'ALLOWED FILES: GIF, PNG, JPG. MAX FILE SIZE 1MB' | translate}}</span>
+                                             <p class="help-block">
+                     <span ng-show="imageForm.image.$invalid && !imageForm.image.$pristine" style="color:red;">{{'Image File is required' | translate}}.</span>
+           </p>-->
+                                        </div>
+                                        <!--- Croping -->
+                                        <div class="tcol" ng-if="visibleValue && !imageForm.image.$error.maxSize">
+                                            <label for="avatar">Image Crop</label>
+                                            <div class="p-15">
+                                                <div class="row">
+                                                    <div class="p-10 bg-white b-a b-solid " style="height:320px">
+                                                        <img-crop image="myImage" result-image="RGC.myCroppedImage" result-image-size="160" area-type="square"></img-crop>
+                                                    </div>
+                                                </div>
+                                                <div class="row" ng-show="visibleValue">
+                                                    <div class="p-10 bg-white b-a b-solid inline-block crp_img">
+                                                        <img ng-src="{{RGC.myCroppedImage}}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--- Croping -->
+                                    </form>
+                                </div>
+                                 <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 text-center mob-pds">
+                  <input class="blue-btn tsk-blue-btn" value="{{'SUBMIT' | translate}}" type="submit" style="margin-top: 30px;" ng-click="RGC.SubmitTasker(2,imageForm.$valid)">
+              </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

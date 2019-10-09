@@ -1,0 +1,83 @@
+<div class="trans-profiles">
+    <div class="container">
+        <div class="view-trans">
+            <div class="trans-packed main-scrolls-trcks">
+                <div class="trans-profiles-header">
+                    <div class="trans-headings">
+                        <h4>{{ 'Availability' | translate }}</h4>
+                    </div>
+                </div>
+                <div class="scroll-function">
+                    <div class="trans-profiles-inner acc-av">
+                        <span class="inner-subs-parsds availtitle">Select business days/hours</span><br>
+                        <div class="main_cont_cont">
+                            <div>
+                              <uib-accordion close-others="oneAtATime">
+                                <div uib-accordion-group class="panel-default actives" ng-repeat="(parentkey, days) in AAC.user.working_days" is-open="days.selected && !days.wholeday">
+                                  <uib-accordion-heading>
+                                    <div class="date_acrd">
+                                    <span class="date_acrd_input">
+                                        <input type="checkbox" name="days" ng-model="days.selected" ng-click="$event.stopPropagation()">
+                                    </span>
+                                    <label>
+                                        {{days.day}} 
+                                    </label>
+                                    </div>
+                                    <div class="date_whl_day" ng-if="days.selected">
+                                     <span class="date_whl_input">
+                                        <input type="checkbox" name="wholeday" ng-model="days.wholeday" ng-click="clearSlots(days.selected, days.wholeday, parentkey, $event)">
+                                    </span>
+                                    <label>
+                                        Whole day
+                                    </label>
+                                    </div>
+                                  </uib-accordion-heading>
+                                  <div class="timings">
+                                        <div class="time_value" ng-repeat="(key, slot) in AAC.user.working_days[parentkey].slot">
+                                            <input type="checkbox" id="sl{{parentkey}}{{key}}" name ="sl{{parentkey}}{{key}}" ng-model="AAC.user.working_days[parentkey].slot[key].selected" />
+                                            <label for="{{slot.time}}">{{slot.time}}</label>
+                                        </div>
+                                  </div> 
+                                </div>     
+                              </uib-accordion>
+                            </div>
+                        </div><br>
+                       
+                        <div class="list-transta rds-max">
+                            <span class="inner-subs-parsds">{{'AVAILABILITY_LOCATION' | translate}}</span>
+                            <div class="botom-fuls">
+                                <input class="form-control" name="taskerarea" required type="text" ng-blur="AAC.emptyLatLng(AAC.tempTaskAddress)" placeholder="{{'ENTER YOUR LOCATION'| translate}}"
+                                    places-auto-complete size=80 ng-model="AAC.taskerareaaddress" types="['address']" on-place-changed="AAC.taskerareaChanged()"
+                                />
+                            </div>
+                        </div>
+                        <div class="list-transta rds-max">
+                         <!--    <span class="inner-subs-parsds">{{'AVAILABILITY_RADIUS' | translate}}</span> -->
+                            <input class="form-control av-rad" name="taskerarea" required type="hidden" min="1" ng-model="AAC.user.radius" />
+                            <span class="input-group-addon availas-rds">{{AAC.radiusby}}</span>
+                        </div>
+                        <div class="list-transta">
+                            <ng-map id="foo" center="[{{AAC.user.location.lat}},{{AAC.user.location.lng}}]" zoom="8" mayTypeId="TERRAIN">
+                                <shape id="circle" name="circle" centered="true" stroke-color='#FF0000' stroke-opacity="0.8" stroke-weight="2" center="[{{AAC.user.location.lat}},{{AAC.user.location.lng}}]"
+                                    radius="{{AAC.user.radius * AAC.radiusval}}" on-radius_changed="AAC.mapToInput()" on-center_changed="AAC.mapToInput()"
+                                    editable="false"></shape>
+                            </ng-map>
+                        </div>
+                        <div class="list-transta avails-sumts">
+                            <input class="blue-btn hfa-btn" value="{{'SUBMIT' | translate}}" type="submit" ng-if="AAC.user.radius" ng-click="AAC.saveAvailability(true)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .green {
+        color: green!important;
+    }
+    
+    .red {
+        color: red!important;
+    }
+</style>

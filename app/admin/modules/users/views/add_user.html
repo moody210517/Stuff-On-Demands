@@ -1,0 +1,210 @@
+<div class="page page-forms-common">
+  <div class="pageheader">
+    <h2>{{ 'Menu.USERS' | translate}}</h2>
+    <div class="page-bar">
+      <ul class="page-breadcrumb">
+        <li>
+          <a ui-sref="app.dashboard">
+            <i class="fa fa-home"></i> {{main.title}}</a>
+        </li>
+        <li>
+          <a ui-sref="app.users.list">{{'SubMenu.USER_LIST' | translate}}</a>
+        </li>
+        <li>
+          <a ui-sref="app.users.addNewUser">{{ USAC.breadcrumb | translate }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pagecontent">
+    <div class="row">
+
+      <div class="col-md-4" ng-if="USAC.editUserData._id">
+        <section class="tile tile-simple">
+          <div class="tile-widget p-30 text-center">
+            <div class="thumb thumb-xl">
+              <img style="max-width: 100% !important;" ng-if="temp && visibleValue == false" class="img-circle" ngf-src="USAC.editUserData.avatar">
+              <img style="max-width: 100% !important;" ng-if="!temp&&!USAC.editUserData.avatar=='' && visibleValue == false" class="img-circle"
+                ngf-src="USAC.editUserData.avatar">
+              <img style="max-width: 100% !important;" ng-if="visibleValue" class="img-circle" ngf-src="USAC.myCroppedImage">
+            </div>
+            <h4 class="mb-0">
+              <strong>{{USAC.editUserData.firstname }}</strong>
+            </h4>
+            <h5>
+              <label>
+                <strong>
+              </label> {{USAC.editUserData.email}} </strong>
+              <h5>
+                <strong>Referral Code : {{USAC.editUserData.unique_code}} </strong>
+              </h5>
+
+              <div class="wal-amt">
+                <div class="col-md-12">
+                  <h5 ng-if="USAC.wallet" style="font-size: 18px;padding:10px;" class="label label-success">
+                    <strong style="font-size: 18px;">{{USAC.wallet.total | money : currency}} </strong>
+                  </h5>
+                </div>
+              </div>
+              <div class="wal-amt">
+                <div class="col-md-12">
+                  <h5 ng-if="USAC.user_id" style="font-size: 18px;padding:10px;" class="label label-success">
+                    <a ui-sref="app.users.transactionslist({id:USAC.user_id})">
+                      <strong style="font-size: 18px;">Wallet Transactions</strong>
+                    </a>
+                  </h5>
+                </div>
+              </div>
+          </div>
+        </section>
+      </div>
+      <div class="col-md-4" ng-if="!USAC.editUserData._id">
+        <section class="tile tile-simple">
+          <div class="tile-widget p-30 text-center">
+            <div class="thumb thumb-xl">
+              <img style="max-width: 100% !important;" ng-if="temp && visibleValue == false" class="img-circle" ngf-src="USAC.editUserData.avatar">
+              <img style="max-width: 100% !important;" ng-if="!temp&&!USAC.editUserData.avatar=='' && visibleValue == false" class="img-circle"
+                ngf-src="USAC.editUserData.avatar">
+              <img style="max-width: 100% !important;" ng-if="visibleValue" class="img-circle" ngf-src="USAC.myCroppedImage">
+            </div>
+            <h4>
+              <label>
+                <strong>Name: </label> {{USAC.editUserData.firstname}} </strong>
+            </h4>
+            <h5>
+              <label>
+                <strong>Email: </label> {{USAC.editUserData.email}} </strong>
+            </h5>
+          </div>
+        </section>
+      </div>
+      <div class="col-md-8">
+        <tabset class="tabs-dark">
+          <tab heading="Details">
+            <form name="userEditForm" submit-validate role="form" enctype="multipart/form-data" novalidate>
+              <section class="tile" fullscreen="isFullscreen01">
+                <div class="tile-body">
+                  <div class="wrap-reset">
+                    <div class="row">
+                      <div class="form-group col-md-12 legend">
+                        <h4>
+                          <strong>Personal</strong> Settings</h4>
+                        <p>Your personal account settings</p>
+                      </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : userEditForm.firstname.$invalid && !userEditForm.firstname.$pristine, 'has-success' : userEditForm.firstname.$valid && !userEditForm.firstname.$pristine}">
+                      <label for="firstname">First Name: </label>
+                      <input type="text" name="firstname" ng-minlength="4" class="form-control" ng-maxlength="25" ng-model="USAC.editUserData.firstname"
+                        on-blur-validation disallow-spaces ng-pattern="/^[a-zA-Z0-9\_\. ]*$/" required>
+                      <p class="help-block">
+                        <span class="validerr" ng-show="userEditForm.firstname.$invalid && !userEditForm.firstname.$pristine">First Name is required.</span>
+                        <span class="validerr" ng-show="userEditForm.firstname.$error.minlength">First Name Must Be Minimum Of 4 Characters.</span>
+                        <span class="validerr" ng-show="userEditForm.firstname.$error.maxlength">First Name Must Be Maximum Of 25 Characters.</span>
+                        <span class="validerr" ng-show="userEditForm.firstname.$error.pattern">Allow Only Dot, Underscore And lowercase.</span>
+                      </p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : userEditForm.lastname.$invalid && !userEditForm.lastname.$pristine, 'has-success' : userEditForm.lastname.$valid && !userEditForm.lastname.$pristine}">
+                      <label for="lastname">Last Name: </label>
+                      <input type="text" name="lastname" ng-minlength="1" class="form-control" ng-maxlength="25" ng-model="USAC.editUserData.lastname" on-blur-validation disallow-spaces ng-pattern="/^[a-zA-Z0-9\_\. ]*$/" required>
+                      <p class="help-block">
+                        <span class="validerr" ng-show="userEditForm.lastname.$invalid && !userEditForm.lastname.$pristine">Last Name is required.</span>
+                        <span class="validerr" ng-show="userEditForm.lastname.$error.maxlength">Last Name Must Be Maximum Of 25 Characters.</span>
+                        <span class="validerr" ng-show="userEditForm.lastname.$error.pattern">Allow Only Dot, Underscore And lowercase.</span>
+                      </p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : userEditForm.email.$invalid && !userEditForm.email.$pristine, 'has-success' : userEditForm.email.$valid && !userEditForm.email.$pristine}">
+                      <label for="email">Email: </label>
+                      <input type="email" name="email" id="email" class="form-control" ng-model="USAC.editUserData.email" on-blur-validation required
+                        ng-pattern="/^([a-zA-Z0-9.])*@([a-zA-Z0-9])*.[a-zA-Z0-9]{2,6}$/">
+                      <p class="help-block">
+                        <span ng-show="userEditForm.email.$error.required && !userEditForm.email.$pristine">Email is required.</span>
+                        <span class="validerr" ng-show="!userEditForm.email.$error.required && userEditForm.email.$error.pattern">Invalid email id.</span>
+                      </p>
+                    </div>
+
+                    <div class="row" ng-if="!USAC.editUserData._id">
+                      <div class="form-group col-sm-6" ng-class="{ 'has-error' : userEditForm.phone.$invalid && !userEditForm.phone.$pristine, 'has-success' : userEditForm.phone.$valid && !userEditForm.phone.$pristine}">
+                        <label for="tel">Phone No</label>
+                        <input type="tel" name="phone" id="tel" class="form-control" ng-model="USAC.editUserData.phone" ng-intl-tel-input on-blur-validation required>
+                        <p class="help-block">
+                        <span ng-show="userEditForm.tel.$error.required && !userEditForm.tel.$pristine">Phone is required.</span>
+                        <span class="validerr" ng-show="!userEditForm.tel.$error.required && userEditForm.tel.$error.pattern">Invalid Phone Number.</span>
+                      </p>
+                      </div>
+                    </div>
+
+                    <div class="row" ng-if="USAC.editUserData._id">
+                      <div class="form-group col-sm-6" ng-class="{ 'has-error' : userEditForm.phone.$invalid && !userEditForm.phone.$pristine, 'has-success' : userEditForm.phone.$valid && !userEditForm.phone.$pristine}">
+                        <label for="tel">Phone No</label>
+                        <input type="tel" name="phone" id="tel" class="form-control" ng-model="USAC.editUserData.phone" ng-intl-tel-input on-blur-validation readonly="readonly">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="avatar">Profile Picture</label>
+                      <input ui-jq="filestyle" type="file" crop-img-change="handleFileSelect" ngf-change="fileupload($files, $event, $rejectedFiles);"
+                        ngf-select="temp=true" ng-model="USAC.editUserData.avatar" ngf-pattern="'image/*'"
+                        name="avatar" accept="image/*" ngf-max-size="1MB" ngf-model-invalid="errorFiles" class="filestyle"
+                        id="fileInput" ui-options="{ buttonText: 'Select image', iconName: 'fa fa-file-image-o'}" id="avatar">
+                      
+                      <span 
+                      ng-style="{
+                          'color': userEditForm.avatar.$invalid || userEditForm.avatar.$error.pattern || userEditForm.avatar.$error.maxSize ? 'red' : 'black'
+                      }"
+                      >
+                        {{'Allowed files: jpeg, png, jpg. Max file size 1Mb' | translate}}
+                      </span>
+                    </div>
+
+                    <!--- Croping -->
+                    <div class="row ml-10" ng-if="USAC.editUserData.avatar" ng-hide="visibleValue">
+                      <div class="p-10 bg-white b-a b-solid inline-block">
+                        <img style="max-width: 100% !important; width: 150px; " ngf-src="USAC.editUserData.avatar">
+                      </div>
+                    </div>
+                    <div class="tcol" ng-if="visibleValue">
+                      <label for="avatar">Image Crop</label>
+                      <div class="p-15">
+                        <div class="row">
+                          <div class="p-10 bg-white b-a b-solid " style="height:320px">
+                            <img-crop image="myImage" result-image="USAC.myCroppedImage" result-image-size="160" area-type="square"></img-crop>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mt-10" ng-show="visibleValue">
+                        <div class="p-10 bg-white b-a b-solid inline-block">
+                          <img ng-src="{{USAC.myCroppedImage}}" />
+                        </div>
+                      </div>
+                    </div>
+                    <!--- Croping -->
+
+                    <div class="row">
+                      <div class="form-group col-sm-6" ng-class="{ 'has-error' : userEditForm.status.$invalid && !userEditForm.status.$pristine, 'has-success' : userEditForm.status.$valid && !userEditForm.status.$pristine}">
+                        <label for="status" class="control-label">Status</label>
+                        <select type="text" name="status" id="status" class="form-control" ng-model="USAC.editUserData.status" convert-to-number
+                          required>
+                          <option value="1">Active</option>
+                          <option value="2">In-Active</option>
+                        </select>
+                        <p class="help-block">
+                          <span ng-show="userEditForm.status.$invalid && !userEditForm.status.$pristine">status is required.</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tile-footer text-right bg-tr-black lter dvd dvd-top">
+                  <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c mb-10" ng-click="USAC.submitUserEditData(userEditForm.$valid,USAC.editUserData)">Submit
+                    <i class="fa fa-arrow-right"></i>
+                  </button>
+                </div>
+              </section>
+            </form>
+          </tab>
+      </div>
+    </div>
+  </div>
+</div>

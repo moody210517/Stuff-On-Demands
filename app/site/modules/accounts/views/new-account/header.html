@@ -1,0 +1,45 @@
+<div class="prof_banner">
+    <div class="prof_banner_inner">
+        <div class="container">
+            <div class="tskr_rgstrn_outer_cont">
+                <div class="prof_banner_inner_cont">
+                    <div class="left_prof">
+                        <div class="img_prof">
+                            <img ng-src="{{ currAccAvatar }}" err-src="user">
+                        </div>
+                        <div class="prof_det">
+                            <div class="name">{{ AHC.currentAcc.username }}</div>
+                            <div class="numvber">{{ AHC.currentAcc.phone.code + ' ' + AHC.currentAcc.phone.number}}</div>
+                        </div>
+                    </div>
+                    <div class="right_prof">
+                        <button class="btn" ng-click="rc.logout()">Log Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="prof_navg" ng-class="{true:'shwnav',false:''}[shwnav == true]">
+        <div class="prof_navg_inner">
+            <div class="container">
+                <div class="tskr_rgstrn_outer_cont">
+                    <div class="prof_nav_value">
+                        <div class="prof_nave_name">
+                            <span ng-repeat="menu in menus">
+                                <a ui-sref="{{menu.link}}" ui-sref-active="{{ menu.status}}">{{menu.name}}</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="det_btn_tsk">
+        <div class="det_btn_tsk_inner">
+            <button ng-click="shownav()">
+                <i class="fa fa-window-maximize" aria-hidden="true"></i> Details
+            </button>
+        </div>
+    </div>
+</div>
+<div ui-view></div>

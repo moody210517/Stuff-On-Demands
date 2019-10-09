@@ -1,0 +1,90 @@
+<div class="page page-tables-bootstrap">
+    <!-- page header -->
+    <div class="pageheader">
+        <h2>{{ 'Menu.TASKSPOST' | translate }} </h2>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a>
+                </li>
+                <li>
+                    <a ui-sref="app.categories.list">{{ 'Menu.TASKSPOST' | translate }} List</a>
+                </li>
+                <li>
+                    <a ui-sref="app.banner.editBanner" href="#/app/banner/edit-banner">{{ 'SubMenu.TASKSPOST ADD' | translate }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /page header -->
+    <!-- page content -->
+    <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-md-12">
+                <!-- tile -->
+                <section class="tile">
+                    <!-- tile header -->
+                    <div class="tile-header dvd dvd-btm">
+                        <h1 class="custom-font"><strong>Add Payment Price</strong></h1>
+                    </div>
+                    <!-- /tile header -->
+                    <div class="tile-body" style="padding-bottom: 80px;">
+                        <form class="profile-settings" submit-validate enctype="multipart/form-data" name="paymentpriceForm" novalidate>
+                            <!--ng-pattern="/^[a-zA-Z]*$/" -->
+                            <div class="form-group" ng-class="{ 'has-error' : paymentpriceForm.PaymentName.$invalid && !paymentpriceForm.CategoryName.$pristine, 'has-success' : paymentpriceForm.CategoryName.$valid && !paymentpriceForm.CategoryName.$pristine}">
+                                <label for="PaymentName">Name</label>
+                                <input type="text" name="PaymentName" class="form-control" ng-model="EPTC.editpaymentData.name" id="PaymentName" on-blur-validation
+                                    required>
+                                <p class="help-block">
+                                    <span ng-show="paymentpriceForm.PaymentName.$invalid && !paymentpriceForm.PaymentName.$pristine">Enter Payment Price Name .</span>
+                                </p>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : paymentpriceForm.description.$invalid && !paymentpriceForm.description.$pristine, 'has-success' : paymentpriceForm.description.$valid && !paymentpriceForm.description.$pristine}">
+                                <label for="title">Description</label>
+                                <input type="text" name="description" class="form-control" ng-model="EPTC.editpaymentData.description" id="description" on-blur-validation
+                                    required>
+                                <p class="help-block">
+                                    <span ng-show="paymentpriceForm.description.$invalid && !paymentpriceForm.description.$pristine">Enetr Description.</span>
+                                </p>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : paymentpriceForm.image.$invalid && !paymentpriceForm.image.$pristine, 'has-success' : paymentpriceForm.image.$valid && !paymentpriceForm.image.$pristine}">
+                                <label class="control-label">Payment Price Image</label>
+                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="EPTC.editpaymentData.image" name="image" ngf-max-size="1MB"
+                                    ngf-pattern="'image/jpg,image/jpeg,image/png,image/gif'" ngf-model-invalid="errorFiles" class="filestyle"
+                                    ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="image" ng-required="!EPTC.editpaymentData._id">
+                                <div class="form-group" ng-class="{ 'has-error' : paymentpriceForm.image.$invalid && !paymentpriceForm.image.$pristine, 'has-success' : paymentpriceForm.image.$valid && !paymentpriceForm.image.$pristine}">
+                                    <span class="help-block">Allowed files: jpeg, png, jpg. Max file size 1Mb</span>
+                                    <img ng-if="temp" height="150" ngf-src="EPTC.editpaymentData.image">
+                                    <img ng-if="!temp&&!EPTC.editpaymentData.image==''" height="150" ngf-src="EPTC.editpaymentData.image">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : paymentpriceForm.publish.$invalid && !paymentpriceForm.publish.$pristine, 'has-success' : paymentpriceForm.publish.$valid && !paymentpriceForm.publish.$pristine}">
+                                <label for="publish">Status</label>
+                                <select id="publish" name="publish" ng-model="EPTC.editpaymentData.status" convert-to-number class="form-control mb-10" on-blur-validation
+                                    required>
+                           <option value='1' selected="1">Publish</option>
+                           <option value='2'>UnPublish</option>
+                           <p class="help-block">
+                              <span ng-show="paymentpriceForm.publish.$invalid && !paymentpriceForm.publish.$pristine">status is required.</span>
+                           </p>
+                        </select>
+                            </div>
+                            <div class="form-group tcol">
+                                <button class="btn btn-success btn-ef btn-ef-5 btn-ef-5a" ng-disabled="EPTC.disbledValue" ng-click="EPTC.submit(paymentpriceForm.$valid,EPTC.editpaymentData);">
+                                    <i class="fa fa-upload"></i> <span>Submit</span>
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </section>
+                <!-- /tile -->
+            </div>
+            <!-- /col -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /page content -->
+</div>

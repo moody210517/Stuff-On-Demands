@@ -1,0 +1,113 @@
+<div>
+  <script>
+    $(document).ready(function () {
+      $(window).resize(function () {
+        if (($(window).width) > 990) {
+          $(".sidenav-wrap").css('left', '-150%');
+        }
+      });
+    });
+  </script>
+  <section class="handy-home handy-home-innerfooter">
+    <section class="handy-home-footer" style="background: url('uploads/images/homepage/footerbg.png');background-size: 96%;   background-repeat: no-repeat;
+    background-position: 50% 50%;">
+      <div class="footer">
+        <div class="container">
+          <div class="row">
+			<div class="col-md-3 col-lg-3 col-xs-12">
+				<div class="footer-log-sec">
+				   <!-- <a ui-sref="landing">
+                <img ui-sref="landing" style="width: auto; min-height: 40px; max-height: 40px;" src="{{rc.getsetting.logo}}" alt="footerlogo">
+              </a> 
+              <a>
+                <img src="uploads/images/others/1523941337388.png" alt="footerlogo" class="footer-log-img">
+              </a>-->
+          <h3 class="section-title">Keep In Touch</h3>
+          <p class="section-title add-sec"><a href="https://maps.google.com/?q={{rc.getsetting.location}}" target="_blank"><i class="fa fa-home" aria-hidden="true"></i><span>{{rc.getsetting.location}}</span></a></p>
+          <div class="Contact Us">
+            <p><a href="mailto:{{rc.getsetting.email_address}}" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i>{{rc.getsetting.email_address}}</a></p>
+            <p><a href="tel:{{rc.getsetting.contact_number_one}}" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i>{{rc.getsetting.contact_number_one}}</a></p>
+            <p ng-if="rc.getsetting.contact_number_two"><a href="tel:{{rc.getsetting.contact_number_two}}" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i>{{rc.getsetting.contact_number_two}}</a></p>
+          </div>
+             <div class="app-section">
+                <ul class="app-main">
+                  <li ng-repeat="rc in rc.appstore" ng-if="rc.name=='Google Play' || rc.name=='App Store'">
+                    <a href={{rc.url}} ng-if="rc.name=='App Store'" target="_blank"><img src="uploads/images/homepage/app_store.png"> </a>
+                    <a href={{rc.url}}  ng-if="rc.name=='Google Play'" target="_blank"><img src="uploads/images/homepage/google_play.png"> </a>
+                  </li>
+                </ul>
+              </div> 
+				</div>
+			</div>
+			<div class="col-md-3 col-lg-3 col-xs-12 foot-menu">
+				<div class="footer_information">
+				<h3>Company</h3>
+					<ul class="footer_links">
+                <li ng-repeat="page in rc.pages" ng-if="page.category == 'COMPANY'">
+                  <a href="page/{{page.slug}}">{{page.name | translate}}<span ng-init="total = (rc.pages.length - 1)"></a>
+                </li>
+              </ul>
+				</div>
+			</div>
+      <div class="col-md-3 col-lg-3 col-xs-12 plat-menu">
+        <div class="footer_information">
+        <h3>Platform</h3>
+          <ul class="footer_links">
+                <li ng-repeat="page in rc.pages" ng-if="page.category == 'INFORMATIONS'">
+                  <a href="{{page.slug}}">{{page.name | translate}}<span ng-init="total = (rc.pages.length - 1)"></a>
+                </li>
+              </ul>
+        </div>
+      </div> 
+
+      <div class="col-md-3 col-sm-3 col-xs-12 footer-log">
+              <h3>Stay Connected   </h3>
+              <ul class="social-icons">
+                <li ng-repeat="rc in rc.social" ng-if="rc.name=='Facebook' || rc.name=='Twitter' || rc.name=='Google Plus' || rc.name=='Youtube' ">
+                  <a href={{rc.url}} ng-if="rc.name=='Facebook'" target="_blank"> <i class="fa fa-facebook" aria-hidden="true"></i></a>
+                  <a href={{rc.url}} ng-if="rc.name=='Twitter'" target="_blank"> <i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href={{rc.url}} ng-if="rc.name=='Google Plus'" target="_blank"> <i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                  <a href={{rc.url}} ng-if="rc.name=='Youtube'" target="_blank"> <i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            
+             <div class="sub-sections">
+            <!-- <h2 class="section-title">{{'NEWS_LETTER_SUBSCRIPTION' | translate}}</h2> -->
+            <!-- <p>{{'NEWS_LETTER_SUBSCRIPTION_UPDATE_DESCRIPTION' | translate}}</p> -->
+            <p>Subscribe</p>
+            <div class="sub-email">
+              <form name="subscriptionForm" submit-validate role="form" enctype="multipart/form-data" novalidate>
+                <div class="group-control">
+                  <input ng-pattern="/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/" name="email" id="email" ng-model="MAC.email"
+                    placeholder="{{'Enter your email address' | translate}}" class="form-control" required>
+                  <span style="color:red;" ng-show="subscriptionForm.email.$error.pattern">{{'INVALID EMAIL' | translate}}</span>
+                  <div class="text-center con-sub">
+                    <button ng-click="rc.subscription(subscriptionForm,MAC.email);" class="btn btn-default subscribes">Send</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+                <div class="handy-lang-section">
+                <select class="lang" ng-init="rc.setDefaultLanguage(rc.DefaultLanguage)" ng-model="rc.DefaultLanguage" ng-change="rc.setDefaultLanguage(rc.DefaultLanguage)">
+                  <option value="">--{{'SELECT' | translate}} --</option>
+                  <option ng-repeat="language in rc.language" ng-selected="rc.DefaultLanguage == language.name" value="{{language.name}}" ng-model="rc.DefaultLanguage">{{language.name}}</option>
+              </select>
+                <select class="currency lang" ng-model="rc.DefaultCurrency.name" ng-change="rc.setDefaultCurrency(rc.DefaultCurrency.name)">
+                  <option value="">--{{'SELECT' | translate}} --</option>
+                  <option  ng-repeat="currency in rc.Currency" ng-selected="rc.DefaultCurrency.name == currency.name" value="{{currency.name}}" ng-model="rc.DefaultCurrency.name" >{{currency.code}}</option>
+              </select>
+              </div>
+          </div>
+
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 Copyrights">
+               <p class="copyright">{{'Copyright' | translate}} &copy; {{rc.copyrightYear | date:'yyyy'}} {{rc.getsetting.site_title}}. {{'All
+                rights reserved' | translate}}.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+</div>

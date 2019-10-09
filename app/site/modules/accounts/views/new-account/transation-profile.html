@@ -1,0 +1,82 @@
+<div class="trans-profiles" ng-init="ATC.getTransaction()">
+    <div class="container">
+        <div class="view-trans">
+            <div class="trans-packed main-scrolls-trcks">
+                <div class="trans-profiles-header">
+                    <div class="trans-headings">
+                        <h4>Transactions</h4>
+                    </div>
+                </div>
+                <div class="scroll-function">
+                    <div class="trans-profiles-inner">
+                        <div class="trans-counters">
+                            <div class="list-transta transcations_byall" ng-repeat="tranDetails in ATC.usertranscation" ng-if="ATC.usertranscation.length > 0">
+                                <div class="col-trans-lists">
+                                    <div class="count-order">
+                                        <span>{{ "S.NO" | translate}}</span>
+                                        <p>{{ $index + 1 }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists">
+                                    <div class="count-book">
+                                        <span>{{ "BOOKING ID" | translate }}</span>
+                                        <p>{{ tranDetails.booking_id | translate }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists">
+                                    <div class="count-task">
+                                        <span>{{ "TASK" | translate}}</span>
+                                        <p>{{ tranDetails.category.name | translate }}</p>
+                                    </div>
+                                </div>
+
+                                <div ng-if="tranDetails.invoice.amount.total" class="col-trans-lists">
+                                    <div class="count-action" ng-if="tranDetails.invoice.amount.extra_amount && tranDetails.invoice.amount.coupon">
+                                        <span>{{ "TOTAL AMOUNT" | translate }}</span>
+                                        <p>{{currency.symbol}}{{(tranDetails.invoice.amount.total + tranDetails.invoice.amount.service_tax + tranDetails.invoice.amount.extra_amount - tranDetails.invoice.amount.coupon) * currency.value | number:2 }}<p>
+                                    </div>
+                                    <div class="count-action" ng-if="tranDetails.invoice.amount.extra_amount && !tranDetails.invoice.amount.coupon">
+                                        <span>{{ "TOTAL AMOUNT" | translate }}</span>
+                                        <p>{{currency.symbol}}{{(tranDetails.invoice.amount.total + tranDetails.invoice.amount.service_tax + tranDetails.invoice.amount.extra_amount) * currency.value | number:2 }}<p>
+                                    </div>
+                                    <div class="count-action" ng-if="!tranDetails.invoice.amount.extra_amount && tranDetails.invoice.amount.coupon">
+                                        <span>{{ "TOTAL AMOUNT" | translate }}</span>
+                                        <p>{{currency.symbol}}{{(tranDetails.invoice.amount.total + tranDetails.invoice.amount.service_tax - tranDetails.invoice.amount.coupon) * currency.value | number:2 }}<p>
+                                    </div>
+                                    <div class="count-action" ng-if="!tranDetails.invoice.amount.extra_amount && !tranDetails.invoice.amount.coupon">
+                                        <span>{{ "TOTAL AMOUNT" | translate }}</span>
+                                        <p>{{currency.symbol}}{{(tranDetails.invoice.amount.total + tranDetails.invoice.amount.service_tax) * currency.value | number:2 }}<p>
+                                    </div>
+                                </div>
+                                
+                                <div ng-if = "usertype == 'tasker'" class="col-trans-lists">
+                                        <div ng-if ="!tranDetails.invoice.amount.extra_amount",class="count-action">
+                                            <span>{{ "YOUR EARNINGS" | translate }}</span>                 
+                                            <p>{{currency.symbol}}{{(tranDetails.invoice.amount.total  -  tranDetails.invoice.amount.admin_commission) * currency.value | number:2}}</p>
+                                        </div>
+                                        <div ng-if ="tranDetails.invoice.amount.extra_amount",class="count-action">
+                                            <span>{{ "YOUR EARNINGS" | translate }}</span>                 
+                                            <p>{{currency.symbol}}{{((tranDetails.invoice.amount.total  -  tranDetails.invoice.amount.admin_commission) + tranDetails.invoice.amount.extra_amount)* currency.value | number:2}}</p>
+                                        </div>
+                                    </div>
+                                <div class="col-trans-lists">
+                                    <span>{{ "ACTION" | translate }}</span>
+                                    <p ng-if = " usertype == 'user' "class="viw-more" ng-click="ATC.taskUserTranscationViewModal($index, tranDetails.category._id)"><a href="#" class="main-views">{{ "VIEW" | translate}}</a></p>
+                                    <p ng-if = " usertype == 'tasker' "  class="viw-more" ng-click="ATC.taskTranscationViewModal($index, tranDetails.category._id)"><a href="#" class="main-views">{{ "VIEW" | translate}}</a></p>
+                                </div>
+                            </div>
+                            <div class="list-transta" ng-if="ATC.usertranscation.length === 0">
+                                <span>{{'YOU DONT HAVE ANY TRANSACTIONS YET'|translate }} !</span>
+                            </div>
+                            <div style="margin-top: 200px;margin-left: 300px;" ng-if="ATC.usertranscation.length > 10" class="pagination_inner clearfix">
+                                <nav>
+                                    <uib-pagination max-size="10" items-per-page="ATC.itemsPerPage" ng-change="ATC.getTransaction(ATC.transCurrentPage)" total-items="ATC.transtotalItem" ng-model="ATC.transCurrentPage" class="pagination pagination-lg" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

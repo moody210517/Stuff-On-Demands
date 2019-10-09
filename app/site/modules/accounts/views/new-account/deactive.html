@@ -1,0 +1,28 @@
+<div class="tskr_prof_dtls">
+    <div class="container">
+        <div class="tskr_rgstrn_outer_cont">
+            <div class="tskr_prof_dtls_inner">
+                <div class="tskr_prof_dtls_bx">
+                    <div class="tskr_prof_dtls_hdr">
+                        <div class="tskr_prof_dtls_bx_lft">
+                            <div class="tskr_prof_dtls_tle">
+                                {{'ACCOUNT_DEACTIVATIONS' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tskr_prof_dtls_cont">
+                        <div class="tskr_prof_dtls_innercont">
+                            <div class="tskr_prof_dtls_cont_val">
+                                <span class="tskr_prof_dtls_icon">
+                                    <button type="button" class="btn btn-primary deactive-btn" ng-click="deactivateACC()" ng-if="ADC.user.role=='tasker'">{{'DEACTIVATE_YOUR_ACCOUNT' | translate}}</button> 
+                                    <button type="button" class="btn btn-primary deactive-btn" ng-click="deactivateACC()" ng-if="ADC.user.role =='user'">{{'DEACTIVATE_YOUR_ACCOUNT' | translate}}</button>
+                                </span>
+                                <span class="tskr_prof_dtls_name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

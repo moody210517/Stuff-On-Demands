@@ -1,0 +1,54 @@
+<div class="trans-profiles">
+    <div class="container">
+        <div class="view-trans">
+            <div class="trans-packed main-scrolls-trcks">
+                <div class="trans-profiles-header">
+                    <div class="trans-headings">
+                        <h4>{{'CATEGORY' | translate}}<span><button type="button" class="btn btn-primary add-cats-pages deactive-btn" ng-click="ACC.CategoryModal()">{{'ADD CATEGORY' | translate}}</button></span></h4>
+
+                    </div>
+                </div>
+                <div class="scroll-function">
+                    <div class="trans-profiles-inner">
+                        <div class="trans-counters">
+                            <!-- <button type="button" class="btn btn-primary deactive-btn" ng-click="ACC.CategoryModal()">{{'ADD CATEGORY' | translate}}</button> -->
+                            <div class="list-transta" ng-repeat="category in ACC.usercategories">
+                                <div class="col-trans-lists">
+                                    <div class="count-order">
+                                        <span>{{'S.No' | translate}}</span>
+                                        <p>{{ $index + 1}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists">
+                                    <div class="count-book">
+                                        <span>{{'CATEGORY' | translate}}</span>
+                                        <p>{{category.childid.name}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists" ng-if="category.status == 1">
+                                    <div class="count-task">
+                                        <span>{{'STATUS' | translate}}</span>
+                                        <p>{{'VERIFIED' | translate}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists" ng-if="category.status == 2">
+                                    <div class="count-task">
+                                        <span>{{'STATUS' | translate}}</span>
+                                        <p>{{'NOT VERIFIED' | translate}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists actions_task">
+                                    <span>{{'ACTION' | translate}}</span>
+                                    <div class="cat_acts_nrs">
+                                    <p class="viw-more" ng-click="ACC.CategoryModal(category.childid._id)"><a href="#" class="main-views">{{'EDIT' | translate}}</a></p>
+                                    <p class="viw-more" ng-click="ACC.DeletecategoryModal(category.childid._id,category.childid.name)"><a href="#" class="main-views">{{'DELETE' | translate}}</a></p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

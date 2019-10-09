@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'PoppinsMedium';
+    src: url('../fonts/PoppinsMedium.eot');
+    src: url('../fonts/PoppinsMedium.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsMedium.woff2') format('woff2'),
+         url('../fonts/PoppinsMedium.woff') format('woff'),
+         url('../fonts/PoppinsMedium.ttf') format('truetype'),
+         url('../fonts/PoppinsMedium.svg#PoppinsMedium') format('svg');
+}
+@font-face {
+    font-family: 'PoppinsRegular';
+    src: url('../fonts/PoppinsRegular.eot');
+    src: url('../fonts/PoppinsRegular.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsRegular.woff2') format('woff2'),
+         url('../fonts/PoppinsRegular.woff') format('woff'),
+         url('../fonts/PoppinsRegular.ttf') format('truetype'),
+         url('../fonts/PoppinsRegular.svg#PoppinsRegular') format('svg');
+}
+@font-face {
+    font-family: 'PoppinsSemiBold';
+    src: url('../fonts/PoppinsSemiBold.eot');
+    src: url('../fonts/PoppinsSemiBold.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsSemiBold.woff2') format('woff2'),
+         url('../fonts/PoppinsSemiBold.woff') format('woff'),
+         url('../fonts/PoppinsSemiBold.ttf') format('truetype'),
+         url('../fonts/PoppinsSemiBold.svg#PoppinsSemiBold') format('svg');
+}
+@font-face {
+    font-family: 'PoppinsBold';
+    src: url('../fonts/PoppinsBold.eot');
+    src: url('../fonts/PoppinsBold.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsBold.woff2') format('woff2'),
+         url('../fonts/PoppinsBold.woff') format('woff'),
+         url('../fonts/PoppinsBold.ttf') format('truetype'),
+         url('../fonts/PoppinsBold.svg#PoppinsBold') format('svg');
+}
+@font-face {
+    font-family: 'PoppinsLight';
+    src: url('../fonts/PoppinsLight.eot');
+    src: url('../fonts/PoppinsLight.eot') format('embedded-opentype'),
+         url('../fonts/PoppinsLight.woff2') format('woff2'),
+         url('../fonts/PoppinsLight.woff') format('woff'),
+         url('../fonts/PoppinsLight.ttf') format('truetype'),
+         url('../fonts/PoppinsLight.svg#PoppinsLight') format('svg');
+}
+
+.handy-home-payment h2.section-title{
+	color: red;
+	font-family: 'PoppinsRegular'!important; 
+
+}

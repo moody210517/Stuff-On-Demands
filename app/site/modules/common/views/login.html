@@ -1,0 +1,112 @@
+<div class="login_contt tb_contt rsgtr-tb">
+  <div class="login_contt_tle tb_contt_tle">
+    Login
+  </div>
+  <uib-tabset class="tab-animation" active="active">
+    <uib-tab index="0" heading="user" active="activeUserTab">
+      <div class="usr_lgn lgn_dtls tsk_lgn">
+        <form role="form" name="userForm" class="form-validation mt-20" method="post" submit-validate novalidate>
+          <div class="inpt_fld">
+            <div class="typ_inpt" ng-if="!ULGC.showuserotpform">
+              <span class="inps-fr inps-fr-lft">
+                <input style=" padding-left: 48px;" type="tel" ng-model="ULGC.usermobile" placeholder="Mobile number" name="tel" id="tel" ng-intl-tel-input required>
+                <span  class="validerr tsk-valids" ng-show="userForm.tel.$error.required && !userForm.tel.$pristine">Enter Mobile Number.</span>
+                <span  class="validerr tsk-valids" ng-show="userForm.tel.$invalid && !userForm.tel.$error.required">Invalid Mobile Number.</span>
+                </span>
+              </span>
+              <span class="inps-fr inps-fr-rgt">
+                <div class="btn_fld" ng-if="!ULGC.showuserotpform">
+                  <div class="typ_btn">
+                    <button type="submit" ng-click="ULGC.generateotp(userForm.tel.$valid,'user',ULGC.usermobile)" class="rgstr-btn">Get OTP</button>
+                  </div>
+                </div>
+              </span>
+            </div>
+
+            <div class="typ_inpt" ng-if="ULGC.showuserotpform">
+              <span class="inps-fr inps-fr-lft">
+                <input type="text" name="otp" placeholder="One-time password" ng-model="ULGC.userotp" disallow-spaces ng-pattern="/^[a-zA-Z0-9\_\. ]*$/" required>
+                <span  class="validerr tsk-valids" ng-show="userForm.otp.$error.required && !userForm.otp.$pristine">Enter OTP.</span>
+                <div class="frget-pwd arrange">
+                  <a style="float:left" href="#" ng-click="ULGC.resendotp('user')">Resend OTP</a>
+                </div>
+              </span>
+              <span class="inps-fr inps-fr-rgt">
+                <div class="btn_fld">
+                  <div class="typ_btn">
+                    <button type="submit" ng-click="ULGC.checkotp(userForm.otp.$valid,'user',ULGC.userotp)" class="rgstr-btn">Verify OTP</button>
+                  </div>
+                </div>
+              </span>
+            </div>
+          </div>
+        </form>
+        <div class="reg_link">
+          <span>Don't have an account? <a ui-sref="register()"> Register </a><p> | </p></span>
+        </div>
+        <div class="social_btn">
+          <div class="social_btn_home">
+            <div class="bk_home">
+              <a href="/" class="social_btn_home_link onsite">Back to Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </uib-tab>
+     <uib-tab index="1" heading="tasker" active="activeTaskerTab">
+      <div class="usr_lgn lgn_dtls tsk_lgn">
+        <form role="form" name="taskerform" class="form-validation mt-20" method="post" submit-validate novalidate>
+          <div class="inpt_fld new-texts">
+            <div class="typ_inpt" ng-if="!ULGC.showtaskerotpform">
+              <span class="inps-fr inps-fr-lft">
+                <input style=" padding-left: 48px;" type="tel" ng-model="ULGC.taskermobile" placeholder="Mobile number" name="tel" id="tel" ng-intl-tel-input required>
+                <span  class="validerr tsk-valids" ng-show="taskerform.tel.$error.required && !taskerform.tel.$pristine">Enter Mobile Number.</span>
+                <span  class="validerr tsk-valids" ng-show="taskerform.tel.$invalid && !taskerform.tel.$error.required">Invalid Mobile Number.</span>
+              </span>
+              <span class="inps-fr inps-fr-rgt">
+                <div class="btn_fld" ng-if="!ULGC.showtaskerotpform">
+                  <div class="typ_btn">
+                    <button type="submit" class="rgstr-btn" ng-click="ULGC.generateotp(taskerform.tel.$valid,'tasker',ULGC.taskermobile)">Get OTP</button>
+                  </div>
+                </div>
+              </span>
+            </div>
+          </div>
+          {{type}}
+          <div class="typ_inpt" ng-if="ULGC.showtaskerotpform">
+              <span class="inps-fr inps-fr-lft">
+                <input type="text" name="otp" placeholder="One-time password" ng-model="ULGC.taskerotp" disallow-spaces ng-pattern="/^[a-zA-Z0-9\_\. ]*$/" required>
+                <span  class="validerr tsk-valids" ng-show="taskerform.otp.$error.required && !taskerform.otp.$pristine">Enter OTP.</span>
+                <div class="frget-pwd arrange">
+                  <a style="float:left" href="#" ng-click="ULGC.resendotp('tasker')">Resend OTP</a>
+                </div>
+              </span>
+              <span class="inps-fr inps-fr-rgt">
+                <div class="btn_fld">
+                  <div class="typ_btn">
+                    <button type="submit" ng-click="ULGC.checkotp(taskerform.otp.$valid,'tasker',ULGC.taskerotp)" class="rgstr-btn">Verify OTP</button>
+                  </div>
+                </div>
+              </span>
+            </div>
+        </form>
+        <div class="reg_link">
+          <span>Don't have an account? <a ui-sref="register()"> Register </a><p> | </p></span>
+        </div>
+        <div class="social_btn">
+          <div class="social_btn_home">
+            <div class="bk_home">
+              <a href="/" class="social_btn_home_link onsite">Back to Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </uib-tab> 
+</div>
+<style type="text/css">
+  body {
+    background: url({{rc.loginimage.image}});
+    background-position: center;
+    background-size: cover;
+  }
+</style>

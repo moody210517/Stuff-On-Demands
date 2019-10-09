@@ -1,0 +1,207 @@
+<div class="page page-tables-bootstrap">
+  <div class="pageheader">
+    <h2>{{ 'Menu.EARNINGS' | translate }} </h2>
+    <div class="page-bar">
+      <ul class="page-breadcrumb">
+        <li>
+          <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a>
+        </li>
+        <li>
+          <a href="javascript:;">{{ 'Menu.EARNINGS' | translate }}</a>
+        </li>
+        <li>
+          <a ui-sref="app.giftCards.giftCardsList" href="#/app/giftCards/gift-cards-list">All {{ 'Menu.EARNINGS' | translate }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!--<div class="row">
+    <div class="feature-box-container col-lg-3 col-sm-6 col-sm-12" ng-if="userVisiblevalue == true">
+      <div class="card">
+        <div ui-sref="app.users.list" class="front bg-greensea">
+          <div class="row">
+            <div class="col-xs-4">
+              <i class="fa fa-shopping-cart fa-4x "></i>
+            </div>
+            <div class="col-xs-8">
+              <p class="text-elg text-strong mb-0">{{userlist}}</p>
+              <span>Total task Amount</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="feature-box-container col-lg-3 col-sm-6 col-sm-12" ng-if="taskerVisiblevalue == true">
+      <div class="card">
+        <div ui-sref="app.taskers.list" class="front bg-lightred">
+          <div class="row">
+            <div class="col-xs-4">
+              <i class="fa fa-line-chart  fa-4x "></i>
+            </div>
+            <div class="col-xs-8">
+              <p class="text-elg text-strong mb-0">{{taskers}}</p>
+              <span>Admin Earning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-box-container col-lg-3 col-sm-6 col-sm-12" ng-if="taskVisiblevalue == true">
+      <div class="card">
+        <div ui-sref="app.tasks.viewsTasks" class="front bg-blue">
+          <div class="row">
+            <div class="col-xs-4">
+              <i class="fa fa-money fa-4x"></i>
+            </div>
+            <div class="col-xs-8">
+              <p class="text-elg text-strong mb-0">{{tasks}}</p>
+              <span>{{tasker}} Earning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+      <div class="card">
+        <div class="front bg-slategray">
+
+          <div class="row">
+            <div class="col-xs-4">
+              <i class="fa fa-users fa-4x"></i>
+            </div>
+            <div class="col-xs-8">
+              <p class="text-elg text-strong mb-0">3 659</p>
+              <span>Coupon</span>
+            </div>
+          </div>
+        </div>
+        <div class="back bg-slategray">
+          <div class="row">
+            <div class="col-xs-6">
+              <a href="javascript:;"><i class="fa fa-cog fa-2x">1000</i> Active</a>
+            </div>
+            <div class="col-xs-6">
+              <a href="javascript:;"><i class="fa fa-chain-broken fa-2x">10</i>Inactive</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>-->
+
+
+  <div class="col-md-12 tile list-task ">
+    <div class="tile list-task ">
+      <div class="form-group col-sm-6" ng-class="{ 'has-error' : taskerEditForm.gender.$invalid && !taskerEditForm.gender.$pristine, 'has-success' : taskerEditForm.gender.$valid && !taskerEditForm.gender.$pristine}">
+        <div class="tile-header dvd dvd-btm">
+          <h1 class="custom-font"><strong>Bill Cycyle</strong></h1>
+        </div>
+        <select type="text" name="billcycyle" class="form-control" ng-model="ENC.selected" required>
+          <option ng-if="!ENC.billcycledate" value=''>No Billing Cycle Genetrated Yet</option>
+          <option ng-if="ENC.billcycledate" value=''>{{ENC.billcycledate}} - Till now</option>
+          <option  ng-if="ENC.cycledata.length > 0" ng-repeat="cycledata in ENC.cycledata" value="{{cycledata._id}}">{{cycledata.billingcycyle}}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <br>
+        <br>
+        <input type="submit" class=" btn btn-success" value="Submit" ng-click="ENC.replacelist(ENC.selected);">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12 tile list-task">
+    <div class="tile list-task">
+      <label class="control-label">From:</label>
+      <div class="input-group w-md">
+        <input type="text" name="from" class="form-control" datepicker-popup="{{format}}" ng-change="ENC.dateChange()" ng-model="ENC.fromDate"
+          is-open="status.opened" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close"
+        />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="open($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 tile list-task">
+    <div class="tile list-task">
+      <label class="control-label">To:</label>
+      <div class="input-group w-md">
+        <input type="text" name="to" class="form-control" datepicker-popup="{{format}}" ng-change="ENC.dateChange()" ng-model="ENC.toDate"
+          is-open="status.opened" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close"
+        />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="open($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+      </div>  
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <input type="submit" class=" btn btn-success" value="Search" ng-click="ENC.replacelist();">
+  </div>
+
+  <!-- <div class="form-group  col-sm-6">
+    <label class="control-label">From:</label>
+    <div class="input-group w-md">
+      <input type="text" name="from" class="form-control" datepicker-popup="{{format}}" ng-change="ANTSC.dateChange()" ng-model="ANTSC.fromDate"
+        is-open="status.opened" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close"
+      />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open($event)">
+          <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+      </span>
+    </div>
+  </div>
+  <div class="form-group  col-sm-6">
+    <label class="control-label">To:</label>
+    <div class="input-group w-md">
+      <input type="text" name="to" class="form-control" datepicker-popup="{{format}}" ng-change="ANTSC.dateChange()" ng-model="ANTSC.toDate"
+        is-open="status.opened" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close"
+      />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open($event)">
+          <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <br>
+    <br>
+    <input type="submit" class=" btn btn-success" value="submit" ng-click="ENC.replacelist(ENC.selected);">
+  </div> -->
+
+
+  <div class="pagecontent">
+    <div class="row">
+      <div class="col-md-12">
+        <section class="tile list-task" fullscreen="isFullscreen07">
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font"><strong>Total Earnings</strong></h1>
+          </div>
+          <custom-table data="ENC.table" delete-call="ENC.deletedData"></custom-table>
+        </section>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .btn-success {
+    margin-top: 3px;
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+  }
+</style>

@@ -1,0 +1,339 @@
+<div class="tskrdet_dtls">
+    <div class="container">
+        <div class="tskr_rgstrn_outer_cont">
+            <div class="tskrdet_dtls_inner">
+                <div class="tskrdet_dtls_bx">
+                    <div class="tskrdet_dtls_hdr">
+                        <div class="tskrdet_dtls_bx_lft">
+                            <div class="tskrdet_dtls_tle">
+                                Task Details
+                            </div>
+                        </div>
+                        <div class="tskrdet_dtls_bx_rgt">
+                            <div class="taskrdet_bx_links">
+                                <div class="tskrdet_dtls_link sub_links new-active" id="assigned" ng-click="ATC.getTaskLists('assigned')"><a href="#">{{'ASSIGNED' | translate}}</a>
+                                </div>
+                                <div class="tskrdet_dtls_link sub_links" id="ongoing" ng-click="ATC.getTaskLists('ongoing')"><a href="#">{{'ONGOING' | translate}}</a>
+                                </div>
+                                <div class="tskrdet_dtls_link sub_links" id="completed" ng-click="ATC.getTaskLists('completed')"><a href="#">{{'COMPLETED' | translate}}</a>
+                                </div>
+                                <div class="tskrdet_dtls_link sub_links" id="cancelled" ng-click="ATC.getTaskLists('cancelled')"><a href="#">{{'CANCELLED' | translate}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="tskrdet_dtls_conts complete_cont">
+                        <div class="full-db">
+                            <div class="list-one">
+                            <h3>From: </h3>
+                            <ul class="day-list dte-pkr">
+                                <div ng-controller="DatepickerDobCtrl" class="cal-holde new-holders" >
+                                    <style>
+                                        .datepicker .btn-default {
+                                            border-width: 0;
+                                            width: 100%;
+                                            -webkit-box-shadow: none;
+                                            box-shadow: none;
+                                        }
+
+                                        .btn-success{
+                                            display:none;
+                                        }
+                                        .day-list li {
+                                            float: left;
+                                            margin: 0 18px 0 0;
+                                            width: 140px;
+                                        }
+                                        .btn-group > .btn, .btn-group-vertical > .btn  {
+                                            display:none;
+                                        }
+
+                                        .datepicker .btn-default .glyphicon {
+                                            align: center;
+                                            top: 2px;
+                                        }
+
+                                        .datepicker .btn[disabled] {
+                                          opacity: .3;
+                                        }
+
+                                        .datepicker .btn-info {
+                                          color: white !important;
+                                        }
+
+                                        .datepicker .btn-info .text-info {
+                                          color: white;
+                                        }
+
+                                        .datepicker .btn-info.active {
+                                          background-color: #5bc0de !important;
+                                        }
+                                    </style>
+                                    <i ng-click="open($event)" class="fa fa-calendar"></i>
+                                    <input type="text" name="valid_from" id="valid_from" class="dateside" datepicker-popup="{{format}}"
+                                        ng-model="ATC.searchTaskFrom" ng-change="checkSearchDate(ATC.searchTaskFrom)" is-open="opened" datepicker-options="dateOptions" min-date="minDate" ng-required="true" placeholder="DD-MM-YYYY" close-text="Close"  show-clear="false" required/ style="margin-top: -2px;width: 85%;">
+                                </div>
+                            </ul>
+                                </div>
+                                 <div class="list-one">
+                            <h3>To: </h3>
+                            <ul class="day-list dte-pkr">
+                                <div ng-controller="DatepickerDobCtrl" class="cal-holde new-holders" >
+                                    <style>
+                                        .datepicker .btn-default {
+                                            border-width: 0;
+                                            width: 100%;
+                                            -webkit-box-shadow: none;
+                                            box-shadow: none;
+                                        }
+
+                                        .btn-success{
+                                            display:none;
+                                        }
+                                        .day-list li {
+                                            float: left;
+                                            margin: 0 18px 0 0;
+                                            width: 140px;
+                                        }
+                                        .btn-group > .btn, .btn-group-vertical > .btn  {
+                                            display:none;
+                                        }
+
+                                        .datepicker .btn-default .glyphicon {
+                                            align: center;
+                                            top: 2px;
+                                        }
+
+                                        .datepicker .btn[disabled] {
+                                          opacity: .3;
+                                        }
+
+                                        .datepicker .btn-info {
+                                          color: white !important;
+                                        }
+
+                                        .datepicker .btn-info .text-info {
+                                          color: white;
+                                        }
+
+                                        .datepicker .btn-info.active {
+                                          background-color: #5bc0de !important;
+                                        }
+                                    </style>
+                                    <i ng-click="open($event)" class="fa fa-calendar"></i>
+                                    <input type="text" name="valid_from" id="valid_from" class="dateside" datepicker-popup="{{format}}"
+                                        ng-model="ATC.searchTaskTo" ng-change="checkSearchDate(ATC.searchTaskTo)" is-open="opened" datepicker-options="dateOptions" min-date="minDate" ng-required="true" placeholder="DD-MM-YYYY" close-text="Close"  show-clear="false" required/ style="margin-top: -2px;width: 85%;">
+                                </div>
+                            </ul>
+                        </div>
+                         <div class="list-one">
+                           <h3> Job Id:</h3> 
+                           <input type="text" class="form-control" placeholder="" ng-change="checkDefaultValue()" ng-model="job_id">
+                            <button class="btn btn-primary deactive-btn ng-binding ng-scope" ng-click="ATC.getSearchTaskLists()">Search</button>
+                            <button class="btn btn-primary deactive-btn ng-binding ng-scope" ng-click="clearSearch()">Clear</button>
+                        </div>
+                        </div>
+                        <div class="tskrdet_dtls_innerconts">
+                            <div class="tskrdet_dtls_bxs" ng-repeat="taskDetails in ATC.taskList">
+                                <div class="tskrdet_dtls_inner_bxs">
+                                    <div class="tskrdet_dtls_bxs_lft">
+                                        <span class="tle">
+                                            {{ taskDetails.category.name +' - ' + taskDetails.booking_id | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="tskrdet_dtls_bxs_rgt">
+                                        <div class="tskrdet_dtls_bxs_rgt_inner">
+                                            <div class="tskrdet_dtls_bxs_rgt_img">
+                                                <img src="{{ taskDetails.tasker.avatar || '/uploads/default/user.jpg' }}" uib-tooltip="{{taskDetails.tasker.username}}" err-src="user">
+                                            </div>
+                                            <div class="pos-relative">
+                                                <button class="btn def_btn" ng-if="taskDetails.status == 6" ng-click="ATC.taskPayment({slug:taskDetails._id})">{{'PROCEED_TO_PAY'| translate }}</button>
+                                                <button class="btn def_btn" ng-if="taskDetails.status == 2 || taskDetails.status == 3 || taskDetails.status == 4 || taskDetails.status == 5 || taskDetails.status == 6" ng-click="ATC.taskChat({task: taskDetails._id,user:taskDetails.user,tasker: taskDetails.tasker._id})">{{'CHAT' | translate}}</button>
+                                                <button class="btn def_btn" ng-if="taskDetails.status == 7 || taskDetails.status == 6" ng-disabled="taskDetails.rating.length != 0 && taskDetails.rating[0].type == 'user' || taskDetails.rating[1].type == 'user'" ng-click="ATC.addReviewModal(taskDetails)">Review Tasker</button>
+                                                <button class="btn def_btn" ng-if="taskDetails.status == 1" ng-click="ATC.taskCancelModal(taskDetails._id, 8)">{{'CANCEL'| translate }}</button>
+                                                <!-- <md-fab-speed-dial md-open="false" md-direction="left" class="md-scale">
+                                                    <md-fab-trigger>
+                                                        <md-button class="md-fab md-warn">
+                                                            <md-icon md-svg-src="app/site/public/svg/icons/menu.svg"></md-icon>
+                                                        </md-button>
+                                                    </md-fab-trigger>
+                                                    <md-fab-actions>
+                                                        <md-button ng-if="taskDetails.status == 1 || taskDetails.status == 2" class="md-fab md-raised md-mini"
+                                                            ng-click="ATC.taskCancelModal(taskDetails._id, 8)">
+                                                            <md-tooltip md-direction="top">{{'CANCEL' | translate}}</md-tooltip>
+                                                            <md-icon md-svg-src="app/site/public/svg/icons/cancel.svg"></md-icon>
+                                                        </md-button>
+                                                        <md-button ng-if="taskDetails.status == 6" class="md-fab md-raised md-mini" ng-click="ATC.taskPayment({slug:taskDetails._id})">
+                                                            <md-tooltip md-direction="top">{{'PROCEED_TO_PAY' | translate}}</md-tooltip>
+                                                            <md-icon md-svg-src="app/site/public/svg/icons/payment.svg"></md-icon>
+                                                        </md-button>
+                                                        <md-button ng-if="taskDetails.status == 1 || taskDetails.status == 2 || taskDetails.status == 3 || taskDetails.status == 4 || taskDetails.status == 5 || taskDetails.status == 6 || taskDetails.status == 7"
+                                                            class="md-fab md-raised md-mini" ng-click="ATC.taskChat({task: taskDetails._id,user:taskDetails.user,tasker: taskDetails.tasker._id})">
+                                                            <md-tooltip md-direction="top">{{'CHAT' | translate}}</md-tooltip>
+                                                            <md-icon md-svg-src="app/site/public/svg/icons/chat.svg"></md-icon>
+                                                        </md-button>
+                                                        <md-button ng-if="taskDetails.status == 7 || taskDetails.status == 6" class="md-fab md-raised md-mini" ng-click="ATC.addReviewModal(taskDetails)"
+                                                            ng-disabled="taskDetails.rating.length != 0 && taskDetails.rating[0].type == 'user' || taskDetails.rating[1].type == 'user' ">
+                                                            <md-tooltip md-direction="top">{{'REVIEW TASKER' | translate}}</md-tooltip>
+                                                            <md-icon md-svg-src="app/site/public/svg/icons/review.svg"></md-icon>
+                                                        </md-button>
+                                                    </md-fab-actions>
+                                                </md-fab-speed-dial> -->
+                                                <!--
+                                                <div class="tskrdet_dtls_bxs_rgt_cmd clk-options" ng-click="ATC.actionMenu($index)">
+                                                    <div class="showing-details">
+                                                        <span class="cmd">
+                                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                                </span>
+                                                    </div>
+                                                </div>
+                                                <div class="soc-details trans-var" ng-show="{{ $index }} === ATC.action_menu">
+                                                    <ul>
+                                                        <li ng-if="taskDetails.status == 1 || taskDetails.status == 2" ng-click="ATC.taskCancelModal(taskDetails._id, 8)">
+                                                            <a href="javascript:;"> <i class="fa fa-times" aria-hidden="true"></i></a>{{'CANCEL'
+                                                            | translate}}</li>
+                                                        <li ng-if="taskDetails.status == 1 || taskDetails.status == 2 || taskDetails.status == 3 || taskDetails.status == 4 || taskDetails.status == 5 || taskDetails.status == 6 || taskDetails.status == 7">
+                                                            <a href="javascript:;" ui-sref="chat({ task: taskDetails._id,user:taskDetails.user,tasker: taskDetails.tasker._id })">
+                                                                <i class="fa fa-users" aria-hidden="true"></i></a>{{'CHAT'
+                                                            | translate}}
+                                                        </li>
+                                                        <li ng-if="taskDetails.status == 6" ng-disabled="taskDetails.invoice.status == 1" "><a href="javascript:; " ui-sref="carddeatil({slug:taskDetails._id})
+                                                            ""> <i class="fa fa-credit-card" aria-hidden="true"></i></a>{{'PROCEED_TO_PAY'
+                                                            | translate}}</li>
+                                                    </ul>
+                                                </div>
+                                                -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tskrdet_dtls_inner_bottom">
+                                    <div class="tskrdet_dtls_inner_btm">
+                                        <div class="tskrdet_dtls_btm_left">
+                                            <div class="tskrdet_dtls_btm_date">
+                                                <div class="dtls_btm_date">
+                                                    {{ taskDetails.updatedAt | date: 'dd'}}
+                                                </div>
+                                                <div class="dtls_btm_mnth">
+                                                    {{ taskDetails.updatedAt | date: 'MMM'}}
+                                                </div>
+                                            </div>
+                                            <!-- address -->
+                                            <div class="tskrdet_dtls_btm_loc job-completetion">
+                                                <span class="icon">
+                                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                </span>
+                                                <span class="name">
+                                                    {{ taskDetails.service_address | translate }}
+                                                </span>
+                                            </div>
+                                            <!-- end address -->
+                                            <!-- total amount -->
+                                            <div ng-if="taskDetails.invoice.amount.total">
+                                                <div class="tskrdet_dtls_btm_prc" ng-if="(ATC.taskList[0].status == 6 || ATC.taskList[0].status == 7) && taskDetails.invoice.amount.extra_amount && taskDetails.invoice.amount.coupon">
+                                                    <span class="name">
+                                                        <span style="color: #ff5400;font-size: 16px;padding-right: 5px;">{{ ATC.currency[0].symbol}}</span>{{(taskDetails.invoice.amount.total + taskDetails.invoice.amount.service_tax + taskDetails.invoice.amount.extra_amount - taskDetails.invoice.amount.coupon) * ATC.currency[0].value | number:2 }}
+                                                    </span>
+                                                </div>
+                                                <div class="tskrdet_dtls_btm_prc" ng-if="(ATC.taskList[0].status == 6 || ATC.taskList[0].status == 7) && taskDetails.invoice.amount.extra_amount && !taskDetails.invoice.amount.coupon">
+                                                    <span class="name">
+                                                        <span style="color: #ff5400;font-size: 16px;padding-right: 5px;">{{ ATC.currency[0].symbol}}</span>{{(taskDetails.invoice.amount.total + taskDetails.invoice.amount.service_tax + taskDetails.invoice.amount.extra_amount) * ATC.currency[0].value | number:2 }}
+                                                    </span>
+                                                </div>
+                                                <div class="tskrdet_dtls_btm_prc" ng-if="(ATC.taskList[0].status == 6 || ATC.taskList[0].status == 7) && !taskDetails.invoice.amount.extra_amount && taskDetails.invoice.amount.coupon">
+                                                    <span class="name">
+                                                        <span style="color: #ff5400;font-size: 16px;padding-right: 5px;">{{ ATC.currency[0].symbol}}</span>{{(taskDetails.invoice.amount.total + taskDetails.invoice.amount.service_tax - taskDetails.invoice.amount.coupon) * ATC.currency[0].value | number:2 }}
+                                                    </span>
+                                                </div>
+                                                <div class="tskrdet_dtls_btm_prc" ng-if="(ATC.taskList[0].status == 6 || ATC.taskList[0].status == 7) && !taskDetails.invoice.amount.extra_amount && !taskDetails.invoice.amount.coupon">
+                                                    <span class="name">
+                                                        <span style="color: #ff5400;font-size: 16px;padding-right: 5px;">{{ ATC.currency[0].symbol}}</span>{{(taskDetails.invoice.amount.total + taskDetails.invoice.amount.service_tax) * ATC.currency[0].value | number:2 }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!--  ends total amount -->
+                                            <!-- task status  -->
+                                            <div class="tskrdet_dtls_btm_status ">
+                                                <span class="icon">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                </span>
+                                                <span class="name" ng-if="taskDetails.status == 1">
+                                                    {{'PENDING' | translate}}
+                                                </span>
+                                                <span class="name" ng-if="taskDetails.status == 2">
+                                                    {{'ACCEPTED' | translate}}
+                                                </span>
+                                                <span class="name" ng-if="taskDetails.status == 3">
+                                                    {{'START_OFF' | translate}}
+                                                </span>
+                                                <span class="name" ng-if="taskDetails.status == 4">
+                                                    {{'ARRIVED' | translate}}
+                                                </span>
+                                                <span class="name" ng-if="taskDetails.status == 5">
+                                                    {{'TASK_STARTED' | translate}}
+                                                </span>
+                                                <span class="name" ng-if="taskDetails.status == 6">
+                                                    {{'TASK_COMPLETED' | translate}}
+                                                </span>
+                                                <span class="name" ng-if="taskDetails.status == 7">
+                                                    {{'PAYMENT_COMPLETED' | translate}}
+                                                </span>
+                                                <span class="name" ng-if="taskDetails.status == 8">
+                                                   {{'TASK_CANCELLED' | translate}}
+                                                </span>
+                                            </div>
+                                            <!-- ends task status  -->
+                                        </div>
+                                        <div class="tskrdet_dtls_btm_right">
+                                            <div class="tskrdet_dtls_btm_btns settlement">
+                                                <!--
+                                                <div class="tskrdet_dtls_btm_btn">
+                                                    <button class="btn def_btn" ng-disabled="taskDetails.rating.length != 0 && taskDetails.rating[0].type == 'user' || taskDetails.rating[1].type == 'user' "
+                                                        ng-if="taskDetails.status == 7 || taskDetails.status == 6" ng-click="ATC.addReviewModal(taskDetails)">
+                                                        {{'REVIEW TASKER' | translate}}
+                                                    </button>
+                                                </div>
+                                                -->
+                                                <div class="tskrdet_dtls_btm_btn">
+                                                    <button class="btn def_btn" ng-click="ATC.taskDetailsViewModal($index)" ng-if="taskDetails.status != 9 || taskDetails.status != 10">
+                                                        Show Details
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 200px;margin-left: 300px;" ng-if="ATC.taskList.length > 0 && ATC.totalItem > 2" class="pagination_inner clearfix">
+                                <nav>
+                                    <uib-pagination max-size="5" boundary-link-numbers="true" items-per-page="ATC.itemsPerPage" ng-change="ATC.getTaskLists(ATC.status, ATC.taskListCurrentPage)"
+                                        total-items="ATC.totalItem" ng-model="ATC.taskListCurrentPage" class="pagination pagination-lg"
+                                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                                    </uib-pagination>
+                                </nav>
+                            </div>
+                            <div ng-if="ATC.taskList.length == 0" record-response="ATC.getTaskListResponse" no-record num-records="ATC.taskList.length">
+                                <ul class="tablesection">
+                                    <div class="emptyfie"><i class="fa fa-tasks" aria-hidden="true"></i><span>{{'YOU HAVE NO' | translate}} {{ATC.status | translate}} {{'TASKS' | translate}}</span></div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.sub_links').on('click', function () {
+            $('.sub_links').removeClass('new-active');
+            $(this).addClass('new-active');
+        });
+    });
+
+</script>

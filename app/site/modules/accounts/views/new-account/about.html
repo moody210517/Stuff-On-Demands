@@ -1,0 +1,34 @@
+<div class="tskr_prof_dtls">
+    <div class="container">
+        <div class="tskr_rgstrn_outer_cont">
+            <div class="tskr_prof_dtls_inner">
+                <div class="tskr_prof_dtls_bx">
+                    <div class="tskr_prof_dtls_hdr">
+                        <div class="tskr_prof_dtls_bx_lft">
+                            <div class="tskr_prof_dtls_tle">
+                                About You
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field abouts">
+                        <form name="TaskerAboutForm" role="form" submit-validate novalidate>
+                            <div ng-repeat="profileinfo in ACC.getQuestion " class="about-fields">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="form-group">
+                                        <!-- <label for="exampleInputEmail1">{{profileinfo.question | translate}}</label> -->
+                                        <textarea type="text" rows="6" cols="100" name="experience" class="form-control profilefield" id="exampleInputEmail1" placeholder="Describe about you" ng-model="ACC.profileDetails[profileinfo._id]" autocomplete="off" autocorrect="off" autocapitalize="off" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="news-abouts">
+                                                          <div class="col-md-2 col-xs-12" ng-if="ACC.account.role == 'tasker' && currentUser === ACC.account._id">
+                                <button type="button" class="btn btn-primary savebtn" ng-click="UpdateTaskerAbout(TaskerAboutForm.$valid, ACC.profileDetails)">{{ 'SAVE' | translate }}</button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

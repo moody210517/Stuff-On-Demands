@@ -1,0 +1,225 @@
+<div class="availabilities-day-form adminweekmodal viw-dtls-modal" id="viewdetails">
+    <div class="">
+        <div class="">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="TDVMI.cancel()">×</button>
+                <h1 class="day-text">{{'VIEW_TASK_DETAILS' | translate}} </h1>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="savenewrate" id="addnewrate">
+
+                    <ul class="view-detail-pop">
+                        <li ng-if="TDVMI.TaskDetails.tasker.avatar">
+                            <div class="logo-container prof-image" id="taskerimage"><img id="theImg" class="img-circle" ng-src="{{TDVMI.TaskDetails.tasker.avatar}}"></div>
+                        </li>
+                        <div class="text-danger" align="center">
+                            <h3 ng-if="TDVMI.TaskDetails.usertaskcancellationreason"> {{'TASK_CANCELLED' | translate}}</h3>
+                        </div>
+
+                        <li ng-if="TDVMI.TaskDetails._id">
+                            <label class="col-md-5 "> {{'BOOKING_ID' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.booking_id}}</p>
+                        </li>
+                        <!-- <li ng-if="TDVMI.TaskDetails.tasker.name">
+                            <label class="col-md-5"> {{'TASKER_NAME' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.tasker.name.first_name}} {{TDVMI.TaskDetails.tasker.username}}</p>
+                        </li> -->
+                        <li ng-if="TDVMI.TaskDetails.tasker.username">
+                            <label class="col-md-5">{{'TASKER_NAME' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly=""><span ng-if="TDVMI.TaskDetails.tasker.username">{{TDVMI.TaskDetails.tasker.username}}</span></p>
+                        </li>
+                        <li ng-if="TDVMI.TaskDetails.tasker.email">
+                            <label class="col-md-5">{{'TASKER_EMAIL' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.tasker.email}}</p>
+                        </li>
+                        <li ng-if="TDVMI.TaskDetails.category.name">
+                            <label class="col-md-5">{{'CATEGORY' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.category.name}}</p>
+                        </li>
+                        <!-- <li ng-if="TDVMI.TaskDetails.status">
+                            <label class="col-md-5">{{'TASK' | translate}} {{'STATUS' | translate}}:</label>
+                            <p ng-if=" TDVMI.TaskDetails.status == 1 " class="col-md-5" value="" readonly="">{{'PENDING'| translate}}</p>
+                            <p ng-if=" TDVMI.TaskDetails.status == 2 " class="col-md-5" value="" readonly="">{{'ACCEPTED'| translate}}</p>
+                            <p ng-if=" TDVMI.TaskDetails.status == 3 " class="col-md-5" value="" readonly="">{{'START_OFF'| translate}}</p>
+                            <p ng-if=" TDVMI.TaskDetails.status == 4 " class="col-md-5" value="" readonly="">{{'ARRIVED'| translate}}</p>
+                            <p ng-if=" TDVMI.TaskDetails.status == 5 " class="col-md-5" value="" readonly="">{{'TASK_STARTED'| translate}}</p>
+                            <p ng-if=" TDVMI.TaskDetails.status == 6 " class="col-md-5" value="" readonly="">{{'TASK_COMPLETED'| translate}}</p>
+                            <p ng-if=" TDVMI.TaskDetails.status == 7 " class="col-md-5" value="" readonly="">{{'PAYMENT_COMPLETED'| translate}}</p>
+                            <p ng-if=" TDVMI.TaskDetails.status == 8 " class="col-md-5" value="" readonly="">{{'TASK_CANCELLED'| translate}}</p>
+                        </li> -->
+
+
+                        <li style="display:none;">
+                                <label class="col-md-5">HISTORY</label>
+                        </li>
+                        <li style="display:none;">
+                            <p ng-if="TDVMI.TaskDetails.history.job_booking_time" class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.history.job_booking_time | date:'medium'}}</p>
+                        <p ng-if="TDVMI.TaskDetails.history.provider_assigned" class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.history.provider_assigned | date:'medium' : '+0530'}}</p>
+                        <p ng-if="TDVMI.TaskDetails.history.provider_start_off_time" class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.history.provider_start_off_time | date:'medium'}}</p>
+                        <p ng-if="TDVMI.TaskDetails.history.location_arrived_time" class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.history.location_arrived_time | date:'medium'}}</p>
+                        <p ng-if="TDVMI.TaskDetails.history.job_started_time" class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.history.job_started_time | date:'medium'}}</p>
+                        <p ng-if="TDVMI.TaskDetails.history.job_completed_time" class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.history.job_completed_time | date:'medium' : '+0530'}}</p>
+                        </li>
+
+
+                        <li ng-if="TDVMI.TaskDetails.booking_information.booking_date">
+                            <label class="col-md-5">{{'BOOKING DATE' | translate}}:</label>
+                            <!-- <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.history.booking_date | date:'medium' }}</p> -->
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.booking_information.booking_date| date:'medium' }}</p>
+
+                        </li>
+
+                        <li ng-if="TDVMI.TaskDetails.history.job_started_time">
+                            <label class="col-md-5">{{'JOB START DATE' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.history.job_started_time | date:'medium' }}</p>
+                        </li>
+                        <li ng-if="TDVMI.TaskDetails.history.job_completed_time">
+                            <label class="col-md-5">{{'JOB COMPLETED AT' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.history.job_completed_time | date:'medium' }}</p>
+                        </li>
+                        <li ng-if="TDVMI.TaskDetails.status == 7 || TDVMI.TaskDetails.status == 6">
+                            <label class="col-md-5">{{'HOURS WORKED'|translate }}:</label>
+                            <p class="col-md-6" value="" readonly=""> {{TDVMI.TaskDetails.invoice.worked_hours_human}}</p>
+                        </li>
+                        <!-- <li ng-if="TDVMI.TaskDetails.hourly_rate && TDVMI.TaskDetails.ratetype =='1' || !TDVMI.TaskDetails.ratetype">
+                            <label class="col-md-5">{{'HOURLY_RATE' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.DefaultCurrency[0].symbol}}{{TDVMI.TaskDetails.hourly_rate * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                        </li> -->
+
+                       <!--  <li ng-if="TDVMI.TaskDetails.category.commision && TDVMI.TaskDetails.ratetype =='1' || !TDVMI.TaskDetails.ratetype">
+                            <label class="col-md-5">{{'MINIMUM_HOURLY_RATE' | translate}} :</label>
+                            <p class="col-md-6" value="" readonly="">{{TDVMI.DefaultCurrency[0].symbol}}{{TDVMI.TaskDetails.category.commision * TDVMI.DefaultCurrency[0].value
+                                | number:2 }}</p>
+                        </li> -->
+
+                        <!-- <li ng-if="TDVMI.TaskDetails.hourly_rate && TDVMI.TaskDetails.ratetype =='2'">
+                            <label class="col-md-5">{{'FLAT_RATE' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.DefaultCurrency[0].symbol}}{{TDVMI.TaskDetails.hourly_rate * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                        </li> -->
+
+                        <!-- <li ng-if="TDVMI.TaskDetails.category.commision && TDVMI.TaskDetails.ratetype =='2'">
+                            <label class="col-md-5">{{'MINIMUM_FLAT_RATE' | translate}} :</label>
+                            <p class="col-md-6" value="" readonly="">{{TDVMI.DefaultCurrency[0].symbol}}{{TDVMI.TaskDetails.category.commision * TDVMI.DefaultCurrency[0].value
+                                | number:2 }}</p> -->
+                        </li>
+                        <li ng-if="TDVMI.TaskDetails.invoice.amount.total && !TDVMI.TaskDetails.invoice.amount.extra_amount">
+                            <label class="col-md-5">{{'TASK_AMOUMT'|translate }}:</label>
+                            <p class="col-md-6" value="" readonly="">{{TDVMI.DefaultCurrency[0].symbol }}{{TDVMI.TaskDetails.invoice.amount.total * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                        </li>
+                        <li ng-if="TDVMI.TaskDetails.invoice.amount.total && TDVMI.TaskDetails.invoice.amount.extra_amount">
+                            <label class="col-md-5">{{'TASK_AMOUMT'|translate }} (Incl.Material Fee):</label>
+                            <p class="col-md-6" value="" readonly="">{{TDVMI.DefaultCurrency[0].symbol }}{{(TDVMI.TaskDetails.invoice.amount.total + TDVMI.TaskDetails.invoice.amount.extra_amount) * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                        </li>
+                        <!-- <li ng-if="TDVMI.TaskDetails.invoice.amount.extra_amount">
+                            <label class="col-md-5">{{'MISCELLANEOUS_AMOUMT'|translate }}:</label>
+                            <p class="col-md-6" value="" readonly="">{{TDVMI.DefaultCurrency[0].symbol }}{{TDVMI.TaskDetails.invoice.amount.extra_amount * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                        </li> -->
+                        <li ng-if="TDVMI.TaskDetails.invoice.amount.service_tax">
+                            <label class="col-md-5">{{'SERVICE_TAX'|translate }}:</label>
+                            <p class="col-md-6" value="" readonly="">{{TDVMI.DefaultCurrency[0].symbol }}{{TDVMI.TaskDetails.invoice.amount.service_tax * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                        </li>
+                        <li ng-if="(TDVMI.TaskDetails.invoice.amount.grand_total  &&  (TDVMI.TaskDetails.status == 6 || TDVMI.TaskDetails.status == 7))">
+                            <label class="col-md-5">{{'TOTAL_AMOUNT' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="" ng-if="(TDVMI.TaskDetails.status == 6 || TDVMI.TaskDetails.status == 7) && (TDVMI.TaskDetails.invoice.amount.extra_amount)">{{TDVMI.DefaultCurrency[0].symbol}}{{(TDVMI.TaskDetails.invoice.amount.total + TDVMI.TaskDetails.invoice.amount.extra_amount + TDVMI.TaskDetails.invoice.amount.service_tax) * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                            <p class="col-md-5" value="" readonly="" ng-if="(TDVMI.TaskDetails.status == 6 || TDVMI.TaskDetails.status == 7) && (!TDVMI.TaskDetails.invoice.amount.extra_amount)">{{TDVMI.DefaultCurrency[0].symbol}}{{(TDVMI.TaskDetails.invoice.amount.total + TDVMI.TaskDetails.invoice.amount.service_tax) * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                        </li>
+                        <li ng-if="TDVMI.TaskDetails.invoice.amount.coupon">
+                            <label class="col-md-5">{{'COUPON_DISCOUNT'|translate }}:</label>
+                            <p class="col-md-6" value="" readonly="">{{TDVMI.DefaultCurrency[0].symbol }}{{TDVMI.TaskDetails.invoice.amount.coupon * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                        </li>
+                        <li ng-if="TDVMI.TaskDetails.invoice.amount.coupon">
+                            <label class="col-md-5">{{'TOTAL_AMOUNT_AFTER_DISCOUNT'|translate }}:</label>
+                            <p class="col-md-5" value="" readonly="" ng-if="(TDVMI.TaskDetails.status == 6 || TDVMI.TaskDetails.status == 7) && (TDVMI.TaskDetails.invoice.amount.extra_amount)">{{TDVMI.DefaultCurrency[0].symbol}}{{(TDVMI.TaskDetails.invoice.amount.total + TDVMI.TaskDetails.invoice.amount.extra_amount + TDVMI.TaskDetails.invoice.amount.service_tax - TDVMI.TaskDetails.invoice.amount.coupon) * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                            <p class="col-md-5" value="" readonly="" ng-if="(TDVMI.TaskDetails.status == 6 || TDVMI.TaskDetails.status == 7) && (!TDVMI.TaskDetails.invoice.amount.extra_amount)">{{TDVMI.DefaultCurrency[0].symbol}}{{(TDVMI.TaskDetails.invoice.amount.total + TDVMI.TaskDetails.invoice.amount.service_tax - TDVMI.TaskDetails.invoice.amount.coupon) * TDVMI.DefaultCurrency[0].value
+                                | number:2}}</p>
+                        </li>
+                        <li>
+                            <label class="col-md-5">{{'TASK_DESCRIPTION' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="" style="word-break: break-all;" ng-bind="TDVMI.taskdescription"></p>
+                        </li>
+                        <li>
+                            <label class="col-md-4">{{'TASK_ADDRESS' | translate}}:</label>
+                            <p class="col-md-5" style="word-break: break-all;"> {{TDVMI.TaskDetails.service_address}}</p>
+                        </li>
+                        <!-- <li>
+                            <label class="col-md-4">{{'BILLING ADDRESS' | translate}}:</label>
+                            <p class="col-md-5" style="word-break: break-all;"> {{TDVMI.TaskDetails.billing_address.line1}}
+                                <span ng-if="TDVMI.TaskDetails.billing_address.city">{{TDVMI.TaskDetails.billing_address.city}},<br> </span>
+                                <span ng-if="TDVMI.TaskDetails.billing_address.state">{{TDVMI.TaskDetails.billing_address.state}},<br> </span>
+                                <span ng-if="TDVMI.TaskDetails.billing_address.country">{{TDVMI.TaskDetails.billing_address.country}},<br> </span>
+                                <span ng-if="TDVMI.TaskDetails.billing_address.zipcode">{{TDVMI.TaskDetails.billing_address.zipcode}}</span></p>
+                        </li> -->
+                        <li ng-if="TDVMI.TaskDetails.usertaskcancellationreason">
+                            <label class="col-md-5">Cancelled By:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.cancelledby}}</p>
+                        </li>
+
+                        <li ng-if="TDVMI.TaskDetails.usertaskcancellationreason">
+                            <label class="col-md-5">{{'REASON_FOR_CANCELLATION' | translate}}:</label>
+                            <p class="col-md-5" value="" readonly="">{{TDVMI.TaskDetails.usertaskcancellationreason}}</p>
+                        </li>
+
+                        <li>
+                            <!--<input class="bluebtn " value="Save" onclick="savenewrate();" type="submit">-->
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+            <!-- <div class="modal-footer">
+                <button type="button" ui-sref="account.tasks" ng-click="TDVMI.cancel()" class="bluebtn" data-dismiss="modal">{{'CANCEL' | translate}}</button>
+            </div> -->
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<style>
+    /*.availabilities-day-form .modal-header {
+   background-color: #545454;
+}*/
+
+    #viewdetails .modal-body {
+        float: left;
+        text-align: left;
+        width: 100%;
+        background: #fff;
+    }
+
+    #viewdetails .modal-body {
+        float: left;
+        text-align: left;
+        width: 100%;
+        background: #fff;
+    }
+
+    #viewdetails .view-detail-pop>li label {
+        font-weight: normal;
+    }
+
+    #viewdetails .view-detail-pop input {
+        padding: 5px;
+    }
+
+    .modal-body {
+        position: relative;
+        padding: 20px;
+    }
+
+    #viewdetails .logo-container#taskerimage img.img-circle {
+        width: 100px;
+        height: 100px;
+    }
+</style>

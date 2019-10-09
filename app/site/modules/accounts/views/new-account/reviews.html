@@ -1,0 +1,89 @@
+<div class="trans-profiles">
+    <div class="container">
+        <div class="view-trans">
+            <div class="trans-packed main-scrolls-trcks">
+                <div class="trans-profiles-header">
+                    <div class="trans-headings review-heading">
+                        <h4>{{ 'REVIEWS' | translate }}</h4>
+                    </div>
+                    <div class="tskrdet_dtls_bx_rgt views-by">
+                        <div class="taskrdet_bx_links">
+                            <div class="tskrdet_dtls_link" ng-class="{ 'reviewactive': ARC.taskeractive }"  ng-click="ARC.getTaskerReviewDetails()"><a href="#">{{'REVIEWS_TO_YOU' | translate}}</a>
+                            </div>
+                            <div class="tskrdet_dtls_link" ng-class="{ 'reviewactive': !ARC.taskeractive }" ng-click="ARC.getUserReviewDetails()"><a href="#">{{'REVIEWS_BY_YOU' | translate}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-function">
+                    <div class="trans-profiles-inner" ng-init="ARC.getTaskerReviewDetails()">
+                        <div class="trans-counters" ng-if="ARC.finalResult.length > 0">
+                            <div class="list-transta reviews_tabs" ng-repeat="reviews in ARC.finalResult">
+                                <div class="col-trans-lists">
+                                    <div class="count-order">
+                                        <span>{{ 'S.NO' | translate }}</span>
+                                        <p> {{ $index + ARC.sno }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists">
+                                    <div class="count-book">
+                                        <span>{{ 'BOOKING ID' | translate }}</span>
+                                        <p>{{ reviews.task.booking_id }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists">
+                                    <div class="count-task">
+                                        <span>{{ 'TASK' | translate }}</span>
+                                        <p>{{ reviews.task.booking_information.work_type }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists" ng-if="ARC.user.role == 'tasker' && reviews.user.username"">
+                                    <div class="count-action">
+                                        <span>{{ 'USER' | translate }}</span>
+                                        <p>{{ reviews.user.username }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists" ng-if="ARC.user.role == 'user' && reviews.user.username"">
+                                    <div class="count-action">
+                                        <span>{{ 'TASKER' | translate }}</span>
+                                        <p>{{ reviews.tasker.username }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists">
+                                    <div class="count-action">
+                                        <span>{{ 'DATE' | translate }}</span>
+                                        <p>{{ reviews.createdAt |date }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-trans-lists">
+                                    <span>{{ 'ACTION' | translate }}</span>
+                                    <p class="viw-more" ng-click="ARC.reviewsModal(reviews, ARC.user.role)"><a href="#" class="main-views">{{ 'VIEW' | translate }}</a></p>
+                                </div>
+                            </div>                            
+                            <div style="margin-top: 200px;margin-left: 300px;" ng-if="ARC.getReview.length > 0 && ARC.user.role == 'tasker' && ARC.reviewListtotalItem > 2" class="pagination_inner clearfix">
+                                <nav>
+                                    <uib-pagination max-size="5" items-per-page="ARC.reviewListitemsPerPage" ng-change="ARC.pagination_status == 'review to you' ? ARC.getTaskerReviewDetails(ARC.reviewListCurrentPage) : ARC.getUserReviewDetails(ARC.reviewListCurrentPage)" total-items="ARC.reviewListtotalItem" ng-model="ARC.reviewListCurrentPage" class="pagination pagination-lg" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                                    </uib-pagination>
+                                </nav>
+                            </div>
+
+                            <div style="margin-top: 200px;margin-left: 300px;" ng-if="ARC.getReview.length > 0 && ARC.user.role == 'user' && ARC.reviewListtotalItem > 2" class="pagination_inner clearfix">
+                                <nav>
+                                    <uib-pagination max-size="5" boundary-link-numbers="true" items-per-page="ARC.reviewListitemsPerPage" ng-change="ARC.pagination_status == 'review to you' ? ARC.getTaskerReviewDetails(ARC.reviewListCurrentPage) : ARC.getUserReviewDetails(ARC.reviewListCurrentPage)" total-items="ARC.reviewListtotalItem" ng-model="ARC.reviewListCurrentPage" class="pagination pagination-lg" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                                    </uib-pagination>
+                                </nav>
+                            </div>
+
+                        </div>
+                        <div ng-if="!ARC.getReview.length" class="emptyfie">
+                            <span ng-if="ARC.user.role == 'tasker' && ARC.index == 0  ">{{'YOU HAVE NOT RECEIVED ANY REVIEWS YET' | translate}}</span>
+                            <span ng-if="ARC.user.role == 'tasker' && ARC.index == 1  ">{{'YOU HAVE NOT REVIEWED ANYONE YET' | translate}}</span>
+                            <span ng-if="ARC.user.role == 'user' && ARC.index == 0  ">{{'YOU HAVE NOT RECEIVED ANY REVIEWS YET' | translate}}</span>
+                            <span ng-if="ARC.user.role == 'user' && ARC.index == 1  ">{{'YOU HAVE NOT REVIEWED ANYONE YET' | translate}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,361 @@
+<div class="tskr_rgstrn">
+<div class="container">
+<div class="tskr_rgstrn_outer_cont">
+<uib-tabset  class="tab-animation" active="active">
+    <uib-tab index="0" heading="1. Personal Info" ng-attr-active="tabs[0].active">
+    	<form class="tasker-forms-news" name="becometaskerForm" submit-validate novalidate>
+	    <div class="tskr_rgstrn_1">
+		      <div class="tskr_rgstrn_tle1">
+		    	<div class="tskr_rgstrn_1_tle">
+		    		Apply to be a Tasker
+		    	</div>
+		    	<div class="tskr_rgstrn_1_stle">
+		    		Tell us about yourself
+		    	</div>
+		       </div>
+	       <div class="tskr_rgstrn_cont1 taskerimg">
+	         <div class="tskr_rgstrn_inner_cont">
+	         <div class="inner_main_cont">
+	       		<div class="main_cont">
+	       		  <div class="main_cont_top">
+	       		  <div class="main_cont_rgt">
+	       		  		<form name="imageForm">
+		       				<div class="main_cont_rgt_img">
+		       					<span class="main_cont_rgt_imgs">
+		       						<img ng-if="!RGC.data.visibleValue" ng-src="uploads/default/user.jpg">
+
+	                            	<img ng-if="!RGC.data.avatar=='' && RGC.data.visibleValue && !RGC.data.showCrop" class="img-square" ngf-src="RGC.data.avatar">
+
+	                            	<img style="max-width: 100% !important;" ng-if="RGC.data.visibleValue && !RGC.data.avatar=='' && RGC.data.showCrop" class="img-square" ngf-src="RGC.myCroppedImage">
+								</span>
+								<div class="filetype-holdr">
+                                    <div class="form-group">
+                                    	<span class="main_cont_rgt_img_i">
+                                        	<i class="fa fa-pencil" aria-hidden="true"></i>
+                                            <input class="bluebtn savdedit" ui-jq="filestyle" type="file" crop-img-change="handleFileSelect" ngf-change="fileupload($files, $event, $rejectedFiles);"
+                                                ngf-select="temp=true" ng-model="RGC.data.avatar" name="image" ngf-pattern="'image/*'"
+                                                ngf-max-size="1MB" ngf-model-invalid="errorFiles" accept="image/*" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}"
+                                                id="image" value="Upload" err-src>
+                                    	</span>
+                                    </div>
+	                            </div>
+								<span ng-if="errorFiles[0].size > 1000000" ng-style="{'color':'red'}">
+	                   				{{'Allowed files: jpeg, png, jpg. Max file size 1Mb' | translate}}
+	                			</span>
+							</div>
+
+							<div class="tcol" ng-if="RGC.data.visibleValue && !imageForm.image.$error.maxSize && RGC.data.showCrop">
+	                            <label for="avatar">Image Crop</label>
+	                            <div class="p-15">
+	                                <div class="row">
+	                                    <div class="p-10 bg-white b-a b-solid " style="height:320px">
+	                                        <img-crop image="myImage" result-image="RGC.myCroppedImage" result-image-size="160" area-type="square"></img-crop>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+                        </form>
+	       			</div>
+	       			<div class="main_cont_lft tasker-reg">
+	       			   <div class="bday_date">
+	       			  	  <span class="topedtext">Firstname</span>
+		                  <div class="botom-fuls">
+		                    <ul class="day-list">
+		                      <li>
+		                    	<input type="text" name="firstname" minlength="4" maxlength="15" ng-minlength="4" ng-maxlength="15" ng-model='RGC.data.firstname' disallow-spaces ng-pattern="/^[a-zA-Z]*$/" placeholder="Enter your firstname" required>
+                      			<span class="validerr tsk-valids" ng-show="becometaskerForm.firstname.$invalid && !becometaskerForm.firstname.$pristine">Enter Firstname</span>
+                      			<span  class="validerr tsk-valids" ng-show="becometaskerForm.firstname.$error.minlength && !becometaskerForm.firstname.$pristine">First Name must be a minimum of 4 characters.</span>
+								<span  class="validerr tsk-valids" ng-show="becometaskerForm.firstname.$error.maxlength && !becometaskerForm.firstname.$pristine">First Name must be a maximum of 20 characters.</span>
+								<span  class="validerr tsk-valids" ng-show="becometaskerForm.firstname.$error.pattern && !becometaskerForm.firstname.$pristine">First Name must contain only letters.</span>
+		                      </li>
+		                    </ul>
+		                  </div>
+		                </div>
+		                <div class="bday_date">
+	       			  	  <span class="topedtext">Lastname</span>
+		                  <div class="botom-fuls">
+		                    <ul class="day-list">
+		                      <li>
+		                    	<input type="text" name="lastname" minlength="1" maxlength="15" ng-minlength="1" ng-maxlength="15" ng-model='RGC.data.lastname' disallow-spaces ng-pattern="/^[a-zA-Z]*$/" placeholder="Enter your lastname" required>
+                      			<span class="validerr tsk-valids" ng-show="becometaskerForm.lastname.$invalid && !becometaskerForm.lastname.$pristine">Enter Lastname</span>
+                      			<span  class="validerr tsk-valids" ng-show="becometaskerForm.lastname.$error.maxlength && !becometaskerForm.lastname.$pristine">Last Name must be a maximum of 15 characters.</span>
+								<span  class="validerr tsk-valids" ng-show="becometaskerForm.lastname.$error.pattern && !becometaskerForm.lastname.$pristine">Last Name must contain only letters.</span>
+		                      </li>
+		                    </ul>
+		                  </div>
+		                </div>
+		                <div class="bday_date">
+	       			  	  <span class="topedtext">Email Address</span>
+		                  <div class="botom-fuls">
+		                    <ul class="day-list">
+		                      <li>
+		                    	<input ng-model="RGC.data.email" placeholder="Enter your Email address" ng-pattern="/^([a-zA-Z0-9.])*@([a-zA-Z0-9])*.[a-zA-Z0-9]{2,6}$/" name="email" required type="text" ng-blur='RGC.taskeremailchange(RGC.data.email)'>
+		                    	<span  class="validerr tsk-valids" ng-show="becometaskerForm.email.$error.required && !becometaskerForm.email.$pristine">Enter Email Address.</span>
+		                    	<span  class="validerr tsk-valids" ng-show="becometaskerForm.email.$error.pattern && !becometaskerForm.email.$pristine">Invalid email Address.</span>
+		                      </li>
+		                    </ul>
+		                  </div>
+		                </div>
+	       			  <div class="bday_date">
+	       			  	 <span>
+	       			  	 	<span class="topedtext">{{'WHAT_IS_YOUR_BIRTHDATE' | translate}}?</span>
+	       			  	 	<div class="botom-fuls">
+			                  <ul class="day-list dte-pkr">
+
+			                    <div ng-controller="DatepickerDobCtrl" class="cal-holde new-holders" >
+			                      <style>
+
+			                        .datepicker .btn-default {
+			                            border-width: 0;
+			                            width: 100%;
+			                            -webkit-box-shadow: none;
+			                            box-shadow: none;
+			                        }
+
+			                        .btn-success{
+			                            display:none;
+			                        }
+			                        .day-list li {
+			                            float: left;
+			                            margin: 0 18px 0 0;
+			                            width: 140px;
+			                        }
+			                        .btn-group > .btn, .btn-group-vertical > .btn  {
+			                            display:none;
+			                        }
+
+			                        .datepicker .btn-default .glyphicon {
+			                            align: center;
+			                            top: 2px;
+			                        }
+
+			                        .datepicker .btn[disabled] {
+			                          opacity: .3;
+			                        }
+
+			                        .datepicker .btn-info {
+			                          color: white !important;
+			                        }
+
+			                        .datepicker .btn-info .text-info {
+			                          color: white;
+			                        }
+
+			                        .datepicker .btn-info.active {
+			                          background-color: #5bc0de !important;
+			                        }
+			                      </style>
+			                        <i ng-click="open($event)" class="fa fa-calendar"></i>
+			                          <input ng-change="RGC.filterDate()" type="text" name="valid_from" id="valid_from" class="dateside" datepicker-popup="{{format}}"
+			                            ng-model="RGC.data.WorkingDate" is-open="opened" datepicker-options="dateOptions" min-date="minDate" ng-required="true" placeholder="DD-MM-YYYY"
+			                            close-text="Close"  show-clear="false" required/ style="margin-top: -2px;width: 85%;">
+			                      </div>
+			                      <br>
+			                  </ul>
+			                  <span class="validerr tsk-valids" ng-show="becometaskerForm.valid_from.$invalid && !becometaskerForm.valid_from.$pristine">{{'DOB' | translate }}.</span>
+			                </div>
+	       			  	 </span>
+	       			  </div>
+	       			  <div class="bday_date">
+	       			  	<span class="topedtext">{{'GENDER' | translate}}</span>
+		                <div class="botom-fuls">
+		                  <ul class="day-list">
+		                    <li>
+		                      <select required name="gender" ng-model='RGC.data.gender' class="new-cust-gender">
+		                                            <option value="">{{'SELECT_A_GENDER' | translate}}</option>
+		                                            <option value="male">{{'MALE' | translate}}</option>
+		                                            <option value="female">{{'FEMALE' | translate}}</option>
+		                                            <option value="none">{{'RATHER NOT SAY' | translate}}</option>
+		                                        </select>
+		                      <span  class="validerr tsk-valids" ng-show="becometaskerForm.gender.$invalid && !becometaskerForm.gender.$pristine">{{'SELECT GENDER' | translate }}.</span>
+		                    </li>
+		                  </ul>
+		                </div>
+	       			  </div>
+
+					  <div class="mailing_info bday_date">
+	       		      	<!-- <div class="mailing_info_tle">
+	       		      		<span class="topedtext">{{'WHERE_DO_YOU_LIVE' | translate}}?</span>
+	       		      	</div>  -->
+	       		      	<div class="mailing_info_cont">
+	       		      	   <!-- <div class="mailing_info_scont">
+	       		      	   		<input type="text" name="street" required places-auto-complete ng-model='RGC.data.address.formatted_address' placeholder="{{'ENTER YOUR LOCATION'| translate}}" on-place-changed="RGC.taskerareaChanged()">
+                      			<span class="validerr tsk-valids" ng-show="becometaskerForm.street.$invalid && !becometaskerForm.street.$pristine">{{'ADDRESS IS REQUIRED'| translate}}</span>
+	       		      	   </div> -->
+	       		      	   <div class="mailing_info_scont_btn">
+	       		      	   	   <div class="mailing_info_btn_cont">
+	       		      	   	   	  <span>
+	       		      	   	   	  	 <button ng-click="RGC.submitPersonalInfo(becometaskerForm.$valid)">
+	       		      	   	   	  	 	Continue
+	       		      	   	   	  	 </button>
+	       		      	   	   	  </span>
+	       		      	   	   </div>
+	       		      	   </div>
+	       		      	</div>
+	       		      </div>
+	       			</div>
+	       		   </div>
+	       		  <!--  <div class="main_cont_bottom">
+
+	       		   </div> -->
+	       		</div>
+	       		</div>
+	       		</div>
+	       </div>
+	    </div>
+	</form>
+    </uib-tab>
+    <uib-tab index="1" heading="2. Work Info" ng-attr-active="tabs[1].active" disable="becometaskerForm.$invalid">
+    <!-- <uib-tab index="1" heading="2. Work Info" ng-attr-active="tabs[1].active">  -->
+    	<div class="tskr_rgstrn_1">
+	    	<div class="tskr_rgstrn_tle1">
+		    	<div class="tskr_rgstrn_1_tle">
+		    		Apply to be a Tasker
+		    	</div>
+		    	<div class="tskr_rgstrn_1_stle">
+		    		Tell us about yourself
+		    	</div>
+		     </div>
+		     <div class="tskr_rgstrn_cont1">
+	         <div class="tskr_rgstrn_inner_cont">
+	         <div class="inner_main_cont">
+	       		<div class="main_cont">
+		       		<div class="main_cont_2_1">
+		       			<div class="main_cont_tle">
+		       				<label>
+		       					Select business days/hours
+		       				</label>
+		       			</div>
+		       			<div class="main_cont_cont">
+		       				<div>
+							  <uib-accordion close-others="oneAtATime">
+							    <div uib-accordion-group class="panel-default actives" ng-repeat="(parentkey, days) in RGC.data.working_days" is-open="days.selected && !days.wholeday">
+							      <uib-accordion-heading>
+							        <div class="date_acrd">
+								        <span class="date_acrd_input">
+								        	<input type="checkbox" name="days" ng-model="days.selected" ng-click="$event.stopPropagation()">
+								        </span>
+								        <label>
+								        	{{days.day}}
+								        </label>
+							        </div>
+							        <div class="date_whl_day" ng-if="days.selected">
+							         <span class="date_whl_input">
+							        	<input type="checkbox" name="wholeday" ng-model="days.wholeday" ng-click="clearSlots(days.selected, days.wholeday, parentkey, $event)">
+							        	<!-- <input type="checkbox" name="wholeday" ng-model="days.wholeday" ng-click="$event.stopPropagation()"> -->
+							        </span>
+							        <label>
+							        	Whole day
+							        </label>
+							        </div>
+							      </uib-accordion-heading>
+							      <div class="timings">
+				                        <div class="time_value" ng-repeat="(key, slot) in RGC.data.working_days[parentkey].slot">
+				                            <input type="checkbox" id="sl{{parentkey}}{{key}}" name ="sl{{parentkey}}{{key}}" ng-model="RGC.data.working_days[parentkey].slot[key].selected"/>
+				                            <label for="{{slot.time}}">{{slot.time}}</label>
+				                        </div>
+				                  </div>
+							    </div>
+							  </uib-accordion>
+							</div>
+						</div>
+		       		</div>
+		       		<div class="main_cont_2_2">
+		       			<div class="main_cont_tle">
+		       				<label>
+		       					{{'WORK_LOCATION' | translate}}
+		       				</label>
+		       			</div>
+		       			<div class="main2_cont_cont">
+		       			  <div class="lop-div-task">
+			                <ng-map id="foo" center="[{{RGC.data.location.lat}},{{RGC.data.location.lng}}]" zoom="8" mayTypeId="TERRAIN">
+			                  <shape id="circle" name="circle" centered="true" stroke-color='#FF0000' stroke-opacity="0.8" stroke-weight="2" center="[{{RGC.data.location.lat}},{{RGC.data.location.lng}}]" radius="{{RGC.data.radius * RGC.radiusval}}" on-radius_changed="RGC.mapToInput()" on-center_changed="RGC.mapToInput()" editable="false"></shape>
+			                </ng-map>
+			              </div>
+		       			  <input name="taskerarea" class="location_wps" required type="text" placeholder="{{'ENTER YOUR LOCATION'| translate}}" places-auto-complete size="80" placeholder="{{'Enter a location' | translate}}" ng-blur="RGC.emptyLatLng3(RGC.temp_taskerareaaddress)" ng-model="RGC.data.availability_address" types="['address']" ng-change="RGC.emptyLatLng(temp_address)" on-place-changed="RGC.taskerareaChanged()" />
+		       			</div>
+		       		</div>
+		       		<div class="main_cont_2_3">
+		       			<div class="main_cont_tle">
+		       				<!-- <label>
+		       					{{'AVAILABILITY_RADIUS'|translate}} in {{RGC.radiusby}}
+		       				</label> -->
+		       			</div>
+		       			<div class="main3_cont_cont">
+		       			  <div class="main3_inner_cont full_divs_wp">
+		       			  	<input name="taskerarea" required type="hidden" min="1" max="6371" allow-only-numbers ng-model="RGC.data.radius" />
+		       			  </div>
+		       			</div>
+		       		</div>
+		       		<div class="main_cont_2_4">
+		       			<div class="main_cont_2_4_btn">
+		       				<button class="btn" ng-click="RGC.submitWorkInfo()">
+		       					Continue
+		       				</button>
+		       			</div>
+		       		</div>
+	       		</div>
+	       	 </div>
+	       	 </div>
+	       	 </div>
+	    </div>
+    </uib-tab>
+    <uib-tab index="2" heading="3. Category" ng-attr-active="tabs[2].active" disable="becometaskerForm.$invalid" ng-click="RGC.saveCatArray()">
+    	<div class="tskr_rgstrn_1">
+	    	<div class="tskr_rgstrn_tle1">
+		    	<div class="tskr_rgstrn_1_tle">
+		    		Apply to be a Tasker
+		    	</div>
+		    	<div class="tskr_rgstrn_1_stle">
+		    		Tell us about yourself
+		    	</div>
+		     </div>
+		  </div>
+		  <div class="tskr_rgstrn_cont_3">
+		  <div class="tskr_cont_3_hdr">
+		  	<div class="tskr_rgstrn_cont_3_tle">
+		  		Add Your Skills & Experience
+		  	</div>
+		  	<div class="tskr_rgstrn_cont_3_btn">
+		  		<button class="btn" ng-click="RGC.categoryModal()">
+		  			Add Category
+		  		</button>
+		  	</div>
+		  </div>
+		  <div class="tskr_cont_3_cont">
+		  <div class="tskr_cont_3_list">
+		  	<div class="tskr_cont_3_cont_inner" ng-repeat="category in RGC.addnewcategories track by $index">
+		  		<div class="tskr_3_cont_inner_left">
+		  			{{category.name}}
+		  		</div>
+		  		<div class="tskr_3_cont_inner_rgt">
+
+			  		<span class="edit">
+			  			<span class="icons">
+			  			<i class="fa fa-pencil" aria-hidden="true"></i>
+			  			</span>
+			  			<span class="name"><a href="#" ng-click="RGC.categoryModal(category._id)">Edit</a></span>
+			  		</span>
+			  		<span class="delete">
+			  			<span class="icons">
+			  			<i class="fa fa-trash" aria-hidden="true"></i>
+			  			</span>
+			  			<span class="name"><a href="#" ng-click="RGC.deletecategoryitem(category._id)">Delete</a></span>
+			  		</span>
+		  		</div>
+		  	</div>
+
+		  	<div class="tskr_3_sbmt_btn">
+		  	   <div class="tskr_3_sbmt_btn_inner">
+			  		<button class="btn" type="submit" ng-click="RGC.TaskerRegister(RGC.data.taskerskills.length)">
+			  			Submit
+			  		</button>
+		  		</div>
+		  	</div>
+		  </div>
+		  </div>
+    </uib-tab>
+</uib-tabset>
+</div>
+</div>
+</div>

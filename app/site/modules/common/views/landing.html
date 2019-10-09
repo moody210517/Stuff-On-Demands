@@ -1,0 +1,244 @@
+<section class="handy-home">
+  <section id="banner" class="handy-home-banner jarallax" ng-style="{'background-image': 'url('+ MAC.lan_backgroundimg+')'}">
+    <div class="container">
+      <div class="banner-content">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 banner-cont">
+           <!--  <h2 class="main-title">{{MAC.lan_bannername}}</h2>
+            <h5 class="sub-title">{{MAC.lan_bannerdes}}</h5> -->
+          
+          </div>
+          <div class="col-sm-12 col-xs-12" ng-if="!siteglobals.currentUser">
+            <div class="search-wrap">
+              <div class="search-wrap-inner">
+                <form name="searchform" class="frm-fields" submit-validate role="form" novalidate>
+                  <div class="main-cat-search" ng-class="{ 'has-error' : searchform.searchfield.$invalid && !searchform.searchfield.$pristine, 'has-success' : searchform.searchfield.$valid && !searchform.searchfield.$pristine}">
+                    <ui-select name="parent" focus-on="UiSelectParentCategory" ng-model="searchData.parent" theme="selectize" on-select="MAC.getsubcategory(searchData.parent._id)"
+                      class="" title="Choose a Category">
+                      <ui-select-match placeholder="{{'CHOOSE A CATEGORY' | translate}}">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="item in MAC.data.response[4].Category | filter: $select.search">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                  <div class="sub-cat-search">
+                    <ui-select name="child" ng-model="searchData.child" theme="selectize" ng-click="MAC.onfocusSubCat()" class="" title="Choose a Subcategory">
+                      <ui-select-match placeholder="{{'CHOOSE A SUBCATEGORY' | translate}}">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="item1 in MAC.subcategorydata | filter: $select.search">
+                        <div ng-bind-html="item1.name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                  <div class="btn-search">
+                    <button type="submit" class="btn btn-block" ng-click="search(searchData)">{{'SEARCH' | translate}}</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xs-12" ng-if="siteglobals.currentUser.user_type == 'user'">
+            <div class="search-wrap">
+              <div class="search-wrap-inner">
+                <form name="searchform" class="frm-fields" submit-validate role="form" novalidate>
+                  <div class="main-cat-search" ng-class="{ 'has-error' : searchform.searchfield.$invalid && !searchform.searchfield.$pristine, 'has-success' : searchform.searchfield.$valid && !searchform.searchfield.$pristine}">
+                    <ui-select name="parent" focus-on="UiSelectParentCategory" ng-model="searchData.parent" theme="selectize" on-select="MAC.getsubcategory(searchData.parent._id)"
+                      class="" title="Choose a Category">
+                      <ui-select-match placeholder="{{'CHOOSE A CATEGORY' | translate}}">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="item in MAC.data.response[4].Category | filter: $select.search">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                  <div class="sub-cat-search">
+                    <ui-select name="child" ng-model="searchData.child" theme="selectize" ng-click="MAC.onfocusSubCat()" class="" title="Choose a Subcategory">
+                      <ui-select-match placeholder="{{'CHOOSE A SUBCATEGORY' | translate}}">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="item1 in MAC.subcategorydata | filter: $select.search">
+                        <div ng-bind-html="item1.name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                  <div class="btn-search">
+                    <button type="submit" class="btn btn-block" ng-click="search(searchData)">{{'SEARCH' | translate}}</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="handy-home-overview">
+    <div class="container">
+      <div class="handy-home-overview-inner">
+        <div class="row">
+          <div class="col-sm-4 col-xs-12 box-style" ng-repeat="postheader in MAC.postheader">
+            <div class="full-circle">
+            <div class="post-extra-images">
+            <img src="{{postheader.image}}" class="img-responsive unkwn-images">
+            <div class="dyic-images">
+              <img src="{{postheader.image}}" class="img-responsive">
+            </div>
+            </div>
+            <h2 class="main-title">{{postheader.title | translate}}</h2>
+            <p class="sub-title">{{postheader.description | translate}}</p>
+            
+          </div>
+          </div>
+        </div>
+      <!--   <div class="row">
+          <div class="col-sm-12 col-xs-12">
+            <a ui-sref="morecategories({slug:0})" class="btn btn-post-task">{{'POST_TASK_HERE' | translate}}</a>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <section ng-controller="SlickController" class="handy-home-testimonials jarallax" >
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-xs-12">
+          <h2 class="section-title"> {{'WHAT_PEOPLE_SAYING' | translate}} </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-xs-12">
+          <slick settings="slickbrand">
+            <div class="testimonials-wrap" ng-repeat="people in MAC.peoplecomment">
+              <div class="wth-img">
+                <img src="app/site/public/images/avt.jpg" class="img-responsive without-imgs"/>
+                  <img class="author-image" src="{{people.image}}">
+              </div>
+              <div class="testimonials-content">
+                <p class="">{{people.description}}
+                </p>
+                <h3 class="author-name">{{people.name}} / <span class="highlight">{{people.profession}}</span></h3>
+              </div>
+            </div>
+          </slick>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="handy-home-payment">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-xs-12 payment-heading">
+          <h2 class="section-title">{{'PAYMENT_PRICING' | translate}}</h2>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12 pay-ment-sec" ng-repeat="payment in MAC.paymentprice">
+          <div class="payment-method">
+            <div class="img-rotate">
+            <img src="{{payment.image}}" err-src  alt="payment icons">
+          </div>
+           <div class="circle-content">
+            <h4>{{payment.name}}</h4>
+            <p>{{payment.description}}</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section class="handy-home-gallery">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-xs-12">
+          <h2 class="section-title">{{'HIRE FOR A RANGE' | translate}}</h2>
+        </div>
+        <div class="cvr-dv col-md-12 col-sm-12 col-xs-12">
+          <div class="spcf-dv col-md-2 col-sm-2" ng-repeat="categoryinfo in MAC.data.response[0].ActiveCategory" id="category_{{$index}}">
+            <div class="pro1">
+              <a ui-sref="category({slug:categoryinfo.slug})" href="category({slug:categoryinfo.slug})">
+			  
+                <div class="pro-pict">
+                  <div afkl-lazy-image="{{categoryinfo.image}}" class="afkl-lazy-wrapper" lazyerr></div>
+                  <!--
+                  <img ng-if="categoryinfo.image !=''" src="{{categoryinfo.image}}" err-src alt="gallery">
+                  <img ng-if="categoryinfo.image ==''" src="uploads/images/homepage/gallery1.png" alt="gallery">
+                  -->
+                </div>
+                <div class="cat-txtt">
+                  <span>{{categoryinfo.name}}</span>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+		  <div class="spcf-dv col-md-2 col-sm-2" ng-if="MAC.data.response[4].Category.length > 3" ui-sref="morecategories({slug:0})">
+        
+            <div class="pro1">
+                  <div class="pro-pict text-center morebtn-wrap">
+          <button type="button"  class="btn btn-default view-more "><i class="fa fa-hand-o-right" aria-hidden="true"></i></button>
+		 
+        </div>
+        <div class="cat-txtt">
+          <span>{{'VIEW_MORE' | translate}}</span>
+        </div>
+            </div>
+
+          </div>
+		  
+        </div>
+        </div>
+		
+    
+      </div>
+  </section>
+
+
+  <!-- <section class="handy-home-address" ng-if="rc.getsetting.location && rc.getsetting.siteaddress">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-xs-12">
+          <h2 class="section-title">{{rc.getsetting.siteaddress}}</h2>
+          <div class="Contact Us">
+            <p></p>
+          </div>
+          <div class="map location" ng-if="rc.getsetting.location">
+            <ng-map id="map" zoom="15" center="[40.74, -74.18]" zoom="2">
+              <marker position="{{rc.getsetting.location}}" title="{{rc.getsetting.location}}" animation="Animation.BOUNCE" centered="true"></marker>
+            </ng-map>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section> -->
+  
+<section class="handy-home-newsletter">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-xs-12">
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <script>
+    $(document).ready(function () {
+
+      var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+      $("#banner").css({ "height": h });
+
+      $(window).resize(function () {
+        var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        $("#banner").css({ "height": h });
+      });
+
+      setTimeout(function () {
+        $('.jarallax').jarallax({
+          speed: 0.2
+        });
+      }, 10);
+    });
+  </script> -->
+</section>

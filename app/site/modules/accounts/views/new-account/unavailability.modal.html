@@ -1,0 +1,25 @@
+<div class="availabilities-day-form adminweekmodal">
+    <div class="">
+        <div class="">
+            <div class="modal-header modal-header-success">
+                <button class="close" type="button" ng-click="UAMIC.cancel()">×</button>
+                <h1 class="day-text">Unavailable Hours</h1>
+            </div>
+            <div class="modal-body">
+                <input type="checkbox" ng-model="UAMIC.wholeday"> Wholeday
+                <div class="dates_time mndy_time">
+                    <div class="timings">
+                        <div class="time_value" ng-repeat="data in UAMIC.unavailableTimingSlotList">
+                            <input type="checkbox" name="{{data.time}}" id="{{data.time}}" ng-model="data.selected" ng-disabled="UAMIC.wholeday"/>
+                            <label for="{{data.time}}">{{data.time}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button style="color:green" type="button" class="btn btn-default pull-left" ng-click="UAMIC.ok()">{{'OK' | translate}} </button>
+                <button style="color:red" type="button" class="btn btn-default pull-left" ng-click="UAMIC.cancel()">{{'CANCEL' | translate}} </button>
+            </div>
+        </div>
+    </div>
+</div>'

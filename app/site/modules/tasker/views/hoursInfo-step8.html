@@ -1,0 +1,42 @@
+<section>
+    <div class="applyto-tasker apply6">
+        <div class="container2">
+            <div class="full-holder signup-tasker-steps-wrap">
+                <h1 class="top-texts">{{'APPLY_TO_BE_A_TASKER' | translate}}</h1>
+                <div class="tasker-pannel">
+                    <div class="tasker-head">
+                        <h1 class="top-tile" style="width:50%;"><i class="fa fa-user"></i><span>Category</span></h1>
+
+                        <div class="right-progrs">
+                            <span class="completion-text">{{'APPLCATIONS_COMPLETION' | translate}} 90%</span>
+                            <div class="progressbar">
+                                <span style="width:90%"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-section ">
+                        <button type="button" class="btn btn-success" ng-click="RGC.categoryModal()">Add Category</button>
+                    </div>
+
+                    <div class="row">
+                        <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" dismiss-on-timeout="{{alertTimeout}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+                        <div class="category-details col-md-12 " ng-repeat="category in RGC.addnewcategories track by $index">
+                            <div class="col-md-6 " style="text-align-last: left;">
+                                <h4 class="category">{{category.name}}</h4>
+                            </div>
+                            <div class="col-md-6 " style="text-align: right;margin-top: 5px;">{{category.childid._id}} <button type="button" title="Edit" class="btn btn-rounded-20 btn-sm btn-info"
+                                    ng-click="RGC.categoryModal(category._id)" style="width:30px;"><i class="fa fa-edit" style="margin-left: -2px;"></i>  </button>
+                                <button type="button" title="Remove" class="btn btn-rounded-20 btn-sm btn-info" ng-click="RGC.deletecategoryitem(category._id)"
+                                    style="width:30px;"><i class="fa fa-trash" style="margin-left: -2px;"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 text-center mob-pds">
+                  <input class="blue-btn tsk-blue-btn" value="{{'SUBMIT' | translate}}" type="submit" ng-click="RGC.TaskerRegister(RGC.data.taskerskills.length)">
+              </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

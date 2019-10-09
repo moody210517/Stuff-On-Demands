@@ -1,0 +1,150 @@
+<div class="wallet_dtls">
+    <div class="container">
+        <div class="tskr_rgstrn_outer_cont">
+            <div class="wallet_dtls_inner">
+                <div class="wallet_dtls_bx">
+                    <div class="wallet_dtls_hdr">
+                        <div class="wallet_dtls_bx_lft">
+                            <div class="wallet_dtls_tle">
+                                {{'Wallet' | translate }}
+                            </div>
+                        </div>
+                        <div class="wallet_dtls_bx_rgt">
+                            <div class="wallet_dtls_btn">
+                                <button class="btn def_btn" ng-class="{true:'actives',false:''}[wrbtn == true]" ng-click="w_rech()">
+                                    {{'Wallet Recharge' | translate }}
+                                </button>
+                            </div>
+                            <div class="wallet_dtls_btn">
+                                <button class="btn def_btn" ng-class="{true:'actives',false:''}[wtbtn == true]" ng-click="w_trans()">
+                                    {{'Wallet Transactions' | translate }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wallet_dtls_cont">
+                        <div class="wallet_dtls_innercont wallet_recharge" ng-show="wallet_recharge">
+                            <div class="wallet_recharge_left">
+                                <div class="wallet_recharge_left_inner">
+                                    <div class="wallet_recharge_left_img_cont">
+                                        <div class="wallet_recharge_left_img">
+                                            <img src="/uploads/images/others/moneypurse.png">
+                                        </div>
+                                    </div>
+                                    <div class="wallet_recharge_left_name_cont">
+                                        <div class="wallet_recharge_left_name">
+                                            <div class="wallet_recharge_left_tle">
+                                                {{'Current Balance' | translate }}:
+                                            </div>
+                                            <div class="wallet_recharge_left_name">
+                                                {{rc.DefaultCurrency.symbol}}{{walletDetails.total * rc.DefaultCurrency.value | number:2}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wallet_recharge_right" ng-init="getWalletBalanceDetails()">
+                                <form name="walletform" role="form" submit-validate novalidate>
+                                    <div class="wallet_recharge_rgt_name">
+                                        <div class="wallet_recharge_rgt_tle">
+                                            {{'Recharge Wallet Money' | translate }}:
+                                        </div>
+                                        <div class="wallet_recharge_rgt_vlu">
+                                            <div class="input_txt">
+                                                <input type="text" name="walletamount" ng-model-options="{allowInvalid: true}" ng-keyup="ChangeWalletAmount(AWC.WalletAmount)" string-to-number ng-model="AWC.WalletAmount" on-blur-validation minlength="{{walletMinAmt}}" allow-only-numbers maxlength="{{walletMaxAmt}}" required placeholder="{{'ENTER AMOUNT TO BE ADDED IN WALLET'|translate}}" title="Numbers only">
+                                            </div>
+                                            <!-- <span style="color:red" ng-show="walletform.walletamount.$error.minlength && !walletform.walletamount.$error.maxlength">{{'AMOUNT IS LESS THEN'|translate}}  {{rc.DefaultCurrency.symbol}}{{settings.settings.wallet.amount.minimum * rc.DefaultCurrency.value | number:2}} </span>
+                                            <span style="color:red" ng-show="walletform.walletamount.$error.maxlength">{{'AMOUNT IS GREATER THEN'|translate}} {{rc.DefaultCurrency.symbol}}{{settings.settings.wallet.amount.maximum * rc.DefaultCurrency.value | number:2}}.</span> -->
+                                        </div>
+                                        <div class="input_rdo amount-wall">
+                                            <input type="radio" name="money" id="low" checked ng-change="ChangeWalletAmount(AWC.interminimum)" value="{{AWC.interminimum * rc.DefaultCurrency.value | number:2 }}" string-to-number ng-model="AWC.WalletAmount">
+                                            <label for="low">{{rc.DefaultCurrency.symbol}}{{settings.wallet.amount.minimum * rc.DefaultCurrency.value | number:2}}</label>
+                                        </div>
+                                        <div class="input_rdo amount-wall">
+                                            <input type="radio" name="money" id="mid" ng-change="ChangeWalletAmount(AWC.interamount)" value="{{AWC.interamount * rc.DefaultCurrency.value | number:2 }}" string-to-number ng-model="AWC.WalletAmount">
+                                            <label for="mid">{{rc.DefaultCurrency.symbol}}{{AWC.interamount * rc.DefaultCurrency.value | number:2}}</label>
+                                        </div>
+                                        <div class="input_rdo amount-wall">
+                                            <input type="radio" name="money" id="hight" ng-change="ChangeWalletAmount(AWC.intermaximum)" value="{{AWC.intermaximum * rc.DefaultCurrency.value | number:2 }}" string-to-number ng-model="AWC.WalletAmount">
+                                            <label for="hight">{{rc.DefaultCurrency.symbol}}{{settings.wallet.amount.maximum * rc.DefaultCurrency.value | number:2}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="wallet_rgt_btns">
+                                        <div class="wallet_rgt_btns_lft" ng-if="stripe_status == 1">
+                                            <button class="btn act_btn" ng-click="WalletRechargeByStripe(rc.DefaultCurrency)">
+                                                {{'Add Money by Card' | translate }}
+                                            </button>
+                                        </div>
+                                        <div class="wallet_rgt_btns_rgt" ng-if="paypal_status == 1">
+                                            <button class="btn def_btn" ng-click="WalletRechargeByPaypal(rc.DefaultCurrency)">
+                                                {{'Add Money by Paypal' | translate }}
+                                            </button>
+                                        </div>
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="wallet_dtls_innercont wallet_trans" ng-show="trans" ng-init="UserWalletTransactionList()">
+                        <div class="wallet_dtls_innercont_row" ng-repeat="(index, wallet) in SubCategoryList | orderBy:'trans_date':true" ng-if="SubCategoryList.length > 0 && wallet.trans_amount > 0">
+                            <div class="wallet_dtls_innercont_cont prof">
+                                <span class="prof_img">
+                                      <!-- <img src="/uploads/images/others/wallet_prof.jpg"> -->
+                                      </span>
+                                <span class="prof_name trans_vlue">
+                                      {{ wallet.title | translate }}
+                                      </span>
+                            </div>
+                            <div class="wallet_dtls_innercont_cont transactions">
+                                <span class="trans_tle trans_amnt_tle">
+                                    {{'Transaction Amount' | translate }} 
+                                      </span>
+                                <span class="trans_vlue trans_amnt_vlue">
+                                      {{rc.DefaultCurrency.symbol}}{{wallet.trans_amount * rc.DefaultCurrency.value | number:2}}
+                                      </span>
+                            </div>
+                            <div class="wallet_dtls_innercont_cont trans_Balance">
+                                <span class="trans_Balance_tle trans_tle">
+                                    {{'Balance Amount' | translate }}  
+                                      </span>
+                                <span class="trans_Balance_vlue trans_vlue">
+                                      {{rc.DefaultCurrency.symbol}}{{wallet.balance_amount * rc.DefaultCurrency.value | number:2}}
+                                      </span>
+                            </div>
+                            <div class="wallet_dtls_innercont_cont trans_type">
+                                <span class="trans_type_tle trans_tle">
+                                    {{'Transaction Type' | translate }} 
+                                      </span>
+                                <span class="trans_type_stus trans_vlue crd" ng-if="wallet.type == 'CREDIT'">
+                                      <img src="/uploads/images/others/arrow-pointing-down.svg" class="down">
+                                      {{ wallet.type | translate}}
+                                      </span>
+                                <span class="trans_type_stus trans_vlue deb" ng-if=" wallet.type == 'DEBIT'">
+                                      <img src="/uploads/images/others/arrow-pointing-up.svg" class="up">
+                                      {{ wallet.type | translate}}
+                                      </span>
+                            </div>
+                            <div class="wallet_dtls_innercont_cont trans_date">
+                                <span class="trans_date_tle trans_tle">
+                                    {{'Transaction Date' | translate }} 
+                                      </span>
+                                <span class="trans_date_vlue trans_vlue">
+                                      {{ wallet.trans_date  | date:'dd-MMM-y'}}
+                                      </span>
+                            </div>
+                        </div>
+                        <div ng-if="SubCategoryList.length === 0" class="emptyfie" style="letter-spacing: 0; word-spacing: 0;">
+                            <span>{{'YOU DONT HAVE ANY TRANSACTIONS YET'|translate }} !</span>
+                        </div>
+                        <div style="margin-top: 200px;margin-left: 300px;" ng-if="SubCategoryList.length > 10" class="pagination_inner clearfix">
+                            <nav>
+                                <uib-pagination max-size="10" items-per-page="numPerPage" ng-change="WalletTransactionPagination(currentPage, numPerPage)" total-items="totalitems" ng-model="currentPage" class="pagination pagination-lg" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

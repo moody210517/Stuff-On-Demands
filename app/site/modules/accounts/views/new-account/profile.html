@@ -1,0 +1,222 @@
+<div class="tskr_prof_dtls">
+    <div class="container">
+        <div class="tskr_rgstrn_outer_cont">
+            <div class="tskr_prof_dtls_inner">
+                <div class="tskr_prof_dtls_bx">
+                    <div class="tskr_prof_dtls_hdr">
+                        <div class="tskr_prof_dtls_bx_lft">
+                            <div class="tskr_prof_dtls_tle">
+                                Account
+                            </div>
+                        </div>
+                        <div class="tskr_prof_dtls_bx_rgt">
+                            <div class="tskr_prof_dtls_btn">
+                                <button class="btn def_btn" ng-click="EditProfileBtn()" ng-if="editBtn">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="show" ng-if="account">
+                        <div class="tskr_prof_dtls_cont">
+                            <div class="tskr_prof_dtls_innercont">
+                                <div class="tskr_prof_dtls_cont_val">
+                                    <span class="tskr_prof_dtls_icon">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="tskr_prof_dtls_name">
+                                        {{ user.username }}
+                                    </span>
+                                </div>
+                                <div class="tskr_prof_dtls_cont_val">
+                                    <span class="tskr_prof_dtls_icon">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="tskr_prof_dtls_name">
+                                        {{ user.email}}
+                                    </span>
+                                </div>
+                                <div class="tskr_prof_dtls_cont_val">
+                                    <span class="tskr_prof_dtls_icon">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="tskr_prof_dtls_name">
+                                        {{user.phone.code + - + user.phone.number || ''}}
+                                    </span>
+                                </div>
+                                <div ng-if='user.address.formatted_address' class="tskr_prof_dtls_cont_val">
+                                    <span class="tskr_prof_dtls_icon">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="tskr_prof_dtls_name">
+                                        {{ user.address.formatted_address}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field" ng-if="editProfile">
+                        <div class="tskr_prof_dtls_bx_rgt fl_rght">
+                            <div class="tskr_prof_dtls_btn ">
+                                <button class="btn def_btn main-src" ng-click="CancelEditBtn()">
+                                    {{ 'VIEW' | translate }}
+                                </button>
+                            </div>
+                        </div>
+                        <form name="updateAccountForm" role="form" submit-validate novalidate>
+                              <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputName2">First name</label>
+                                    <input type="text" class="form-control profilefield" name="firstname" id="exampleInputName2" ng-model="ACC.account.firstname" required>
+                                    <p class="help-block">
+                                        <span class="validerr tsk-valids" ng-show="updateAccountForm.firstname.$invalid && !updateAccountForm.firstname.$pristine">Enter First name</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputName2">Last name</label>
+                                    <input type="text" class="form-control profilefield" name="lastname" id="exampleInputName2" ng-model="ACC.account.lastname" required>
+                                    <p class="help-block">
+                                        <span class="validerr tsk-valids" ng-show="updateAccountForm.lastname.$invalid && !updateAccountForm.lastname.$pristine">Enter Last name</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">{{'EMAIL_ADDRESS'| translate}}</label>
+                                    <input type="email" name="email" class="form-control profilefield" id="exampleInputEmail1" placeholder="Email" ng-model="ACC.account.email"
+                                        autocomplete="off" autocorrect="off" autocapitalize="off" ng-pattern="/^([a-zA-Z0-9.])*@([a-zA-Z0-9])*.[a-zA-Z0-9]{2,6}$/"
+                                        ng-maxlength="40" ng-minlength="5" ng-focus="focus=true" ng-blur="focus=false" on-blur-validation
+                                        ng-disabled="true" required>
+                                    <span ng-show="updateAccountForm.email.$error.required && !updateAccountForm.email.$pristine">{{'ENTER YOUR EMAIL' | translate}}.</span>
+                                    <span class="validerr" ng-if="accountChangePasswordForm.email.$error.minlength">{{'EMAIL MUST BE MINIMUM OF 5 CHARACTERS' | translate}}.</span>
+                                    <span class="validerr" ng-if="accountChangePasswordForm.email.$error.maxlength">{{'EMAIL MUST BE MAXIMUM OF 40 CHARACTERS' | translate}}.</span>
+                                    <span class="validerr" ng-if="accountChangePasswordForm.email.$error.maxlength">{{'EMAIL MUST BE MAXIMUM OF 40 CHARACTERS' | translate}}.</span>
+                                    <span class="validerr" ng-if="accountChangePasswordForm.email.$error.pattern">{{'PLEASE ENTER VALID EMAIL' | translate}}.</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">{{'PHONE_NUMBER'| translate}}</label>
+                                    <input type="text" class="form-control profilefield" id="exampleInputName2" name="phone" class="form-control" ng-model="ACC.account.phone"
+                                        ng-intl-tel-input on-blur-validation required placeholder="Phone Number">
+                                    <p class="help-block">
+                                        <span class="validerr tsk-valids" ng-show="updateAccountForm.phone.$invalid && !updateAccountForm.phone.$pristine">{{'ENTER VALID PHONE NUMBER' | translate}}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-md-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputName2">{{'ADDRESS'| translate}}</label>
+                                    <input type="text" name="location" class="form-control profilefield" id="exampleInputName2" placeholder="{{'ENTER YOUR LOCATION'| translate}}"
+                                        places-auto-complete size=80 ng-model="ACC.account.address.formatted_address" 
+                                        on-place-changed="accountPlaceChanged()" required>
+                                    <p class="help-block">
+                                        <span class="validerr tsk-valids" ng-show="updateAccountForm.location.$invalid && !updateAccountForm.location.$pristine">{{'ADDRESS IS REQUIRED' | translate}}</span>
+                                    </p>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputName2">{{'ADDRESS_LINE_2'| translate}}</label>
+                                    <input type="text" name="line2" id="line2" class="form-control profilefield" ng-model="ACC.account.address.line2" placeholder="Address line 2"
+                                        on-place-changed="accountPlaceChanged()" on-blur-validation>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputName2">{{'CITY'| translate}}</label>
+                                    <input type="text" name="city" id="city" class="form-control profilefield" ng-model="ACC.account.address.city" placeholder="City"
+                                        on-place-changed="accountPlaceChanged()" on-blur-validation>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputName2">{{'STATE/PROVICE'| translate}}</label>
+                                    <input type="text" name="state" id="state" class="form-control profilefield" ng-model="ACC.account.address.state" placeholder="State/Provice"
+                                        on-place-changed="accountPlaceChanged()" on-blur-validation>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputName2">{{'COUNTRY'|translate}}</label>
+                                    <input type="text" name="country" id="country" class="form-control profilefield" ng-model="ACC.account.address.country" placeholder="Country / Province / Region"
+                                        on-place-changed="accountPlaceChanged()" on-blur-validation>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="zipcode">{{'ZIPCODE'|translate}}</label>
+                                    <input type="text" ng-model="ACC.account.address.zipcode" name="zipcode" id="zipcode" class="form-control profilefield" placeholder="Zip Code"
+                                        on-place-changed="accountPlaceChanged()" on-blur-validation>
+                                </div>
+                            </div> -->
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">{{'PROFILE PICTURE'| translate}}</label>
+                                    <div class="chose-files">
+                                        <label for="avatar-img" class="avatar-img-up">
+                                            <i class="fa fa-upload" aria-hidden="true"></i> Choose file</label>
+                                        <input id="avatar-img" ui-jq="filestyle" type="file" crop-img-change="handleFileSelect" ngf-change="fileupload($files, $event, $rejectedFiles);"
+                                            ngf-select="temp=true" ng-model="ACC.account.avatar" ngf-pattern="'image/*'"
+                                            name="avatar" class="form-control" accept="image/*" ngf-max-size="1MB" ngf-model-invalid="errorFiles"
+                                            class="filestyle" ui-options="{ buttonText: 'Select image', iconName: 'fa fa-file-image-o'}"
+                                            id="avatar">
+                                        <!-- <span class="help-block" ng-hide='updateAccountForm.avatar.$invalid || updateAccountForm.avatar.$error.pattern ||updateAccountForm.avatar.$error.maxSize'>{{'Allowed files: jpeg, png, jpg. Max file size 1Mb' | translate}}</span> -->
+                                        <span 
+                                            ng-style="{
+                                                'color': updateAccountForm.avatar.$invalid || updateAccountForm.avatar.$error.pattern || updateAccountForm.avatar.$error.maxSize ? 'red' : 'black'
+                                            }"
+                                        >
+                                            {{'Allowed files: jpeg, png, jpg. Max file size 1Mb' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--- Croping -->
+                                <div class="m-10 ml-10" ng-if="ACC.account.avatar" ng-hide="visibleValue">
+                                    <div class="p-10 bg-white b-a b-solid inline-block crp_img">
+                                        <img style="max-width: 100% !important; width: 150px; " ngf-src="ACC.account.avatar">
+                                    </div>
+                                </div>
+                                <div class="tcol" ng-if="visibleValue && !updateAccountForm.avatar.$error.maxSize">
+                                    <label for="avatar">{{'IMAGE_CROP'| translate}}</label>
+                                    <div class="p-15">
+                                        <div class="row">
+                                            <div class="p-10 bg-white b-a b-solid " style="height:320px">
+                                                <img-crop image="myImage" result-image="ACC.myCroppedImage" result-image-size="160" area-type="square"></img-crop>
+                                            </div>
+                                        </div>
+                                        <div class="m-10" ng-show="visibleValue" style="margin-top:10px;">
+                                            <div class="p-10 bg-white b-a b-solid inline-block crp_img">
+                                                <img ng-src="{{ACC.myCroppedImage}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--- Croping -->
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"></div>
+                            </div>
+
+                            <div class="all-btns">
+                                <div class="col-md-1 col-xs-12">
+                                    <button type="button" class="btn btn-primary cancelbtn" ng-click="CancelEditBtn()">{{ 'CANCEL' | translate }}</button>
+                                </div>
+                                <div class="col-md-1 col-xs-12" ng-if="ACC.account.role == 'user' && currentUser === ACC.account._id">
+                                    <button type="button" class="btn btn-primary savebtn" ng-click="UpdateUserProfile(updateAccountForm.$valid, ACC.account)">{{ 'SAVE' | translate }}</button>
+                                </div>
+                                <div class="col-md-1 col-xs-12" ng-if="ACC.account.role == 'tasker' && currentUser === ACC.account._id">
+                                    <button type="button" class="btn btn-primary savebtn" ng-click="UpdateTaskerProfile(updateAccountForm.$valid, ACC.account)">{{ 'SAVE' | translate }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

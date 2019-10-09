@@ -1,0 +1,39 @@
+<div class="trans-profiles">
+    <div class="container">
+        <div class="view-trans">
+            <div class="trans-packed main-scrolls-trcks">
+                <div class="trans-profiles-header">
+                    <div class="trans-headings">
+                        <h4>Unavailability</h4>
+                    </div>
+                </div>
+                <div class="scroll-function">
+                    <div class="trans-profiles-inner acc-av">
+                        <div class="main_cont_2_1">
+                            <div class="main_cont_tle">
+                                <label>
+                                    Select Unavailable days/hours 
+                                </label>
+                                <div>
+                                    <multiple-date-picker disable-days-before="today" disallow-back-past-months="true" month-click="disable6MonthsFromNow" ng-model="AUC.unavailabledates" ng-click="AUC.getUnavailableData()"></multiple-date-picker>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="list-transta avails-sumts">
+                            <input class="blue-btn hfa-btn" value="{{'SUBMIT' | translate}}" type="submit" ng-click="AUC.saveUnavailability(true)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .green {
+        color: green!important;
+    }
+    
+    .red {
+        color: red!important;
+    }
+</style>

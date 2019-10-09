@@ -1,0 +1,171 @@
+<div class="page page-navs">
+    <div class="pageheader">
+        <h2>{{ 'SubMenu.MOBILE_SETTINGS' | translate }}</span>
+        </h2>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i>{{main.title}}</a></li>
+                <li><a ui-sref="app.settings.mobileContent">{{'Menu.SETTINGS'|translate}}</a></li>
+                <li>{{'SubMenu.MOBILE_SETTINGS'|translate}} </li>
+            </ul>
+        </div>
+    </div>
+    <div class="pagecontent">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="tile tile-simple">
+                    <div class="tile-body p-0">
+                        <tabset class="tabs-dark">
+                            <tab heading="Settings">
+                                <div class="wrap-reset">
+                                    <div class="row">
+                                        <div class="form-group col-md-12 legend">
+                                            <h4><strong>APNS</strong> Settings</h4>
+                                            <p>For IOS Mobile</p>
+                                        </div>
+                                    </div>
+                                    <form role="form" submit-validate enctype="multipart/form-data" name="mobileForm" novalidate>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="user">User PEM Files | Current File : {{MCC.mobilecontent.userpem}}</label>
+                                                <input ui-jq="filestyle" type="file" crop-img-change="handleFileSelect" ngf-change="fileupload($files, $event, $rejectedFiles);"
+                                                    ngf-select="temp=true" ng-model="MCC.mobilecontent.user" name="user" ngf-model-invalid="errorFiles"
+                                                    class="filestyle" ui-options="{ buttonText: 'Upload', iconName: 'fa fa-inbox'}"
+                                                    id="user">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tasker"> Tasker PEM Files | Current File : {{MCC.mobilecontent.taskerpem}}</label>
+                                                <input ui-jq="filestyle" type="file" crop-img-change="handleFileSelect" ngf-change="fileupload($files, $event, $rejectedFiles);"
+                                                    ngf-select="temp=true" ng-model="MCC.mobilecontent.tasker" name="tasker"
+                                                    ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Upload', iconName: 'fa fa-inbox'}"
+                                                    id="tasker">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : mobileForm.bundleuser.$invalid && !mobileForm.bundleuser.$pristine, 'has-success' : mobileForm.bundleuser.$valid && !mobileForm.bundleuser.$pristine}">
+                                                <label for="bundleuser">User Bundle ID</label>
+                                                <input type="text" name="bundleuser" class="form-control" ng-model="MCC.mobilecontent.bundleuser" id="bundleuser" on-blur-validation
+                                                    required>
+                                                <p class="help-block">
+                                                    <span ng-show="mobileForm.bundleuser.$invalid && !mobileForm.bundleuser.$pristine">Bundle User is required.</span>
+                                                </p>
+                                            </div>
+                                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : mobileForm.bundletasker.$invalid && !mobileForm.bundletasker.$pristine, 'has-success' : mobileForm.bundletasker.$valid && !mobileForm.bundletasker.$pristine}">
+                                                <label for="bundletasker">Tasker Bundle ID</label>
+                                                <input type="text" name="bundletasker" class="form-control" ng-model="MCC.mobilecontent.bundletasker" id="bundletasker" on-blur-validation
+                                                    required>
+                                                <p class="help-block">
+                                                    <span ng-show="mobileForm.bundletasker.$invalid && !mobileForm.bundletasker.$pristine">Bundle Tasker is required.</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : mobileForm.mapuserios.$invalid && !mobileForm.mapuserios.$pristine, 'has-success' : mobileForm.mapuserios.$valid && !mobileForm.mapuserios.$pristine}">
+                                                <label for="mapuserios">User Map API Key</label>
+                                                <input type="text" name="mapuserios" class="form-control" ng-model="MCC.mobilecontent.mapuserios" id="mapuserios" on-blur-validation
+                                                    required>
+                                                <p class="help-block">
+                                                    <span ng-show="mobileForm.mapuserios.$invalid && !mobileForm.mapuserios.$pristine">User Map Key is required.</span>
+                                                </p>
+                                            </div>
+                                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : mobileForm.maptaskerios.$invalid && !mobileForm.maptaskerios.$pristine, 'has-success' : mobileForm.maptaskerios.$valid && !mobileForm.maptaskerios.$pristine}">
+                                                <label for="maptaskerios">Tasker Map API Key</label>
+                                                <input type="text" name="maptaskerios" class="form-control" ng-model="MCC.mobilecontent.maptaskerios" id="maptaskerios" on-blur-validation
+                                                    required>
+                                                <p class="help-block">
+                                                    <span ng-show="mobileForm.maptaskerios.$invalid && !mobileForm.maptaskerios.$pristine">Tasker Map Key is required.</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : mobileForm.publish.$invalid && !mobileForm.publish.$pristine, 'has-success' : mobileForm.publish.$valid && !mobileForm.publish.$pristine}">
+                                                <label for="publish">Mode</label>
+                                                <select id="publish" name="publish" ng-model="MCC.mobilecontent.mode" convert-to-number class="form-control mb-10" on-blur-validation
+                                                    required>
+                                                    <option value="">Select Mode</option>
+                                                    <option value='1'>Production</option>
+                                                    <option value='0'>Development</option>
+                                                </select>
+                                                <p class="help-block">
+                                                    <span ng-show="mobileForm.publish.$invalid && !mobileForm.publish.$pristine">Mode is required.</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12 legend">
+                                                <h4><strong>GCM</strong> Settings</h4>
+                                                <p>For Android Mobile</p>
+                                            </div>
+                                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : mobileForm.gcmuser.$invalid && !mobileForm.gcmuser.$pristine, 'has-success' : mobileForm.gcmuser.$valid && !mobileForm.gcmuser.$pristine}">
+                                                <label for="gcmuser">User GCM API Key</label>
+                                                <input type="text" name="gcmuser" class="form-control" ng-model="MCC.mobilecontent.gcmuser" id="gcmuser" on-blur-validation
+                                                    required>
+                                                <p class="help-block">
+                                                    <span ng-show="mobileForm.gcmuser.$invalid && !mobileForm.gcmuser.$pristine">GSM User is required.</span>
+                                                </p>
+                                            </div>
+                                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : mobileForm.gcmtasker.$invalid && !mobileForm.gcmtasker.$pristine, 'has-success' : mobileForm.gcmtasker.$valid && !mobileForm.gcmtasker.$pristine}">
+                                                <label for="gcmtasker">Tasker GCM API Key</label>
+                                                <input type="text" name="gcmtasker" class="form-control" ng-model="MCC.mobilecontent.gcmtasker" id="gcmtasker" on-blur-validation
+                                                    required>
+                                                <p class="help-block">
+                                                    <span ng-show="mobileForm.gcmtasker.$invalid && !mobileForm.gcmtasker.$pristine">GSM Tasker is required.</span>
+                                                </p>
+                                            </div>
+
+                                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : mobileForm.mapuserandroid.$invalid && !mobileForm.mapuserandroid.$pristine, 'has-success' : mobileForm.mapuserandroid.$valid && !mobileForm.mapuserandroid.$pristine}">
+                                                <label for="mapuserandroid">User Map API Key</label>
+                                                <input type="text" name="mapuserandroid" class="form-control" ng-model="MCC.mobilecontent.mapuserandroid" id="mapuserandroid" on-blur-validation
+                                                    required>
+                                                <p class="help-block">
+                                                    <span ng-show="mobileForm.mapuserandroid.$invalid && !mobileForm.mapuserandroid.$pristine">User Map API Key is required.</span>
+                                                </p>
+                                            </div>
+                                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : mobileForm.maptaskerandroid.$invalid && !mobileForm.maptaskerandroid.$pristine, 'has-success' : mobileForm.maptaskerandroid.$valid && !mobileForm.maptaskerandroid.$pristine}">
+                                                <label for="maptaskerandroid">Tasker Map API Key</label>
+                                                <input type="text" name="maptaskerandroid" class="form-control" ng-model="MCC.mobilecontent.maptaskerandroid" id="maptaskerandroid" on-blur-validation
+                                                    required>
+                                                <p class="help-block">
+                                                    <span ng-show="mobileForm.maptaskerandroid.$invalid && !mobileForm.maptaskerandroid.$pristine">Tasker Map API Key is required.</span>
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                        <button type="submit" class="btn btn-success btn-ef btn-ef-3 btn-ef-3c mb-10" ng-click="MCC.fileSave(mobileForm.$valid,MCC.mobilecontent)">Submit<i class="fa fa-arrow-right "></i></button>
+                                    </form>
+                                </div>
+                            </tab>
+                            <!--
+                            <tab heading="Mobile">
+                                <div class="wrap-reset">
+                                    <form role="form" submit-validate enctype="multipart/form-data" name="smtpForm" novalidate>
+                                        <div class="tile-body" ng-class="{ 'has-error' :smtpForm.name.$invalid && !smtpForm.name.$pristine, 'has-success' : smtpForm.name.$valid && !smtpForm.name.$pristine}">
+                                            <label for="exampleInputEmail1"><strong>User App </strong>Content</label>
+                                            <textarea ui-tinymce="tinymceOptions" name="name" id="name" rows="7" class="form-control" ng-model="MCC.mobilecontent.user_app"
+                                                required=""></textarea>
+                                        </div>
+                                        <div class="tile-body" ng-class="{ 'has-error' :smtpForm.name.$invalid && !smtpForm.name.$pristine, 'has-success' : smtpForm.name.$valid && !smtpForm.name.$pristine}">
+                                            <label for="exampleInputEmail1"><strong>Partner App </strong>Content</label>
+                                            <textarea ui-tinymce="tinymceOptions" name="name" id="name" rows="7" class="form-control" ng-model="MCC.mobilecontent.tasker_app"
+                                                required=""></textarea>
+                                        </div>
+                                        <div class="tile-body" ng-class="{ 'has-error' :smtpForm.name.$invalid && !smtpForm.name.$pristine, 'has-success' : smtpForm.name.$valid && !smtpForm.name.$pristine}">
+                                            <label for="exampleInputEmail1"><strong>Invite Freiends </strong>Content</label>
+                                            <textarea ui-tinymce="tinymceOptions" name="name" id="name" rows="5" class="form-control" ng-model="MCC.mobilecontent.invite_friends"
+                                                required=""></textarea>
+                                        </div>
+                                        <div class="tile-footer text-right bg-tr-black lter dvd dvd-top">
+                                            <button type="submit" class="btn btn-success btn-ef btn-ef-3 btn-ef-3c mb-10" ng-click="MCC.mobileSave(smtpForm.$valid,MCC.mobilecontent)">Submit<i class="fa fa-arrow-right "></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </tab>
+                            -->
+                        </tabset>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

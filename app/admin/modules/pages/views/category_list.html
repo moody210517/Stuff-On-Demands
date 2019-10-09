@@ -1,0 +1,42 @@
+<div class="page page-tables-bootstrap">
+    <div class="pageheader">
+        <h2>{{ 'Menu.PAGES' | translate }} </h2>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a>
+                </li>
+                <li>
+                    <a>{{ 'SubMenu.LIST_CATEGORY_PAGE'| translate }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /page header -->
+    <!-- page content -->
+    <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-md-12">
+                <!-- tile -->
+                <section class="tile" fullscreen="isFullscreen07">
+                    <!-- tile header -->
+                    <div class="tile-header dvd dvd-btm" href="#">
+                        <h1 class="custom-font"><strong>Categories</strong></h1>
+                        <ul  ng-if="CPLC.permission.add !=false" class="controls">
+                            <li><a ui-sref="app.pages.categoryPage"><strong><i class="fa fa-plus mr-5"></i> Add Category</strong></a></li>
+                        </ul>
+                    </div>
+                    <custom-table data="CPLC.table" delete-call="CPLC.deletedData"></custom-table>
+                </section>
+                <!-- /tile -->
+            </div>
+            <!-- /col -->
+        </div>
+        <!-- /row -->
+
+    </div>
+    <!-- /page content -->
+
+</div>

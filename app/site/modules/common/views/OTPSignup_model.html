@@ -1,0 +1,21 @@
+<div class="signup-page mob-bx">
+  <div style="background-image: url('{{rc.bgimage.image}}');" class="sinupimg-container"></div>
+
+  <div class="sign-up-holder login-holder ">
+    <div class="logo-container">
+      <a ui-sref="landing"><img src="{{rc.getsetting.logo}}"></a>
+    </div>
+    <form role="form" name="Otpform" class="form-validation mt-20" method="post"
+      novalidate>
+      <div class="form-group" ng-class="{ 'has-error' : Otpform.otp.$invalid && !Otpform.otp.$pristine, 'has-success' : Otpform.otp.$valid && !Otpform.otp.$pristine}">
+        <input type="text" class="form-control underline-input" name="otp" placeholder="{{'OTP' | translate}}" ng-model="OTPC.otp"
+          required>
+        <span class="validerr tsk-valids" ng-show="Otpform.otp.$invalid && !Otpform.otp.$pristine">OTP is required.</span>
+      </div>
+      <div class="frget-pwd arrange">
+        <a style="float:left" href="#" ng-click="OTPC.resendotp()">Resend OTP</a>
+      </div>
+      <input class="borderbtn" ng-click="OTPC.ok(Otpform.$valid)" value="{{'SUBMIT' | translate}}" type="submit">
+    </form>
+  </div>
+</div>

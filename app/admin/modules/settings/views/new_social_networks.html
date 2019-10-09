@@ -1,0 +1,663 @@
+<div class="page page-forms-common">
+    <div class="pageheader">
+        <h2>{{ 'Menu.SETTINGS' | translate }}</span></h2>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a></li>
+                <li><a ui-sref="app.settings.SocialNetworksSettings">{{'Menu.SETTINGS'|translate}}</a></li>
+                <li> {{'SubMenu.SOCIAL_NETWORKS_SETTINGS'|translate}} </li>
+            </ul>
+        </div>
+    </div>
+    <div class="pagecontent soc">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="tile" fullscreen="isFullscreen02">
+                    <div class="tile-body">
+                        <form role="form" name="socialform">
+                          <div class="row">
+                          <div class="tile-header dvd dvd-btm">
+                            <h1 class="custom-font"><strong>Social Networks</strong> URL/Links</h1>
+                          </div>
+                          <div class="social-net">
+                             <div class="col-md-12">
+                               <div class="row genrl-sett">
+                                 <div class="form-group col-md-12 legend">
+                                       <h4><strong>Facebook</strong> Details</h4>
+                                     </div>
+                              </div>
+                             <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.facebook.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.facebook.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <!-- <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.facebook.facebookimage" name="facebookimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="facebookimage">
+                                        </div> -->
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.facebook.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+                             </div>
+                             <!-- <div class="form-group col-md-6" ng-class="{ 'has-error' : categoryForm.facebookimage.$invalid && !categoryForm.facebookimage.$pristine, 'has-success' : categoryForm.facebookimage.$valid && !categoryForm.facebookimage.$pristine}">
+                             <span class="validerr" ng-show="socialform.facebookimage.$invalid && !socialform.facebookimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                             <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.facebook.facebookimage">
+                              </div> -->
+                             </div>
+                             <div class="col-md-12">
+                               <div class="row genrl-sett">
+                                 <div class="form-group col-md-12 legend">
+                                       <h4><strong>Twitter</strong> Details</h4>
+                                     </div>
+                              </div>
+                             <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.twitter.name"
+                                         aria-invalid="true">
+                                </div>
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">URL</label>
+                                    <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.twitter.url"
+                                         aria-invalid="true">
+                                </div>
+                                <!-- <div class="form-group">
+                                        <label class="control-label">Icon</label>
+                                        <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.twitter.twitterimage" name="twitterimage"
+                                            ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="twitterimage">
+                                </div> -->
+                                 <div class="form-group">
+                                        <label for="publish">Status</label>
+                                        <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.twitter.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                        <option value='1' selected="1">Publish</option>
+                                        <option value='2'>UnPublish</option>
+                                         </select>
+                                </div>
+                             </div>
+                             <!-- <div class="col-md-6 form-group" ng-class="{ 'has-error' : categoryForm.twitterimage.$invalid && !categoryForm.twitterimage.$pristine, 'has-success' : categoryForm.twitterimage.$valid && !categoryForm.twitterimage.$pristine}">
+                             <span class="validerr" ng-show="socialform.twitterimage.$invalid && !socialform.twitterimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                             <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.twitter.twitterimage">
+                              </div> -->
+                             </div>
+
+                              <div class="col-md-12">
+                                 <div class="row genrl-sett">
+                                   <div class="form-group col-md-12 legend">
+                                         <h4><strong>Linked In</strong> Details</h4>
+                                       </div>
+                                </div>
+                             <div class="col-md-6">
+
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.linkedin.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.linkedin.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <!-- <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.linkedin.linkedinimage" name="linkedinimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="linkedinimage">
+                                        </div> -->
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.linkedin.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+                             </div>
+                             <!-- <div class="col-md-6 form-group" ng-class="{ 'has-error' : categoryForm.linkedinimage.$invalid && !categoryForm.linkedinimage.$pristine, 'has-success' : categoryForm.linkedinimage.$valid && !categoryForm.linkedinimage.$pristine}">
+                             <span class="validerr" ng-show="socialform.linkedinimage.$invalid && !socialform.linkedinimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                             <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.linkedin.linkedinimage">
+                              </div> -->
+                             </div>
+
+                               <div class="col-md-12">
+                                 <div class="row genrl-sett">
+                                   <div class="form-group col-md-12 legend">
+                                         <h4><strong>Pinterest</strong> Details</h4>
+                                       </div>
+                                </div>
+                             <div class="col-md-6">
+
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.pinterest.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.pinterest.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <!-- <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.pinterest.pinterestimage" name="pinterestimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="pinterestimage">
+                                        </div> -->
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.pinterest.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+                             </div>
+                             <!-- <div class="form-group col-md-6" ng-class="{ 'has-error' : categoryForm.pinterestimage.$invalid && !categoryForm.pinterestimage.$pristine, 'has-success' : categoryForm.pinterestimage.$valid && !categoryForm.pinterestimage.$pristine}">
+                             <span class="validerr" ng-show="socialform.pinterestimage.$invalid && !socialform.pinterestimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                             <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.pinterest.pinterestimage">
+                             </div> -->
+                             </div>
+
+                               <div class="col-md-12">
+                                 <div class="row genrl-sett">
+                                   <div class="form-group col-md-12 legend">
+                                         <h4><strong>You Tube</strong> Details</h4>
+                                       </div>
+                                </div>
+                             <div class="col-md-6">
+
+
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.youtube.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.youtube.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <!-- <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.youtube.youtubeimage" name="youtubeimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="youtubeimage">
+                                        </div> -->
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.youtube.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+                             </div>
+                             <!-- <div class="form-group col-md-6" ng-class="{ 'has-error' : categoryForm.youtubeimage.$invalid && !categoryForm.youtubeimage.$pristine, 'has-success' : categoryForm.youtubeimage.$valid && !categoryForm.youtubeimage.$pristine}">
+                             <span class="validerr" ng-show="socialform.youtubeimage.$invalid && !socialform.youtubeimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                             <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.youtube.youtubeimage">
+                             </div> -->
+                             </div>
+
+                               <div class="col-md-12">
+                                 <div class="row genrl-sett">
+                                   <div class="form-group col-md-12 legend">
+                                         <h4><strong>Google +</strong> Details</h4>
+                                       </div>
+                                </div>
+                             <div class="col-md-6">
+
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.google.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.google.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <!-- <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.google.googleimage" name="googleimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="googleimage">
+                                        </div> -->
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.google.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+                             </div>
+                             <!-- <div class="form-group col-md-6" ng-class="{ 'has-error' : categoryForm.googleimage.$invalid && !categoryForm.googleimage.$pristine, 'has-success' : categoryForm.googleimage.$valid && !categoryForm.googleimage.$pristine}">
+                             <span class="validerr" ng-show="socialform.googleimage.$invalid && !socialform.googleimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                             <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.google.googleimage">
+                              </div> -->
+                            </div>
+                            </div>
+
+                            <div class="row social-but">
+
+                            <div class="tile-header dvd dvd-btm">
+                               <h1 class="custom-font"><strong>Mobile Download</strong> URL/Links</h1>
+                             </div>
+                            <div class="social-net">
+                             <div class="col-md-12">
+                               <div class="row genrl-sett">
+                                 <div class="form-group col-md-12 legend">
+                                       <h4><strong>Google Play</strong> Details</h4>
+                                     </div>
+                              </div>
+                             <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.mobileapp.googleplay.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.mobileapp.googleplay.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <!-- <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.mobileapp.googleplay.googleplayimage" name="googleplayimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="googleplayimage">
+                                        </div> -->
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.mobileapp.googleplay.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+                                  </div>
+                                  <!-- <div class="form-group col-md-6" ng-class="{ 'has-error' : categoryForm.googleplayimage.$invalid && !categoryForm.googleplayimage.$pristine, 'has-success' : categoryForm.googleplayimage.$valid && !categoryForm.googleplayimage.$pristine}">
+                                  <span class="validerr" ng-show="socialform.googleplayimage.$invalid && !socialform.googleplayimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                  <img height="150" ngf-src="SNSC.SocialNetworksSettings.mobileapp.googleplay.googleplayimage">
+                                   </div> -->
+                             </div>
+
+                            <div class="col-md-12">
+                               <div class="row genrl-sett">
+                                 <div class="form-group col-md-12 legend">
+                                       <h4><strong>Apple Store</strong> Details</h4>
+                                     </div>
+                              </div>
+                             <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.mobileapp.appstore.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.mobileapp.appstore.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <!-- <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.mobileapp.appstore.appstoreimage" name="appstoreimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="appstoreimage">
+                                        </div> -->
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.mobileapp.appstore.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+                                  </div>
+                                  <!-- <div class="form-group col-md-6" ng-class="{ 'has-error' : categoryForm.appstoreimage.$invalid && !categoryForm.appstoreimage.$pristine, 'has-success' : categoryForm.appstoreimage.$valid && !categoryForm.appstoreimage.$pristine}">
+                                  <span class="validerr" ng-show="socialform.appstoreimage.$invalid && !socialform.appstoreimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                  <img height="150" ngf-src="SNSC.SocialNetworksSettings.mobileapp.appstore.appstoreimage">
+                                   </div> -->
+                                 </div>
+                                 </div>
+                             </div>
+                            
+                          </div>    
+                            <button type="submit" ng-click="SNSC.saveSocialNetworksSettings(socialform.$valid,SNSC.SocialNetworksSettings)" class="btn btn-rounded btn-success btn-sm">Submit</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div class="page page-forms-common">
+    <div class="pageheader">
+        <h2>{{ 'Menu.SETTINGS' | translate }}</span></h2>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a></li>
+                <li><a ui-sref="app.settings.SocialNetworksSettings">{{'Menu.SETTINGS'|translate}}</a></li>
+                <li> {{'SubMenu.SOCIAL_NETWORKS_SETTINGS'|translate}} </li>
+            </ul>
+        </div>
+    </div>
+    <div class="pagecontent">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="tile" fullscreen="isFullscreen02">
+                    <div class="tile-body">
+                        <form role="form" name="socialform">
+                            <h4 class="custom-font text-strong">Social Networks URL/Links</h4>
+                             <div class="col-md-12">
+                             <div class="col-md-6">
+                                   <label for="exampleInputEmail1">Facebook</label>
+                             </div>
+                               <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.facebook.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.facebook.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.facebook.facebookimage" name="facebookimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="facebookimage">
+                                                <div class="form-group" ng-class="{ 'has-error' : categoryForm.facebookimage.$invalid && !categoryForm.facebookimage.$pristine, 'has-success' : categoryForm.facebookimage.$valid && !categoryForm.facebookimage.$pristine}">
+                                                <span class="validerr" ng-show="socialform.facebookimage.$invalid && !socialform.facebookimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                                <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.facebook.facebookimage">
+                                                 </div>
+                                        </div>
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.facebook.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+
+
+                             </div>
+                             </div>
+
+                     <div class="col-md-12">
+                             <div class="col-md-6">
+                                   <label for="exampleInputEmail1">Twitter</label>
+                             </div>
+                               <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.twitter.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.twitter.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.twitter.twitterimage" name="twitterimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="twitterimage">
+                                                <div class="form-group" ng-class="{ 'has-error' : categoryForm.twitterimage.$invalid && !categoryForm.twitterimage.$pristine, 'has-success' : categoryForm.twitterimage.$valid && !categoryForm.twitterimage.$pristine}">
+                                                <span class="validerr" ng-show="socialform.twitterimage.$invalid && !socialform.twitterimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                                <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.twitter.twitterimage">
+                                                 </div>
+                                        </div>
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.twitter.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+
+
+                             </div>
+                             </div>
+
+                               <div class="col-md-12">
+                             <div class="col-md-6">
+                                   <label for="exampleInputEmail1">LInked In</label>
+                             </div>
+                               <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.linkedin.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.linkedin.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.linkedin.linkedinimage" name="linkedinimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="linkedinimage">
+                                                <div class="form-group" ng-class="{ 'has-error' : categoryForm.linkedinimage.$invalid && !categoryForm.linkedinimage.$pristine, 'has-success' : categoryForm.linkedinimage.$valid && !categoryForm.linkedinimage.$pristine}">
+                                                <span class="validerr" ng-show="socialform.linkedinimage.$invalid && !socialform.linkedinimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                                <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.linkedin.linkedinimage">
+                                                 </div>
+                                        </div>
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.linkedin.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+
+
+                             </div>
+                             </div>
+
+                               <div class="col-md-12">
+                             <div class="col-md-6">
+                                   <label for="exampleInputEmail1">Pinterest</label>
+                             </div>
+                               <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.pinterest.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.pinterest.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.pinterest.pinterestimage" name="pinterestimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="pinterestimage">
+                                                <div class="form-group" ng-class="{ 'has-error' : categoryForm.pinterestimage.$invalid && !categoryForm.pinterestimage.$pristine, 'has-success' : categoryForm.pinterestimage.$valid && !categoryForm.pinterestimage.$pristine}">
+                                                <span class="validerr" ng-show="socialform.pinterestimage.$invalid && !socialform.pinterestimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                                <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.pinterest.pinterestimage">
+                                                </div>
+                                        </div>
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.pinterest.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+
+
+                             </div>
+                             </div>
+
+                               <div class="col-md-12">
+                             <div class="col-md-6">
+                                   <label for="exampleInputEmail1">You Tube</label>
+                             </div>
+                               <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.youtube.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.youtube.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.youtube.youtubeimage" name="youtubeimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="youtubeimage">
+                                                <div class="form-group" ng-class="{ 'has-error' : categoryForm.youtubeimage.$invalid && !categoryForm.youtubeimage.$pristine, 'has-success' : categoryForm.youtubeimage.$valid && !categoryForm.youtubeimage.$pristine}">
+                                                <span class="validerr" ng-show="socialform.youtubeimage.$invalid && !socialform.youtubeimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                                <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.youtube.youtubeimage">
+                                                </div>
+                                        </div>
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.youtube.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+
+
+                             </div>
+                             </div>
+
+                               <div class="col-md-12">
+                             <div class="col-md-6">
+                                   <label for="exampleInputEmail1">Google +</label>
+                             </div>
+                               <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.google.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.link.google.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.link.google.googleimage" name="googleimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="googleimage">
+                                                <div class="form-group" ng-class="{ 'has-error' : categoryForm.googleimage.$invalid && !categoryForm.googleimage.$pristine, 'has-success' : categoryForm.googleimage.$valid && !categoryForm.googleimage.$pristine}">
+                                                <span class="validerr" ng-show="socialform.googleimage.$invalid && !socialform.googleimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                                <img height="100" ngf-src="SNSC.SocialNetworksSettings.link.google.googleimage">
+                                                 </div>
+                                        </div>
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.link.google.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+
+
+                             </div>
+                             </div>
+
+                             <h4 class="custom-font text-strong">Mobile Download URL/Links</h4>
+                             <div class="col-md-12">
+                             <div class="col-md-6">
+                                   <label for="exampleInputEmail1">Google Play</label>
+                             </div>
+                               <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.mobileapp.googleplay.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.mobileapp.googleplay.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.mobileapp.googleplay.googleplayimage" name="googleplayimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="googleplayimage">
+                                                <div class="form-group" ng-class="{ 'has-error' : categoryForm.googleplayimage.$invalid && !categoryForm.googleplayimage.$pristine, 'has-success' : categoryForm.googleplayimage.$valid && !categoryForm.googleplayimage.$pristine}">
+                                                <span class="validerr" ng-show="socialform.googleplayimage.$invalid && !socialform.googleplayimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                                <img height="100" ngf-src="SNSC.SocialNetworksSettings.mobileapp.googleplay.googleplayimage">
+                                                 </div>
+                                        </div>
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.mobileapp.googleplay.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+
+
+                             </div>
+                             </div>
+
+                             <div class="col-md-12">
+                             <div class="col-md-6">
+                                   <label for="exampleInputEmail1">Apple Store</label>
+                             </div>
+                               <div class="col-md-6">
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.mobileapp.appstore.name"
+                                             aria-invalid="true">
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">URL</label>
+                                        <input type="text" name="name" id="name" class="form-control" ng-model="SNSC.SocialNetworksSettings.mobileapp.appstore.url"
+                                             aria-invalid="true">
+                                    </div>
+                                        <div class="form-group">
+                                                <label class="control-label">Icon</label>
+                                                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="SNSC.SocialNetworksSettings.mobileapp.appstore.appstoreimage" name="appstoreimage"
+                                                    ngf-max-size="1MB" ngf-pattern="'image/jpg,image/jpeg,image/gif,image/png'" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}" id="appstoreimage">
+                                                <div class="form-group" ng-class="{ 'has-error' : categoryForm.appstoreimage.$invalid && !categoryForm.appstoreimage.$pristine, 'has-success' : categoryForm.appstoreimage.$valid && !categoryForm.appstoreimage.$pristine}">
+                                                <span class="validerr" ng-show="socialform.appstoreimage.$invalid && !socialform.appstoreimage.$pristine">Allowed files: jpeg, png, jpg. Max file size 1Mb.</span>
+                                                <img height="100" ngf-src="SNSC.SocialNetworksSettings.mobileapp.appstore.appstoreimage">
+                                                 </div>
+                                        </div>
+
+                                     <div class="form-group">
+                                            <label for="publish">Status</label>
+                                            <select id="publish" name="publish" ng-model="SNSC.SocialNetworksSettings.mobileapp.appstore.status" convert-to-number class="form-control mb-10" on-blur-validation >
+                                            <option value='1' selected="1">Publish</option>
+                                            <option value='2'>UnPublish</option>
+                                             </select>
+                                    </div>
+
+
+                             </div>
+                             </div>
+
+
+                            <button type="submit" ng-click="SNSC.saveSocialNetworksSettings(socialform.$valid,SNSC.SocialNetworksSettings)" class="btn btn-rounded btn-success btn-sm">Submit</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div> -->

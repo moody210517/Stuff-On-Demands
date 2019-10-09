@@ -1,0 +1,91 @@
+<div class="trans-profiles">
+    <div class="container">
+        <div class="view-trans">
+            <div class="trans-packed main-scrolls-trcks">
+                <div class="trans-profiles-header">
+                    <div class="trans-headings">
+                        <h4>Unavailability</h4>
+                    </div>
+                </div>
+                <div class="scroll-function">
+                    <div class="trans-profiles-inner acc-av">
+                        <div class="main_cont_2_1">
+                            <div class="main_cont_tle">
+                                <label>
+                                    Select Unavailable days/hours 
+                                </label>
+                                <ul class="day-list dte-pkr">
+
+                                <div ng-controller="DatepickerDobCtrl" class="cal-holde new-holders" >
+                                  <style>
+
+                                    .datepicker .btn-default {
+                                        border-width: 0;
+                                        width: 100%;
+                                        -webkit-box-shadow: none;
+                                        box-shadow: none;
+                                    }
+
+                                    .btn-success{
+                                        display:none;
+                                    }
+                                    .day-list li {
+                                        float: left;
+                                        margin: 0 18px 0 0;
+                                        width: 140px;
+                                    }
+                                    .btn-group > .btn, .btn-group-vertical > .btn  {
+                                        display:none;
+                                    }
+
+                                    .datepicker .btn-default .glyphicon {
+                                        align: center;
+                                        top: 2px;
+                                    }
+
+                                    .datepicker .btn[disabled] {
+                                      opacity: .3;
+                                    }
+
+                                    .datepicker .btn-info {
+                                      color: white !important;
+                                    }
+
+                                    .datepicker .btn-info .text-info {
+                                      color: white;
+                                    }
+
+                                    .datepicker .btn-info.active {
+                                      background-color: #5bc0de !important;
+                                    }
+                                  </style>
+                                    <i ng-click="open($event)" class="fa fa-calendar"></i>
+                                      <input ng-change="AUC.getUnavailableData()" type="text" name="valid_from" id="valid_from" class="dateside" datepicker-popup="{{format}}"
+                                        ng-model="AUC.unavailabledates" is-open="opened" datepicker-options="dateOptions" min-date="minDate" ng-required="true" placeholder="DD-MM-YYYY"
+                                        close-text="Close"  show-clear="false" required/ style="margin-top: -2px;width: 85%;">
+                                  </div>
+                                  <br>
+                              </ul>
+                                <!-- <div>
+                                    <multiple-date-picker disable-days-before="today" disallow-back-past-months="true" month-click="disable6MonthsFromNow" ng-model="AUC.unavailabledates" ng-click="AUC.getUnavailableData($event)"></multiple-date-picker>
+                                </div> -->
+                            </div>
+                        </div>  
+                        <div class="list-transta avails-sumts">
+                            <input class="blue-btn hfa-btn" value="{{'SUBMIT' | translate}}" type="submit" ng-click="AUC.saveUnavailability(true)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .green {
+        color: green!important;
+    }
+    
+    .red {
+        color: red!important;
+    }
+</style>

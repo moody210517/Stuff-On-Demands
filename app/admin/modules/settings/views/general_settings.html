@@ -1,0 +1,413 @@
+<div class="page page-forms-common">
+  <!-- page header -->
+  <div class="pageheader">
+    <h2> {{'SubMenu.GENERAL_SETTINGS'|translate}} {{'Menu.SETTINGS'|translate}} </h2>
+    <div class="page-bar">
+      <ul class="page-breadcrumb">
+        <li>
+          <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a>
+        </li>
+        <li>
+          <a ui-sref="app.settings.generalSettings">{{'Menu.SETTINGS'|translate}}</a>
+        </li>
+        <li>
+          <a ui-sref="app.forms.common">{{'SubMenu.GENERAL_SETTINGS'|translate}} {{'Menu.SETTINGS'|translate}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="pagecontent">
+    <div class="row">
+      <div class="col-md-12">
+        <section class="tile" fullscreen="isFullscreen02">
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font"><strong>General</strong> Settings</h1>
+          </div>
+          <div class="tile-body" ng-init="GSC.clockFunc">
+            <form role="form" enctype="multipart/form-data" name="generalSettingsForm" submit-validate novalidate>
+            <div class="form-group-1">
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.siteTitle.$invalid && !generalSettingsForm.siteTitle.$pristine, 'has-success' : generalSettingsForm.siteTitle.$valid && !generalSettingsForm.siteTitle.$pristine}">
+                <label for="siteTitle">Site Title</label>
+                <input type="text" name="siteTitle" id="siteTitle" class="form-control" ng-model="GSC.generalSettings.site_title" aria-required="true"
+                  aria-invalid="true" on-blur-validation required>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.siteTitle.$invalid && !generalSettingsForm.siteTitle.$pristine">Site Title is required.</span>
+                </p>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.name.$invalid && !generalSettingsForm.name.$pristine, 'has-success' : generalSettingsForm.name.$valid && !generalSettingsForm.name.$pristine}">
+                <label>E-mail Address</label>
+                <input type="text" name="name" id="name" class="form-control" ng-model="GSC.generalSettings.email_address" required="" aria-required="true"
+                  aria-invalid="true" on-blur-validation required>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.name.$invalid && !generalSettingsForm.name.$pristine">Site Title is required.</span>
+                </p>
+              </div>
+              <div class="form-group">
+                <label>Contact Number(1)</label>
+                <input type="tel" name="contactone" id="contactone" class="form-control" ng-model="GSC.generalSettings.contact_number_one">
+              </div>
+              <div class="form-group">
+                <label>Contact Number(2)</label>
+                <input type="tel" name="contacttwo" id="contacttwo" class="form-control" ng-model="GSC.generalSettings.contact_number_two">
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.name.$invalid && !generalSettingsForm.name.$pristine, 'has-success' : generalSettingsForm.name.$valid && !generalSettingsForm.name.$pristine}">
+                <label>Site URL</label>
+                <input type="text" name="name" id="name" class="form-control" ng-model="GSC.generalSettings.site_url" required="" aria-required="true"
+                  aria-invalid="true" on-blur-validation required>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.name.$invalid && !generalSettingsForm.name.$pristine">Site Title is required.</span>
+                </p>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.Location.$invalid && !generalSettingsForm.Location.$pristine, 'has-success' : generalSettingsForm.Location.$valid && !generalSettingsForm.Location.$pristine}">
+                <label>Site Location</label>
+                <input name="Location" ng-required="GSC.validlocation" class="form-control" required type="text" places-auto-complete size=80
+                  ng-model="GSC.generalSettings.location" types="['address']" on-place-changed="GSC.placechange()" />
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.Location.$invalid && !generalSettingsForm.Location.$pristine">Site Location is required.</span>
+                </p>
+              </div>
+              <!-- <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.siteaddress.$invalid && !generalSettingsForm.siteaddress.$pristine, 'has-success' : generalSettingsForm.siteaddress.$valid && !generalSettingsForm.siteaddress.$pristine}">
+                <label>Site Address</label>
+                <textarea class="form-control" rows="7" name="siteaddress" id="siteaddress" ng-model="GSC.generalSettings.siteaddress" placeholder="Site Address"
+                  aria-multiline="true" aria-required="true" aria-invalid="true"></textarea>
+
+
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.siteaddress.$invalid && !generalSettingsForm.siteaddress.$pristine">Site Address is required.</span>
+                </p>
+              </div> -->
+
+              <!--              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.minimum_amount.$invalid && !generalSettingsForm.minimum_amount.$pristine, 'has-success' : generalSettingsForm.minimum_amount.$valid && !generalSettingsForm.minimum_amount.$pristine}">
+                <label>Minimum Amount</label>
+                <input type="text" name="minimum_amount" id="minimum_amount" class="form-control" ng-model="GSC.generalSettings.minimum_amount"
+                  required="" aria-required="true" aria-invalid="true" required allow-only-numbers>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.minimum_amount.$invalid && !generalSettingsForm.minimum_amount.$pristine">Minimum Amount should be number</span>
+                </p>
+              </div> -->
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.service_tax.$invalid && !generalSettingsForm.service_tax.$pristine, 'has-success' : generalSettingsForm.service_tax.$valid && !generalSettingsForm.service_tax.$pristine}">
+                <label>Service Tax (%)</label>
+                <input type="text" name="service_tax" id="service_tax" class="form-control" ng-model="GSC.generalSettings.service_tax" required=""
+                  aria-required="true" aria-invalid="true" required allow-only-numbers>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.service_tax.$invalid && !generalSettingsForm.service_tax.$pristine">Service Tax should be number </span>
+                </p>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.tasker_distance.$invalid && !generalSettingsForm.tasker_distance.$pristine, 'has-success' : generalSettingsForm.tasker_distance.$valid && !generalSettingsForm.tasker_distance.$pristine}">
+                <label>Tasker Distance</label>
+                <input type="text" name="tasker_distance" id="tasker_distance" class="form-control" ng-model="GSC.generalSettings.tasker_distance" required=""
+                  aria-required="true" aria-invalid="true" required allow-only-numbers>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.tasker_distance.$invalid && !generalSettingsForm.tasker_distance.$pristine">Service Tax should be number </span>
+                </p>
+              </div>
+
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.tasker_radius.$invalid && !generalSettingsForm.tasker_radius.$pristine, 'has-success' : generalSettingsForm.tasker_radius.$valid && !generalSettingsForm.tasker_radius.$pristine}">
+                <label>Tasker Availability radius</label>
+                <input type="number" name="tasker_radius" id="tasker_radius" class="form-control" min="1" max="6371" ng-model="GSC.generalSettings.tasker_radius" required=""
+                  aria-required="true" aria-invalid="true" required allow-only-numbers>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.tasker_radius.$invalid && !generalSettingsForm.tasker_radius.$pristine && generalSettingsForm.tasker_radius.$error.required ">Tasker Availability radius is required </span>
+
+                   <!--  <span ng-show="generalSettingsForm.tasker_radius.$invalid && !generalSettingsForm.tasker_radius.$pristine && generalSettingsForm.tasker_radius.$error.required ">Tasker Availability radius is required </span> -->
+                </p>
+                
+              </div>
+
+              <div class="form-group" ng-class="{ 'has-error' :generalSettingsForm.distanceby.$invalid && !generalSettingsForm.distanceby.$pristine, 'has-success' : generalSettingsForm.distanceby.$valid && !generalSettingsForm.distanceby.$pristine}">
+                <label for="publish">Distance By</label>
+                <select id="distanceby" name="distanceby" ng-model="GSC.generalSettings.distanceby" class="form-control" required="" aria-required="true"
+                  aria-invalid="true" on-blur-validation required>
+                           <option value='km'>Kilometer</option>
+                           <option value='mi'>Mile</option>
+                           <p class="help-block">
+                          <span ng-show="generalSettingsForm.distanceby.$invalid && !generalSettingsForm.distanceby.$pristine">Distance is required.</span>
+                        </p>
+                        </select>
+              </div>
+
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.billingcycle.$invalid && !generalSettingsForm.billingcycle.$pristine, 'has-success' : generalSettingsForm.billingcycle.$valid && !generalSettingsForm.billingcycle.$pristine}">
+                <label>Billing cycle (In Days)</label>
+                <input type="text" name="billingcycle" id="billingcycle" class="form-control" ng-model="GSC.generalSettings.billingcycle"
+                  required="" aria-required="true" aria-invalid="true" required allow-only-numbers>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.billingcycle.$invalid && !generalSettingsForm.billingcycle.$pristine">Billing cycle should be number </span>
+                </p>
+              </div>
+              <!-- <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.accepttime.$invalid && !generalSettingsForm.accepttime.$pristine, 'has-success' : generalSettingsForm.accepttime.$valid && !generalSettingsForm.accepttime.$pristine}">
+                <label>Job Left Alert Time(In minutes)</label>
+                <input type="number" name="accepttime" id="accepttime" class="form-control" ng-model="GSC.generalSettings.accepttime" required=""
+                  aria-required="true" min="2" aria-invalid="true" on-blur-validation required allow-only-numbers>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.accepttime.$invalid && !generalSettingsForm.accepttime.$pristine">Enter Valid Minutes</span>
+                </p>
+              </div> -->
+
+
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.minaccepttime.$invalid && !generalSettingsForm.minaccepttime.$pristine && generalSettingsForm.minaccepttime.$error, 'has-success' : generalSettingsForm.minaccepttime.$valid && !generalSettingsForm.minaccepttime.$pristine}">
+                <label>Pending Task Alert Time Minimum(In minutes)</label>
+                <input type="number" name="minaccepttime" id="minaccepttime" class="form-control" ng-model="GSC.generalSettings.minaccepttime"
+                  aria-required="true" aria-invalid="true" min="1" ng-max="10" on-blur-validation
+                  required allow-only-numbers>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.minaccepttime.$invalid && !generalSettingsForm.minaccepttime.$pristine && generalSettingsForm.minaccepttime.$error.required">Enter Valid Minutes</span>
+                  <span style="color:red;" ng-show="generalSettingsForm.minaccepttime.$error.max">Should be a maximum of 10 minutes</span>
+                </p>
+              </div>
+             <div class="form-group-two"> 
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.bookingIdPrefix.$invalid && !generalSettingsForm.bookingIdPrefix.$pristine, 'has-success' : generalSettingsForm.bookingIdPrefix.$valid && !generalSettingsForm.bookingIdPrefix.$pristine}">
+                <label>Booking Id Prefix</label>
+                <input type="text" name="bookingIdPrefix" id="bookingIdPrefix" class="form-control" ng-model="GSC.generalSettings.bookingIdPrefix"
+                  required="" aria-required="true" aria-invalid="true" required>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.bookingIdPrefix.$invalid && !generalSettingsForm.bookingIdPrefix.$pristine">Booking Id Prefix is required </span>
+                </p>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.enable_disable.$invalid && !generalSettingsForm.enable_disable.$pristine, 'has-success' : generalSettingsForm.enable_disable.$valid && !generalSettingsForm.enable_disable.$pristine}">
+                <label>Timezone</label>
+                <select id="paymentMode" name="enable_disable" ng-model="GSC.generalSettings.time_zone" class="form-control mb-10" on-blur-validation
+                  required>
+                       <option ng-repeat="option in GSC.timezone" value="{{option}}">{{option}}</option>
+                     </select>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.enable_disable.$invalid && !generalSettingsForm.enable_disable.$pristine">Site Title is required.</span>
+                </p>
+              </div>
+            </div> 
+              </div>
+             <div class="form-group-2"> 
+              <div class="form-group">
+                <label>Date Format</label>
+                <label class="checkbox checkbox-custom-alt" ng-repeat="format in GSC.date_format">
+                  <input name="date_format" type="radio" ng-change='GSC.clockFunc()' ng-model="GSC.generalSettings.date_format" value="{{format}}"><i></i> {{GSC.generalSettings.timenow | clocksettings:format : GSC.generalSettings.time_zone}}
+                </label>
+                <label class="checkbox checkbox-custom-alt">
+                    <input name="date_format" type="radio" ng-change='GSC.clockFunc()' ng-model="GSC.customdate" value="{{GSC.customdate}}"><i style="margin-top: -15px;"></i>
+<div style="display: inline-block;">
+<div style="float: left; padding-top: 3px;"> Custom </div>
+<input type="text" ng-change='GSC.clockFunc()' ng-keypress="GSC.datekeyFunc()" ng-model="GSC.generalSettings.date_format"
+  style="opacity: 1; float: left; position: relative; margin: 0 5px;">
+<div style="float: left; padding-top: 3px;">{{GSC.generalSettings.timenow | clocksettings:GSC.generalSettings.date_format : GSC.generalSettings.time_zone}}</div>
+</div>
+</label>
+              </div>
+              <div class="form-group">
+                <label>Time Format</label>
+                <label class="checkbox checkbox-custom-alt" ng-repeat="format in GSC.time_format">
+                  <input name="time_format" type="radio" ng-change='GSC.clockFunc()' ng-model="GSC.generalSettings.time_format" value="{{format}}"><i></i> {{GSC.generalSettings.timenow | clocksettings:format : GSC.generalSettings.time_zone}}
+                 </label>
+                <label class="checkbox checkbox-custom-alt">
+                  <input name="time_format" type="radio" ng-change='GSC.clockFunc()' ng-model="GSC.customtime" value="{{GSC.customtime}}"><i style="margin-top: -15px;"></i>
+<div style="display: inline-block;">
+<div style="float: left; padding-top: 3px;"> Custom </div>
+<input type="text" ng-change='GSC.clockFunc()' ng-model="GSC.generalSettings.time_format" style="opacity: 1; float: left; position: relative; margin: 0 5px;">
+<div style="float: left; padding-top: 3px;"> {{GSC.generalSettings.timenow | clocksettings:GSC.generalSettings.time_format : GSC.generalSettings.time_zone}}</div>
+</div>
+</label>
+              
+              </div>
+            </div>
+              <!-- <div class="form-group">
+                <label>Logo</label>
+                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="GSC.generalSettings.logo[0].image1" name="photos" accept="image/*"
+                  ngf-max-size="10MB" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox'}"
+                  id="logo">
+                <span class="help-block">Allowed files: jpeg, png, jpg. Max file size 1Mb</span>
+                <img ng-if="temp" class="img-edit" ngf-src="GSC.generalSettings.logo">
+                <img ng-if="!temp&&!GSC.generalSettings.logo==''" class=" img-edit " ngf-src="GSC.generalSettings.logo">
+              </div> -->
+              <!-- <div class="form-group">
+                <label>Favicon</label>
+                <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="GSC.generalSettings.logo[1].image2" name="favicon" accept="image/*"
+                  ngf-max-size="10MB" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox'}"
+                  id="favicon">
+                <span class="help-block">Allowed files: jpeg, png, jpg. Max file size 1Mb</span>
+                <img ng-if="temp" class="img-edit" ngf-src="GSC.generalSettings.favicon">
+                <img ng-if="!temp&&!GSC.generalSettings.favicon==''" class=" img-edit " ngf-src="GSC.generalSettings.favicon">
+              </div> -->
+            <div class="form-group-3">  
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.logo.$invalid && !generalSettingsForm.logo.$pristine, 'has-success' : generalSettingsForm.logo.$valid && !generalSettingsForm.logo.$pristine}">
+                <label> Dark Logo</label>
+                <input ui-jq="filestyle" type="file" ngf-change="fileupload($files, $event, $rejectedFiles);" ngf-select="temp=true" ng-model="GSC.generalSettings.logo"
+                  ngf-pattern="'image/jpg,image/jpeg,image/png,image/gif/*'" name="logo" accept="image/*" ngf-max-size="1MB"
+                  ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}"
+                  id="logo">
+                <span class="help-block">Allowed files: jpeg, png, jpg. Max file size 1Mb</span>
+                <img ng-if="temp" class="img-edit" ngf-src="GSC.generalSettings.logo">
+                <img ng-if="!temp&&!GSC.generalSettings.logo==''" class=" img-edit " ngf-src="GSC.generalSettings.logo">
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.logo.$invalid && !generalSettingsForm.logo.$pristine" style="color:red;">Dark is required.</span>
+                </p>
+              </div>
+
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.light_logo.$invalid && !generalSettingsForm.light_logo.$pristine, 'has-success' : generalSettingsForm.light_logo.$valid && !generalSettingsForm.light_logo.$pristine}">
+                <label>Light Logo</label>
+                <input ui-jq="filestyle" type="file" ngf-change="fileupload($files, $event, $rejectedFiles);" ngf-select="temp=true" ng-model="GSC.generalSettings.light_logo"
+                  ngf-pattern="'image/jpg,image/jpeg,image/png,image/gif/*'" name="light_logo" accept="image/*" ngf-max-size="1MB"
+                  ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}"
+                  id="light_logo">
+                <span class="help-block">Allowed files: jpeg, png, jpg. Max file size 1Mb</span>
+                <img ng-if="temp" class="img-edit" ngf-src="GSC.generalSettings.light_logo">
+                <img ng-if="!temp&&!GSC.generalSettings.light_logo==''" class=" img-edit " ngf-src="GSC.generalSettings.light_logo">
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.light_logo.$invalid && !generalSettingsForm.light_logo.$pristine" style="color:red;">Light is required.</span>
+                </p>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.favicon.$invalid && !generalSettingsForm.favicon.$pristine, 'has-success' : generalSettingsForm.favicon.$valid && !generalSettingsForm.favicon.$pristine}">
+                <label>Favicon</label>
+                <!-- <input ui-jq="filestyle" type="file" ngf-select="temp=true" ng-model="GSC.generalSettings.favicon"  name="favicon" accept="image/*"
+             ngf-max-size="10MB" ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox'}" id="favicon"> -->
+                <input ui-jq="filestyle" type="file" ngf-change="fileupload($files, $event, $rejectedFiles);" ngf-select="temp=true" ng-model="GSC.generalSettings.favicon"
+                  ngf-pattern="'image/x-icon,image/jpg,image/jpeg,image/png,image/gif/*'" name="favicon" accept="image/*" ngf-max-size="1MB"
+                  ngf-model-invalid="errorFiles" class="filestyle" ui-options="{ buttonText: 'Select file', iconName: 'fa fa-inbox'}"
+                  id="favicon">
+                <span class="help-block">Allowed files: ico, jpeg, png, jpg. Max file size 1Mb</span>
+                <img ng-if="temp" class="img-edit" ngf-src="GSC.generalSettings.favicon">
+                <img ng-if="!temp&&!GSC.generalSettings.favicon==''" class=" img-edit " ngf-src="GSC.generalSettings.favicon">
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.favicon.$invalid && !generalSettingsForm.favicon.$pristine" style="color:red;">Favicon is required.</span>
+                </p>
+              </div>
+            </div>   
+              <div class="wrap-reset wallet-opt">
+                <div class="row">
+                  <div class="form-group col-md-12 legend">
+                    <h4><strong>Wallet</strong> Setting</h4>
+                    <p></p>
+                  </div>
+                </div>
+                <div class="tile-widget p-20 wallet-switch">
+                  <label for="maximum">Wallet Option</label>
+                  <label class="switch">
+                      <input class="switch-input" type="checkbox" ng-model="GSC.walletStatus"  ng-init="GSC.walletStatus = GSC.walletStatus || 0" ng-change="GSC.walletStatusChange(GSC.walletStatus)" />
+                      <span class="switch-label"></span>
+                      <span class="switch-handle"></span>
+                    </label>
+                </div>
+               <div class="form-group-4"> 
+                <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.wallet.amount.minimum.$invalid && !generalSettingsForm.wallet.amount.minimum.$pristine, 'has-success' : generalSettingsForm.wallet.amount.minimum.$valid && !generalSettingsForm.wallet.amount.minimum.$pristine}">
+                  <label for="minimum">Minimum</label>
+                  <input ng-disabled="GSC.walletStatus == 0" type="number" name="minimum" id="minimum" class="form-control" ng-model="GSC.generalSettings.wallet.amount.minimum"
+                    aria-required="true" aria-invalid="true" allow-only-numbers on-blur-validation required>
+                  <p class="help-block">
+                    <span ng-show="generalSettingsForm.wallet.amount.minimum.$invalid && !generalSettingsForm.wallet.amount.minimum.$pristine">Minimum Amount is required.</span>
+                  </p>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.wallet.amount.maximum.$invalid && !generalSettingsForm.wallet.amount.maximum.$pristine, 'has-success' : generalSettingsForm.wallet.amount.maximum.$valid && !generalSettingsForm.wallet.amount.maximum.$pristine}">
+                  <label for="maximum">Maximum</label>
+                  <input ng-disabled="GSC.walletStatus == 0" min="{{GSC.generalSettings.wallet.amount.minimum}}" type="number" name="maximum"
+                    id="maximum" class="form-control" ng-model="GSC.generalSettings.wallet.amount.maximum" aria-required="true"
+                    aria-invalid="true" allow-only-numbers on-blur-validation required>
+                  <p class="help-block">
+                    <span style="color:red;" ng-show="generalSettingsForm.wallet.amount.maximum.$invalid && !generalSettingsForm.wallet.amount.maximum.$pristine">Maximum Amount is required.</span>
+                    <span style="color:red;" ng-show="generalSettingsForm.maximum.$error.min">Maximum Amount Should Above the Minimum Value</span>
+                  </p>
+                </div>
+              </div>   
+                <!--<div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.wallet.amount.welcome.$invalid && !generalSettingsForm.wallet.amount.welcome.$pristine, 'has-success' : generalSettingsForm.wallet.amount.welcome.$valid && !generalSettingsForm.wallet.amount.welcome.$pristine}">
+                  <label for="Welcome">Welcome Bonus</label>
+                  <input ng-disabled="GSC.walletStatus == 0" type="text" name="welcome" id="welcome" class="form-control" ng-model="GSC.generalSettings.wallet.amount.welcome"
+                    aria-required="true" aria-invalid="true" on-blur-validation required>
+                  <p class="help-block">
+                    <span ng-show="generalSettingsForm.wallet.amount.welcome.$invalid && !generalSettingsForm.wallet.amount.welcome.$pristine">Welcome Bonus Amount is required.</span>
+                  </p>
+                </div>-->
+              </div>
+
+              <div class="row genrl-sett">
+                <div class="form-group col-md-12 legend">
+                  <h4><strong>Commission</strong> Setting</h4>
+                  <p></p>
+                </div>
+               <div class="form-group-5">
+                <div class="tile-widget p-20 wallet-switch genrl-sett">
+                  <label class="categry-label" for="maximum">Category Based commission</label>
+                  <label class="switch">
+                    <input class="switch-input" type="checkbox" ng-model="GSC.categorycomStatus"  ng-init="GSC.categorycomStatus = GSC.categorycomStatus || 0" ng-change="GSC.categoryStatusChange(GSC.categorycomStatus)" />
+                    <span class="switch-label"></span>
+                    <span class="switch-handle"></span>
+                  </label>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.admin_commission.$invalid && !generalSettingsForm.admin_commission.$pristine, 'has-success' : generalSettingsForm.admin_commission.$valid && !generalSettingsForm.admin_commission.$pristine}">
+                  <label>Admin Commission (%)</label>
+                  <input type="text" name="admin_commission" id="admin_commission" class="form-control" ng-model="GSC.generalSettings.admin_commission"
+                    required="" aria-required="true" aria-invalid="true" on-blur-validation required allow-only-numbers>
+                  <p class="help-block">
+                    <span ng-show="generalSettingsForm.admin_commission.$invalid && !generalSettingsForm.admin_commission.$pristine">Admin commision is required.</span>
+                  </p>
+                </div>
+              </div> 
+              </div>
+
+
+              <div class="row genrl-sett">
+                <div class="form-group col-md-12 legend">
+                  <h4><strong>Cash</strong> Setting</h4>
+                  <!--<span>(Only for mobile)</span>-->
+                  <p></p>
+                </div>
+              </div>
+              <div class="tile-widget p-20 cash-opt">
+                <label for="maximum">Cash Option</label>
+                <label class="switch">
+                    <input class="switch-input" type="checkbox" ng-model="GSC.cashStatus"  ng-init="GSC.cashStatus = GSC.cashStatus || 0" ng-change="GSC.cashStatusChange(GSC.cashStatus)" />
+                    <span class="switch-label"></span>
+                    <span class="switch-handle"></span>
+                  </label>
+              </div>
+              <div class="row genrl-sett">
+                <div class="form-group col-md-12 legend">
+                  <h4><strong>Referral</strong> Setting</h4>
+                  <p></p>
+                </div>
+              </div>
+             <div class="form-group-6"> 
+              <div class="tile-widget p-20 cash-opt">
+                <label for="referralStatus">Referral Option</label>
+                <label class="switch">
+                    <input class="switch-input" type="checkbox" name="referralStatus" ng-model="GSC.referralStatus"  ng-init="GSC.referralStatus = GSC.referralStatus || 0" ng-change="GSC.referralStatusChange(GSC.referralStatus)" />
+                    <span class="switch-label"></span>
+                    <span class="switch-handle"></span>
+                  </label>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.referral.amount.$invalid && !generalSettingsForm.referral.amount.$pristine, 'has-success' : generalSettingsForm.referral.amount.$valid && !generalSettingsForm.referral.amount.$pristine}">
+                <label for="referral">Referral Amount</label>
+                <input type="number" ng-disabled="GSC.referralStatus == 0" name="referralamount" id="referralamount" class="form-control"
+                  ng-model="GSC.generalSettings.referral.amount.referral" required="" aria-required="true" aria-invalid="true"
+                  on-blur-validation required allow-only-numbers>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.referral.amount.$invalid && !generalSettingsForm.referral.amount.$pristine">Minimum Amount is required.</span>
+                </p>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.referrer.amount.$invalid && !generalSettingsForm.referrer.amount.$pristine, 'has-success' : generalSettingsForm.referrer.amount.$valid && !generalSettingsForm.referrer.amount.$pristine}">
+                <label for="referrer">Referrer Amount</label>
+                <input type="number" ng-disabled="GSC.referralStatus == 0" name="referralamount" id="referralamount" class="form-control"
+                  ng-model="GSC.generalSettings.referral.amount.referrer" required="" aria-required="true" aria-invalid="true"
+                  on-blur-validation required allow-only-numbers>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.referrer.amount.$invalid && !generalSettingsForm.referrer.amount.$pristine">Minimum Amount is required.</span>
+                </p>
+              </div>
+            </div> 
+              <div class="row genrl-sett">
+                <div class="form-group col-md-12 legend">
+                  <h4><strong>Google Map API</strong> Setting</h4>
+                  <p></p>
+                </div>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : generalSettingsForm.mapapi.$invalid && !generalSettingsForm.mapapi.$pristine, 'has-success' : generalSettingsForm.mapapi.$valid && !generalSettingsForm.mapapi.$pristine}">
+                <label>Google Map API Key</label>
+                <input type="text" name="mapapi" id="mapapi" class="form-control" ng-model="GSC.generalSettings.map_api" required="" aria-required="true"
+                  aria-invalid="true" on-blur-validation required>
+                <p class="help-block">
+                  <span ng-show="generalSettingsForm.mapapi.$invalid && !generalSettingsForm.mapapi.$pristine">Map API is required.</span>
+                </p>
+              </div>
+              <button type="submit" ng-click="GSC.submitGeneralSettings(generalSettingsForm.$valid,GSC)" class="btn btn-rounded btn-success btn-sm">Submit</button>
+          </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

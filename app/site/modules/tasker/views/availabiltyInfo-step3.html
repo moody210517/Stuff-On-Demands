@@ -1,0 +1,117 @@
+<section>
+  <div class="applyto-tasker apply3">
+    <div class="container2">
+      <div class="full-holder">
+        <h1 class="top-texts">{{'APPLY_TO_BE_A_TASKER' | translate}}</h1>
+        <div class="tasker-pannel">
+          <div class="tasker-head">
+            <span class="left-tile">{{'ADD_YOUR_AVAILABILITY' | translate}}</span>
+            <div class="right-progrs">
+              <span class="completion-text">{{'APPLCATIONS_COMPLETION' | translate}} 30%</span>
+              <div class="progressbar">
+                <span style="width:30%"></span>
+              </div>
+            </div>
+          </div>
+          <div ng-init="RGC.data.next='step7'" class="tasker-body">
+            <span class="topedtext" style="display: none;">{{'AVAILABILITY' | translate}}</span>
+            <!-- <label class="sublin-hea tophln">{{'AVAILABILITY' | translate}}</label> -->
+            <span class="seldays" style="display: none;">{{'SELECT_THE_DAYS_YOU_ARE_AVAILABLE_TO_WORK' | translate}}.</span>
+            <div class="lop-div-task">
+              <div class="botom-fuls">
+                <ul class="availblty">
+                  <li>
+                    <a href="javascript:void(0)" ng-click="RGC.availabilities('',0)">
+                      <label>{{'SUN' | translate}} </label>
+                      <span ng-class="{'green':RGC.data.working_days[0].not_working != true,'red':RGC.data.working_days[0].not_working == true}">{{RGC.data.working_days[0].not_working == true ? 'NOT SELECTED':'SELECTED' | translate }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" ng-click="RGC.availabilities('',1)">
+                      <label>{{'MON' | translate}}</label>
+                      <span ng-class="{'green':RGC.data.working_days[1].not_working != true,'red':RGC.data.working_days[1].not_working == true}">{{RGC.data.working_days[1].not_working == true ? 'NOT SELECTED':'SELECTED' | translate }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" ng-click="RGC.availabilities('',2)">
+                      <label>{{'TUE' | translate}}</label>
+                      <span ng-class="{'green':RGC.data.working_days[2].not_working != true,'red':RGC.data.working_days[2].not_working == true}">{{RGC.data.working_days[2].not_working == true ? 'NOT SELECTED':'SELECTED' | translate }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" ng-click="RGC.availabilities('',3)">
+                      <label>{{'WED' | translate}}</label>
+                      <span ng-class="{'green':RGC.data.working_days[3].not_working != true,'red':RGC.data.working_days[3].not_working == true}">{{RGC.data.working_days[3].not_working == true ? 'NOT SELECTED':'SELECTED' | translate }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" ng-click="RGC.availabilities('',4)">
+                      <label>{{'THUR' | translate}}</label>
+                      <span ng-class="{'green':RGC.data.working_days[4].not_working != true,'red':RGC.data.working_days[4].not_working == true}">{{RGC.data.working_days[4].not_working == true ? 'NOT SELECTED':'SELECTED' | translate }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" ng-click="RGC.availabilities('',5)">
+                      <label>{{'FRI' | translate}}</label>
+                      <span ng-class="{'green':RGC.data.working_days[5].not_working != true,'red':RGC.data.working_days[5].not_working == true}">{{RGC.data.working_days[5].not_working == true ? 'NOT SELECTED':'SELECTED' | translate }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" ng-click="RGC.availabilities('',6)">
+                      <label>{{'SAT' | translate}}</label>
+                      <span ng-class="{'green':RGC.data.working_days[6].not_working != true,'red':RGC.data.working_days[6].not_working == true}">{{RGC.data.working_days[6].not_working == true ? 'NOT SELECTED':'SELECTED' | translate }}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="lop-div-task">
+              <ng-map id="foo" center="[{{RGC.data.location.lat}},{{RGC.data.location.lng}}]" zoom="8" mayTypeId="TERRAIN">
+                <shape id="circle" name="circle" centered="true" stroke-color='#FF0000' stroke-opacity="0.8" stroke-weight="2" center="[{{RGC.data.location.lat}},{{RGC.data.location.lng}}]"
+                  radius="{{RGC.data.radius * RGC.radiusval}}" on-radius_changed="RGC.mapToInput()" on-center_changed="RGC.mapToInput()"
+                  editable="true"></shape>
+              </ng-map>
+            </div>
+            <div class="lop-div-task">
+              <span class="topedtext">{{'WORK_LOCATION' | translate}}</span>
+              <!-- <label class="sublin-hea tophln">{{'WORK_LOCATION' | translate}}</label> -->
+              <input name="taskerarea" required type="text" placeholder="{{'ENTER YOUR LOCATION'| translate}}" places-auto-complete size=80
+                placeholder="{{'Enter a location' | translate}}" ng-blur="RGC.emptyLatLng3(RGC.temp_taskerareaaddress)" ng-model="RGC.taskerareaaddress"
+                types="['address']" ng-change="RGC.emptyLatLng(temp_address)" on-place-changed="RGC.taskerareaChanged()" />
+              <div class="msgclass">
+                <!--<span style="color:green" ng-if="RGC.dummyAddress=='1' "><h4>{{'ADDRESS IS VALID'|translate}}.</h4></span>
+            <span style="color:red" ng-if="RGC.dummyAddress=='0' "><h4>{{'PLEASE ENTER THE FULL ADDRESS'|translate}}</h4></span>-->
+              </div>
+            </div>
+            <div class="lop-div-task">
+              <!-- <span class="topedtext">{{'AVAILABILITY_RADIUS'|translate}}</span> -->
+              <!-- <label class="sublin-hea">{{'AVAILABILITY_RADIUS'|translate}}</label> -->
+              <div class="botom-fuls input-group mb-10">
+                <input name="taskerarea" required type="hidden" min="1" max="6371" allow-only-numbers ng-model="RGC.data.radius" />
+                <span class="input-group-addon">{{RGC.radiusby}}</span>
+              </div>
+            </div>
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 text-center mob-pds">
+                  <input class="blue-btn tsk-blue-btn" value="{{'SUBMIT' | translate}}" type="submit" ng-if="RGC.taskerareaaddress && RGC.data.radius" ng-click="RGC.SubmitTaskerlocation(true,RGC.data.radius)">
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .green {
+    color: green !important;
+  }
+  
+  .red {
+    color: red !important;
+  }
+  
+ /* .lop-div-task .msgclass {
+    margin-top: 103px !important;
+  }*/
+</style>

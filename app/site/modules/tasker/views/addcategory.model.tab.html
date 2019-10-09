@@ -1,0 +1,81 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ACM.mode | translate}} {{'CATEGORY' | translate}}</h3>
+</div>
+<div class="modal-body cat-add-pop">
+    <form class="form-horizontal col-sm-12" name="selectcategoryform" role="form" enctype="multipart/form-data" submit-validate
+        novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : selectcategoryform.patname.$invalid && !selectcategoryform.patname.$pristine, 'has-success' : selectcategoryform.patname.$valid && !selectcategoryform.patname.$pristine}">
+            <label class="control-label"> {{'PARENT_CATEGORY' | translate}}</label>
+            <select class="form-control" ng-disabled="ACM.mode == 'Edit'" name="patname" id="patname" ng-model="ACM.selectedCategoryData.categoryid"
+                ng-change="ACM.onChangeCategory(ACM.selectedCategoryData.categoryid)" on-blur-validation required>
+                <option value=''> {{'SELECT_CATEGORY' | translate}}</option>
+                <option ng-if="!category.parent" ng-repeat="category in ACM.categories" value="{{category._id}}">{{category.name}}</option>
+            </select>
+            <label ng-show="selectcategoryform.patname.$invalid && !selectcategoryform.patname.$pristine">{{'CATEGORY_NAME_IS_REQUIRED' | translate}}.</label>
+        </div>
+
+        <div ng-if="ACM.selectedCategoryData.categoryid" class="form-group" ng-class="{ 'has-error' : selectcategoryform.catname.$invalid && !selectcategoryform.catname.$pristine, 'has-success' : selectcategoryform.catname.$valid && !selectcategoryform.catname.$pristine}">
+            <label class="control-label">{{'CATEGORY_NAME' | translate}}</label>
+            <select ng-disabled="ACM.mode == 'Edit'" class="form-control" name="catname" id="catname" ng-model="ACM.selectedCategoryData.childid"
+                ng-change="ACM.onChangeCategoryChild(ACM.selectedCategoryData.childid)" on-blur-validation required>
+                <option value=''>{{'SELECT_CATEGORY' | translate}}</option>
+                <option ng-repeat="category in ACM.categories" ng-if="ACM.selectedCategoryData.categoryid==category.parent" value="{{category._id}}">{{category.name}}</option>
+            </select>
+            <label ng-show="selectcategoryform.catname.$invalid && !selectcategoryform.catname.$pristine">{{'CATEGORY_NAME_IS_REQUIRED' | translate}}.</label>
+        </div>
+        <div class="category-details" ng-show="ACM.selectedCategoryData.childid">
+            <div class="form-group" ng-class="{ 'has-error' : selectcategoryform.quick_pitch.$invalid && !selectcategoryform.quick_pitch.$pristine, 'has-success' : selectcategoryform.quick_pitch.$valid && !selectcategoryform.quick_pitch.$pristine}">
+                <label class="control-label">{{'QUICK_PITCH' | translate}}</label>
+                <textarea class="form-control" name="quick_pitch" id="quick_pitch" ng-maxlength="140" ng-model="ACM.selectedCategoryData.quick_pitch"
+                    rows="3" on-blur-validation required></textarea>
+                <p class="help-block">
+                    <span ng-show="selectcategoryform.quick_pitch.$invalid && !selectcategoryform.quick_pitch.$pristine">{{'PITCH IS REQUIRED' | translate}}.</span>
+                </p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : selectcategoryform.rate.$invalid && !selectcategoryform.rate.$pristine, 'has-success' : selectcategoryform.rate.$valid && !selectcategoryform.rate.$pristine}">
+                <label class="control-label">{{'SET' | translate}} {{ACM.ratetype}} {{'RATE' | translate}} ( {{'MINIMUM' | translate }} {{ACM.ratetype}}
+                    {{'RATE' | translate}} {{'IS' | translate}} {{ACM.defaultcurrency.symbol}}{{ACM.MinimumAmount * ACM.defaultcurrency.value|
+                    number:2 }})</label>
+                <div class="input-group" style='padding:0px;'>
+                    <span class="input-group-addon"> {{ACM.defaultcurrency.symbol}} </span>
+                    <input type="number" name="rate" id="rate" class="form-control" ng-model="ACM.selectedCategoryData.hour_rate " id="exampleInputEmail1"
+                        min="{{ACM.MinimumAmount * ACM.defaultcurrency.value  }}" on-blur-validation required>
+                </div>
+                <p class="help-block">
+                    <label style="margin-left: 3px;color:red" ng-show="selectcategoryform.rate.$error.min">{{'MINIMUM' | translate }} {{ACM.ratetype }} {{'RATE' | translate}} {{'SHOULD BE'| translate}} {{ACM.defaultcurrency[0].symbol}}
+                        {{ACM.MinimumAmount* ACM.defaultcurrency.value | number:2}}.</label>
+                    <label style="margin-bottom: -192px;color:red" ng-show="selectcategoryform.rate.$invalid && !selectcategoryform.rate.$pristine && selectcategoryform.rate.$error.required">{{'HOURLY RATE IS REQUIRED' | translate}}.</label>
+                </p>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : selectcategoryform.levels.$invalid && !selectcategoryform.levels.$pristine, 'has-success' : selectcategoryform.levels.$valid && !selectcategoryform.levels.$pristine}">
+                <label class="control-label">{{'LEVEL_OF_EXPERIENCE' | translate}}</label>
+                <select name="levels" class="form-control" id="rate" ng-model="ACM.selectedCategoryData.experience" on-blur-validation required>
+                    <option value=''>{{'SELECT_YOUR_EXPERIENCE' | translate}}</option>
+                    <option ng-repeat="experience in ACM.experiences" value="{{experience._id}}">{{experience.name}}</option>
+                </select>
+                <p class="help-block">
+                    <label style="margin-bottom: -192px;color:red" ng-show="selectcategoryform.levels.$invalid && !selectcategoryform.levels.$pristine">{{'EXPERIENCE IS REQUIRED' | translate}}.</label>
+                </p>
+            </div>
+        </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="submit" ng-click="ACM.ok(selectcategoryform.$valid)">{{'OK' | translate}}</button>
+    <button class="btn btn-warning" type="button" ng-click="ACM.cancel()">{{'CANCEL' | translate}}</button>
+</div>
+</form>
+<style>
+    .input-group {
+        position: relative;
+        display: table;
+        width: 212px;
+        border-collapse: separate;
+        padding: 13px 0 0 5px;
+    }
+
+    .modal-footer {
+        padding: 19px 20px 20px;
+        text-align: right;
+    }
+</style>

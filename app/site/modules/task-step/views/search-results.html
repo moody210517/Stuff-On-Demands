@@ -1,0 +1,216 @@
+<div class="container-fluid" style="background-color:#fff;">
+  <div class="sub-tabs-menu">
+    <ul>
+      <li><a href="#" href="hirestep1/kitchen-cleaning" ui-sref="hirestep1({slug:TFC.slug})">1. Fill Out Task Details</a></li>
+      <li><a href="#" class="disabled-links"><i class="fa fa-smile-o" aria-hidden="true"></i> 2. View Taskers & Prices</a></li>
+    </ul>
+  </div>
+</div>
+<div class="tsk_cont">
+  <div class="container">
+    <div class="tsk_dtls ui-subtabs">
+      <div class="tsk_dtls_two">
+        <div class="tsk_dtls_two_tle_cont">
+          <div class="tsk_dtls_two_tle">
+            Pick a Tasker
+          </div>
+          <div class="tsk_dtls_two_stle">
+            Choose the Tasker you’d like to work with or let 'HandyForAll' find the best one for your Job.
+          </div>
+        </div>
+        <div class="tsk_dtls_cont_filtr_btn">
+          <button name="filter" ng-click="openfil()" class="filter">
+              <i class="fa fa-filter" aria-hidden="true"></i>
+              <span>Filter</span>
+            </button>
+        </div>
+        <div class="tsk_dtls_two_cont">
+          <div class="tsk_dtls_two_cont_lft" ng-class="{true:'fil_enbl',false:'fil_disbl'}[filbtns == true]">
+            <div class="tsk_dtls_two_cont_lft_1">
+              <div class="tdtcl_1_1 tdtcl_ful_cont">
+                <!-- <div class="tdtcl_1_3_tle tdtcl_tle" ng-if="TFC.category.hours">
+                  CATEGORY HOURS: {{TFC.category.hours}}
+                </div> -->
+                <div class="tdtcl_1_1_tle tdtcl_tle">
+                  SHOWED BY:
+                </div>
+                <div class="tdtcl_1_1_cont">
+                  <select class="tdtcl_slct" ng-model='TFC.filters.view' ng-change="TFC.changeViewType()">
+                            <option value='list'>List View</option>
+                            <option value='map'>Map view</option>
+                          </select>
+                </div>
+              </div>
+              <div class="tdtcl_1_2 tdtcl_ful_cont" ng-if="TFC.filters.view == 'list'">
+                <div class="tdtcl_1_2_tle tdtcl_tle">
+                  SORT BY:
+                </div>
+                <div class="tdtcl_1_2_cont">
+                  <select class="tdtcl_slct" ng-model="TFC.filters.sort" ng-change="TFC.getTaskerDetails()">
+                    <option value='1' ng-selected="TFC.filters.sort == '1'">Price Low to High</option>
+                    <option value='-1' ng-selected="TFC.filters.sort == '-1'">Price High to Low</option>
+                  </select>
+                </div>
+              </div>
+              <div class="tdtcl_1_3 tdtcl_ful_cont">
+                <div class="tdtcl_1_3_tle tdtcl_tle">
+                  TASK DATE & TIME:
+                </div>
+                <div class="tdtcl_1_3_cont">
+                  <div class="tdtcl_1_2_cont">
+                    <select class="tdtcl_slct" ng-model="TFC.filters.date" ng-options="date as date.date for date in formattedDate" name="select_time"
+                      ng-change="TFC.filterDate()">
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="tdtcl_1_2_cont">
+                <select class="tdtcl_slct" ng-model="TFC.filters.time" ng-options="size.data as size.time for size in TFC.filterTiming" name="select_time"
+                  , ng-change="TFC.filterTime()"></select>
+              </div>
+            </div>
+            <div class="tsk_dtls_two_cont_lft_2" ng-if="TFC.priceFilter.options.floor != TFC.priceFilter.options.ceil">
+              <div class="tsk_dtls_two_cont_lft_tle">PRICE:</div>
+              <rzslider rz-slider-model="TFC.priceFilter.min" rz-slider-high="TFC.priceFilter.max" rz-slider-options="TFC.priceFilter.options"></rzslider>
+            </div>
+            <div class="tsk_dtls_two_cont_lft_2">
+              <div class="tsk_dtls_two_cont_lft_tle">{{TFC.radiustext}}</div>
+              <rzslider rz-slider-model="TFC.distanceFilter.value" rz-slider-options="TFC.distanceFilter.options"></rzslider>
+            </div>
+          </div>        
+          <div class="tsk_dtls_two_cont_rgt" ng-if="TFC.TaskerDetails.length > 0 && TFC.tasker_list == true">
+            <div ng-if="TFC.filters.view == 'list'" class="tsk_dtls_two_cont_rgt_cont" ng-repeat="TaskerDetails in TFC.TaskerDetails">
+              <div class="tdtcr_lft">
+                <div class="tdtcr_lft_img">
+                  <figure>
+                    <img ng-src="{{TaskerDetails.avatar}}" err-src="user">
+                  </figure>
+                </div>
+                <!--  <div class="tdtcr_lft_btn">
+                  <a href="#" ui-sref="chat({task:TFC.taskinfo._id,user:TFC.user.user_id,tasker:TaskerDetails._id,childid:TFC.filter.categoryid})"
+                    class="tdtcr_lft_btn_link">
+                        Chat
+                      </a>
+                </div> -->
+              </div>
+              <div class="tdtcr_rgt">
+                <div class="tdtcr_rgt_top">
+                  <div class="tdtcr_rgt_lft">
+                    <div class="tdtcr_rgt_lft_name_cont">
+                      <span class="tdtcr_rgt_lft_name name-hides">
+                          {{TaskerDetails.username}}
+                        </span>
+                      <span class="tdtcr_rgt_lft_rating">
+                            <li style="color: #333;">
+                              <rating ng-if="TaskerDetails.total_review >0 && TaskerDetails.avg_review > 0" ng-model="TaskerDetails.avg_review" readonly="true"></rating>
+                              <h5 ng-if="TaskerDetails.total_review==0 || !TaskerDetails.avg_review || TaskerDetails.avg_review==0" class="ng-binding reveiw-yet" style=" text-transform: capitalize;color: #ff5722;">{{'NO ONE HAS REVIEWED YET' | translate}}</h5>
+                            </li>
+                        </span>
+                    </div>
+                    <div class="tdtcr_rgt_lft_rvw">
+                      <span>{{TaskerDetails.total_review}}</span> Reviews 
+                    </div>
+                  </div>
+                  <div class="tdtcr_rgt_rgt">
+                    <div class="tdtcr_rgt_rgt_price">
+                      <span class="currency-dolls">{{rc.DefaultCurrency.symbol}}&nbsp;</span>{{ TaskerDetails.taskerskills.hour_rate*
+                      rc.DefaultCurrency.value | number:2}}
+                      <span ng-if="TFC.category.ratetype == 'Hourly'">/hr</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tdtcr_rgt_down">
+                  <div class="tdtcr_rgt_down_btn nw_pro_fonts">
+                    <a href="#" ng-click="TFC.confirmatask(TaskerDetails._id)" class="actv_dwn_btn dwn_btns">
+                       Choose Tasker
+                      </a>
+                    <a href="#" ui-sref="taskerProfile({taskerId:TaskerDetails._id,user:TFC.user.user_id,slug:TFC.category.slug,task:TFC.taskinfo._id})" class="dwn_btn dwn_btns">
+                        View Profile
+                      </a>
+                  </div>
+
+                  <!-- <div ng-if="TFC.filters.type == 1" class="tdtcr_rgt_down_btn nw_pro_fonts-right">
+                    <a href="#" ui-sref="chat({task:TFC.taskinfo._id,user:TFC.user.user_id,tasker:TaskerDetails._id,childid:TFC.filter.categoryid})"
+                      class="tdtcr_lft_btn_link">
+                        Chat
+                      </a>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 map-view tskr-detail-inmap" ng-if="TFC.filters.view == 'map'">
+              <ng-map default-style="true" zoom="8" center="[{{markerData[0].latitude}}, {{markerData[0].longitude}}]" style="height:100%!important;"
+                class="map-view">
+                <custom-marker position="{{pin.position}}" id="m{{pin.id}}" title="{{pin.id}}" ng-repeat="pin in markerData track by $index"
+                  on-click="TFC.showCity(event,pin)">
+                  <div class="cm">
+                    <div class='pin'>
+                      <img ng-src="{{pin.avatar}}" width="30" err-src="user">
+                    </div>
+                    <div class='pulse'></div>
+                  </div>
+                </custom-marker>
+                <info-window id="myInfoWindow">
+                  <div ng-non-bindable class="tskr-padd tsk-mapview">
+                    <div class="tskr-vew-part1">
+                      <div class="profimg-holder img-only col-md-3">
+                        <figure>
+                          <figure>
+                            <img style="width: 100%; height: 100%;" ng-src={{selectedCity.tasker.avatar}} err-src="user">
+                          </figure>
+                        </figure>
+                        <div class="profimg-holder details-only col-md-6">
+                          <ul class="factloop">
+                            <h3 class="ng-binding" style=" text-transform: capitalize;color: #00964b;">{{selectedCity.tasker.username}})</h3>
+                            <li class="amt-mpv">
+                              <i></i>
+                              <p class="ng-binding">
+                                <b class="ng-binding" style="color:#3f4451;font-size:25px;"> {{rc.DefaultCurrency.symbol}}{{selectedCity.tasker.taskerskills.hour_rate* rc.DefaultCurrency.value | number:2 }} </b>
+                              </p>
+                            </li>
+                            <li style="color: #333;" class="map-reviews">
+                              <rating ng-if="selectedCity.tasker.avg_review > 0" ng-model="selectedCity.tasker.avg_review" readonly="true"></rating>
+                              <h5 ng-if="!selectedCity.tasker.avg_review" class="ng-binding" style=" text-transform: capitalize;color: #ff5722;">{{'NO ONE HAS REVIEWED YET' | translate}}</h5>
+                            </li>
+                            <li style="color: #f60;">
+                              <p class="ng-binding" style="color:#ffc107;font-size:15px;">
+                                <i class="fa fa-map-marker "></i> {{selectedCity.tasker.availability_address}}.</p>
+                            </li> 
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12 tskr-vew tskr-vew-part2">
+                      <a class="hirebtn confirm-task" href="#" ng-click="TFC.confirmatask(selectedCity.tasker._id)">
+                        <span class="muted">{{'CONFIRM_TASK' | translate}}</span>
+                      </a>
+                      <a class="hirebtn viewprfl-btn" href="javascript:void(0)" ui-sref="taskerProfile({taskerId:selectedCity.tasker._id,user:TFC.user.user_id,slug:TFC.category.slug,task:TFC.taskinfo._id})">
+                        <span class="muted"> {{'VIEW_PROFILE' | translate}}</span>
+                      </a>
+                      <!-- <a  ng-if="TFC.filters.type == 1" class="hirebtn viewprfl-btn" href="javascript:void(0)" ui-sref="chat({task:TFC.taskinfo._id,user:TFC.user.user_id,tasker:selectedCity.tasker._id,childid:TFC.filter.categoryid})">
+                        <span class="muted"> {{'CHAT' | translate}}</span> -->
+                      </a>
+                    </div>
+                  </div>
+                </info-window>
+              </ng-map>
+            </div>
+          </div>
+          <div class="tsk_dtls_two_cont_rgt" ng-if="TFC.TaskerDetails.length == 0 && TFC.tasker_list == true">
+            <div>
+              No Tasker Found
+            </div>
+          </div>
+          <div ng-if="TFC.filters.totalTasker > TFC.filters.perPage && TFC.filters.view == 'list'" style="float: left;margin-left: 430px;"
+            class="pagination_inner clearfix">
+            <nav>
+              <uib-pagination max-size="10" boundary-link-numbers="true" items-per-page="TFC.filters.perPage" ng-change="TFC.getTaskerDetails()"
+                total-items="TFC.filters.totalTasker" ng-model="TFC.filters.page" class="pagination pagination-lg" previous-text="&lsaquo;"
+                next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

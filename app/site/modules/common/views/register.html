@@ -1,0 +1,198 @@
+<div class="login_contt tb_contt rsgtr-tb">
+  <div class="login_contt_tle tb_contt_tle">
+    Register
+  </div>
+  <uib-tabset class="tab-animation" active="active">
+    <uib-tab index="0" heading="user" active="RGC.activeUserTab">
+      <div class="usr_lgn lgn_dtls">
+        <form ng-init="RGC.UserDetails.next='step1'" class="profile-settings" name="registerForm" submit-validate novalidate>
+          <div class="inpt_fld">
+            <div class="typ_inpt reg-num" ng-if="RGC.showUserRegisterForm">
+              <span class="inps-fr  inps-fr-lft">
+                <input type="text" name="firstname" maxlength="15" ng-maxlength="15" placeholder="First Name"
+                  ng-model="RGC.UserDetails.firstname" disallow-spaces ng-pattern="/^[a-zA-Z]*$/" required>
+                  <span  class="validerr tsk-valids" ng-show="registerForm.firstname.$error.required && !registerForm.firstname.$pristine">Enter First Name.</span>
+                  <span  class="validerr tsk-valids" ng-show="registerForm.firstname.$error.maxlength && !registerForm.firstname.$pristine">First Name must be a maximum of 15 characters.</span>
+                  <span  class="validerr tsk-valids" ng-show="registerForm.firstname.$error.pattern && !registerForm.firstname.$pristine">First Name must contain only letters.</span>
+              </span>
+              <span class="inps-fr inps-fr-rgt">
+                <input type="text" name="lastname" maxlength="15" ng-maxlength="15" placeholder="Last Name"
+                  ng-model="RGC.UserDetails.lastname" disallow-spaces ng-pattern="/^[a-zA-Z]*$/" required>
+                 <span  class="validerr tsk-valids" ng-show="registerForm.lastname.$error.required && !registerForm.lastname.$pristine">Enter Last Name.</span>
+                  <span  class="validerr tsk-valids" ng-show="registerForm.lastname.$error.maxlength && !registerForm.lastname.$pristine">Last Name must be a maximum of 15 characters.</span>
+                  <span  class="validerr tsk-valids" ng-show="registerForm.lastname.$error.pattern && !registerForm.lastname.$pristine">Last Name must contain only letters.</span>
+              </span>
+            </div>
+            <div class="typ_inpt reg-num" ng-if="RGC.showUserRegisterForm">
+              <span class="inps-fr inps-fr-lft">
+                <input ng-model="RGC.UserDetails.email" placeholder="Email Address" ng-pattern="/^([a-zA-Z0-9.])*@([a-zA-Z0-9])*.[a-zA-Z0-9]{2,6}$/"
+                  ng-blur="RGC.useremailchange(RGC.UserDetails.email)" name="email" required type="text" ng-class="{true:'err_f',false:'err_fs'}[$scope.registerForm.email.$error = true]">
+                <span  class="validerr tsk-valids" ng-show="registerForm.email.$error.required && !registerForm.email.$pristine">Enter Email Address.</span>
+                <span  class="validerr tsk-valids" ng-show="registerForm.email.$error.pattern && !registerForm.email.$pristine">Invalid email Address.</span>
+              </span>
+
+              <span class="inps-fr inps-fr-rgt" ng-if="RGC.settings.referral.status == 1">
+                <input type="text" placeholder="Referral Code" ng-model="RGC.UserDetails.referalcode" name="referalcode" ng-blur="RGC.change(RGC.UserDetails.referalcode)">
+              </span>
+            </div>
+            <div ng-if="RGC.showUserRegisterForm">
+              <span>
+                <input type="checkbox" ng-model="RGC.UserDetails.checkbox" name="checkbox" required>
+                <small class="logtext">
+                  {{'BY_SIGNING_UP_YOU_AGREE_TO_OUR'| translate}}
+                  <a href="{{rc.site_url}}/page/termsandconditions" target="_blank">{{'TERMSOFUSE'| translate}}</a>
+                  {{'AND'| translate}}
+                  <a href="{{rc.site_url}}/page/privacypolicy" target="_blank">{{'PRIVACY_POLICY'| translate}}.</a>
+                  <span class="validerr" ng-show=" !registerForm.checkbox.$pristine && RGC.UserDetails.checkbox ==Null">{{'CLICK ON THE CHECKBOX'| translate}}.</span>
+              </small>
+              </span>
+            </div>
+          </div>
+          <div class="social_btn reg-log" ng-if="RGC.showUserRegisterForm">
+            <div class="social_btn_home">
+              <button class="rgstr-btn" ng-click="RGC.registerUser(registerForm.$valid)">
+                <span>Register</span>
+              </button>
+            </div>
+          </div>
+        </form>
+        <form class="profile-settings" name="userMobileForm" submit-validate novalidate>
+          <div class="typ_inpt" ng-if="RGC.showusermobileform">
+            <span class="inps-fr  inps-fr-lft">
+             <input style=" padding-left: 48px;" type="tel" ng-model="RGC.UserDetails.phone" placeholder="Mobile number" name="tel" id="tel" ng-intl-tel-input required>
+              <span  class="validerr tsk-valids" ng-show="userMobileForm.tel.$error.required && !userMobileForm.tel.$pristine">Enter Mobile Number.</span>
+              <span  class="validerr tsk-valids" ng-show="userMobileForm.tel.$invalid && !userMobileForm.tel.$error.required">Invalid Mobile Number.</span>
+            </span>
+            <span class="inps-fr inps-fr-rgt">
+              <div class="social_btn_home">
+                <button class="rgstr-btn" ng-click="RGC.generateotp(userMobileForm.tel.$valid,'user',RGC.UserDetails.phone)">
+                  <span>Get OTP</span>
+                </button>
+              </div>
+            </span>
+          </div>
+        </form>
+        <form class="profile-settings" name="userOtpForm" submit-validate novalidate>
+          <div class="typ_inpt" ng-if="RGC.showuserotpform">
+            <span class="inps-fr  inps-fr-lft">
+             <input type="text" name="otp" placeholder="One-time password" ng-model="RGC.userotp" disallow-spaces ng-pattern="/^[a-zA-Z0-9\_\. ]*$/" required>
+              <span  class="validerr tsk-valids" ng-show="userOtpForm.otp.$error.required && !userOtpForm.otp.$pristine">Enter OTP.</span>
+              <div class="frget-pwd arrange">
+                <a style="float:left" href="#" ng-click="RGC.resendotp('user')">Resend OTP</a>
+              </div>
+            </span>
+            <span class="inps-fr inps-fr-rgt">
+              <div class="social_btn_home">
+                <button class="rgstr-btn" ng-click="RGC.checkotp(userOtpForm.otp.$valid, 'user', RGC.userotp)">
+                  <span>Verify OTP</span>
+                </button>
+              </div>
+            </span>
+          </div>
+        </form>
+
+        <div class="social_btn">
+          <div class="social_btn_home">
+            <div class="reg_link">
+              <span>Already have an account?
+                <a ui-sref="login()"> Login </a><p> | </p></span>
+            </div>
+            <div class="bk_home">
+              <a href="/" class="social_btn_fb_link">Back to home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </uib-tab>
+    <uib-tab index="1" heading="tasker" active="RGC.activeTaskerTab">
+      <div class="usr_lgn lgn_dtls">
+        <form name="taskerRegisterForm" submit-validate novalidate>
+          <div class="inpt_fld" ng-if="RGC.showtaskermobileform">
+            <div class="typ_inpt">
+              <span class="ph_num inps-fr inps-fr-lft">
+                <input style="padding-left: 48px;" type="tel" ng-model="RGC.data.phone" placeholder="Mobile number"
+                  name="tel" required ng-intl-tel-input >
+                  <!-- ng-blur='RGC.taskerphone(RGC.data.phone)' -->
+                <span  class="validerr tsk-valids" ng-show="taskerRegisterForm.tel.$error.required && !taskerRegisterForm.tel.$pristine">Enter Mobile Number.</span>
+                <span  class="validerr tsk-valids" ng-show="taskerRegisterForm.tel.$invalid && !taskerRegisterForm.tel.$error.required">Invalid Mobile Number.</span>
+              </span>
+              <span class="inps-fr inps-fr-rgt">
+                <div class="social_btn_home">
+                  <button class="rgstr-btn" ng-click="RGC.generateotp(taskerRegisterForm.tel.$valid, 'tasker', RGC.data.phone)">
+                    <span>Get OTP</span>
+                  </button>
+                </div>
+              </span>
+            </div>
+          </div>
+          <div class="typ_inpt" ng-if="RGC.showtaskerotpform">
+              <span class="inps-fr inps-fr-lft">
+               <input type="text" name="otp" placeholder="One-time password" ng-model="RGC.taskerotp" disallow-spaces ng-pattern="/^[a-zA-Z0-9\_\. ]*$/" required>
+                <span  class="validerr tsk-valids" ng-show="taskerRegisterForm.otp.$error.required && !taskerRegisterForm.otp.$pristine">Enter OTP.</span>
+                <div class="frget-pwd arrange">
+                  <a style="float:left" href="#" ng-click="RGC.resendotp('tasker')">Resend OTP</a>
+                </div>
+              </span>
+              <span class="inps-fr inps-fr-rgt">
+                <div class="social_btn_home">
+                  <button class="rgstr-btn" ng-click="RGC.checkotp(taskerRegisterForm.otp.$valid,'tasker', RGC.taskerotp)">
+                    <span>Verify OTP</span>
+                  </button>
+                </div>
+              </span>
+          </div>
+      </form>
+        <div class="social_btn">
+          <div class="social_btn_home">
+            <div class="reg_link">
+              <span>Already have an account?
+                <a ui-sref="login({type: 'tasker'})"> Login </a> <p> | </p> </span>
+            </div>
+            <div class="bk_home">
+              <a href="/" class="social_btn_fb_link">Back to home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </uib-tab>
+  </uib-tabset>
+</div>
+<style>
+  body {
+    background: url({{rc.loginimage.image}});
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+<script>
+  $(document).ready(function () {
+    $(document).on("click", ".toggle-password", function () {
+
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var input = $($(this).attr("toggle"));
+      if (input.attr("type") == "password") {
+        input.attr("type", "text");
+      } else {
+        input.attr("type", "password");
+      }
+    });
+
+  });
+
+</script>
+<script>
+  $(document).ready(function () {
+    $(document).on("click", ".toggle-passwords", function () {
+
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var input = $($(this).attr("toggle"));
+      if (input.attr("type") == "password") {
+        input.attr("type", "text");
+      } else {
+        input.attr("type", "password");
+      }
+    });
+
+  });
+
+</script>

@@ -1,0 +1,115 @@
+<div class="tskr_prof_dtls">
+    <div class="container">
+        <div class="tskr_rgstrn_outer_cont">
+            <div class="tskr_prof_dtls_inner">
+                <div class="tskr_prof_dtls_bx">
+                    <div class="tskr_prof_dtls_hdr">
+                        <div class="tskr_prof_dtls_bx_lft">
+                            <div class="tskr_prof_dtls_tle">
+                                {{'BANK_ACCOUNT_INFORMATION' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <form name="banking" submit-validate role="form" novalidate>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : banking.acc_holder_name.$invalid && !banking.acc_holder_name.$pristine, 'has-success' : banking.acc_holder_name.$valid && !banking.acc_holder_name.$pristine}">
+                                    <label for="exampleInputName2"><span style="color:red;">*</span>   Name:</label>
+                                    <input type="text" class="form-control profilefield" id="exampleInputName2" name="acc_holder_name" ng-model="AIC.banking.acc_holder_name" placeholder="{{'ACCOUNT_NAME' | translate}}" on-blur-validation required ng-focus="focus=true" ng-blur="focus=false">
+                                    <p class="help-block">
+                                        <span ng-show="banking.acc_holder_name.$invalid && !banking.acc_holder_name.$pristine">{{'ENTER ACCOUNT NAME'|translate}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : banking.acc_number.$invalid && !banking.acc_number.$pristine, 'has-success' : banking.acc_number.$valid && !banking.acc_number.$pristine}">
+                                    <label><span style="color:red;">*</span>  {{'ACCOUNT_NUMBER' | translate}}:</label>
+                                    <input type="text" class="form-control profilefield" id="exampleInputName2" name="acc_number" ng-model="AIC.banking.acc_number" placeholder="{{'ACCOUNT_NUMBER' | translate}}" on-blur-validation required>
+                                    <p class="help-block">
+                                        <span ng-show='banking.acc_number.$invalid && !banking.acc_number.$pristine'>{{'ENTER ACCOUNT NUMBER' | translate}}!</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : banking.bank_name.$invalid && !banking.bank_name.$pristine, 'has-success' : banking.bank_name.$valid && !banking.bank_name.$pristine}">
+                                    <label><span style="color:red;">*</span>  {{'BANK_NAME' | translate}}:</label>
+                                    <input type="text" class="form-control profilefield" id="exampleInputName2" name="{{'BANK_NAME' | translate}}" ng-model="AIC.banking.bank_name" placeholder="Bank Name" on-blur-validation required>
+                                    <p class="help-block">
+                                        <span ng-show="banking.bank_name.$invalid && !banking.bank_name.$pristine">{{'ENTER BANK NAME'|translate}}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : banking.routing_number.$invalid && !banking.routing_number.$pristine, 'has-success' : banking.routing_number.$valid && !banking.routing_number.$pristine}">
+                                    <label><span style="color:red;">*</span>  {{'ROUTING_NUMBER' | translate}}:</label>
+                                    <input type="text" class="form-control profilefield" id="exampleInputName2" name="routing_number" ng-model="AIC.banking.routing_number" placeholder="{{'ROUTING_NUMBER' | translate}}" on-blur-validation required>
+                                    <p class="help-block">
+                                        <span ng-show='banking.routing_number.$invalid && !banking.routing_number.$pristine'>{{'ENTER ROUTING NUMBER' | translate}}!</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        <!-- <div class="col-md-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : banking.publish.$invalid && !banking.publish.$pristine, 'has-success' : banking.publish.$valid && !banking.publish.$pristine}">
+                                        <label for="publish"><span style="color:red;">*</span>  {{'ACCOUNT_TYPE' | translate}}:</label>
+                                        <select id="publish" name="publish" ng-model="AIC.banking.account_type" convert-to-number class="form-control mb-10 tasker_slt_types"
+                                        on-blur-validation required>
+                               <option value='individual'>Individual</option>
+                               <option value='company'>Company</option>
+                                   <p class="help-block">
+                                        <span ng-show="banking.publish.$invalid && !banking.publish.$pristine">{{'SELECT ACCOUNT TYPE'|translate}}</span>
+                                    </p>
+                                </select>
+
+                                </div>
+                            </div> -->
+                           
+                          <!--  <div class="col-md-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : banking.bank_name.$invalid && !banking.bank_name.$pristine, 'has-success' : banking.bank_name.$valid && !banking.bank_name.$pristine}">
+                                    <label><span style="color:red;">*</span>  {{'BANK_NAME' | translate}}:</label>
+                                    <input type="text" class="form-control profilefield" id="exampleInputName2" name="{{'BANK_NAME' | translate}}" ng-model="AIC.banking.bank_name" placeholder="Bank Name" on-blur-validation required>
+                                    <p class="help-block">
+                                        <span ng-show="banking.bank_name.$invalid && !banking.bank_name.$pristine">{{'ENTER BANK NAME'|translate}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : banking.branch_name.$invalid && !banking.branch_name.$pristine, 'has-success' : banking.branch_name.$valid && !banking.branch_name.$pristine}">
+                                    <label> <span style="color:red;">*</span>  {{'BRANCH_NAME' | translate}}:</label>
+                                    <input type="text" class="form-control profilefield" id="exampleInputName2" name="branch_name" ng-model="AIC.banking.branch_name" placeholder="{{'BRANCH_NAME' | translate}}" on-blur-validation required>
+                                    <p class="help-block">
+                                        <span ng-show="banking.branch_name.$invalid && !banking.branch_name.$pristine">{{'ENTER BRANCH NAME'|translate}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : banking.branch_address.$invalid && !banking.branch_address.$pristine, 'has-success' : banking.branch_address.$valid && !banking.branch_address.$pristine}">
+                                    <label><span style="color:red;">*</span>  {{'BRANCH_ADDRESS' | translate}}:</label>
+                                    <input type="text" class="form-control profilefield" id="exampleInputName2" name="branch_address" ng-model="AIC.banking.branch_address" placeholder="{{'BRANCH_ADDRESS' | translate}}" on-blur-validation required>
+                                    <p class="help-block">
+                                        <span ng-show="banking.branch_address.$invalid && !banking.branch_address.$pristine">{{'ENTER BRANCH ADDRESS'|translate}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                         <div class="col-md-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : banking.swift_code.$invalid && !banking.swift_code.$pristine, 'has-success' : banking.swift_code.$valid && !banking.swift_code.$pristine}">
+                                    <label><span style="color:red;">*</span>  {{'IFSC_CODE' | translate}}:</label>
+                                    <input type="text" class="form-control profilefield" id="exampleInputName2" name="swift_code" ng-model="AIC.banking.swift_code" placeholder="{{'IFSC_CODE' | translate}}" on-blur-validation required>
+                                    <p class="help-block">
+                                        <span ng-show='banking.swift_code.$invalid && !banking.swift_code.$pristine'>{{'ENTER IFSC' | translate}}!</span>
+                                    </p>
+                                </div>
+                            </div>-->
+                            
+                            <div class="col-md-2 col-xs-12 info-btn">
+                                <button type="button" class="btn btn-primary savebtn" ng-click="AIC.saveAccInfo(banking.$valid,AIC.banking)">{{'SAVE' | translate}}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

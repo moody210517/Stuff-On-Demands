@@ -1,0 +1,16 @@
+<form name="reason" submit-validate role="form" novalidate>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="OTPC.cancel()" data-dismiss="modal">×</button>
+        <h3 class="modal-title">OTP Verification</h3>
+    </div>
+    <div class="modal-body">
+        <label class="control-label" style="margin-top: 15px;float: left;">Enter OTP:</label>
+        <div class="form-group">
+            <input type="text" class="form-control profilefield" id="exampleInputName2" name="otp" class="form-control" ng-model="OTPC.otp" required placeholder="One-Time Password" style="width: 30%; margin-left: 100px;">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="OTPC.resend(OTPC.otp)" style="margin-right:298px;">Resend OTP</button>
+        <button class="btn btn-primary" type="button" ng-click="OTPC.ok(OTPC.otp)">Verify OTP</button>
+    </div>
+</form>
