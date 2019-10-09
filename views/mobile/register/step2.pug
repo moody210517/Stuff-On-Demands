@@ -1,0 +1,42 @@
+extends layout
+
+block vars
+  - var title='Step 2'
+  - var description = 'Maidac Tasker Registration'
+block content
+  form(action='/mobile/provider/register/step3?lang='+lang, method='post', name="basicinfo" ,id="step2")
+    .applyto-tasker.apply1
+      .container2
+        .full-holder
+          input#accountsuccess(type='hidden', name='accountsuccess', value='')
+          //h1.top-texts Apply To Be A Tasker
+          h1.top-textsinput(class='backbutton',action='action', type='button', value='Back', onclick='window.history.back()') #{ __("Back") } | #{ __("Apply To Be A ") }
+          .tasker-pannel
+            .tasker-head
+            .tasker-body
+              .lop-div-task.dobcal
+                span.topedtext  #{ __("Birthdate") }
+                span.topedtext #{ __("Age must be above 18") }
+                ul.list-inline.dop-flds
+                  li
+                  input#example4.example(type='hidden')
+
+
+              .lop-div-task
+                span.topedtext #{ __("Where Do You Live") }?
+                .botom-fuls
+                  ul.wher-live.list-inline
+                    li
+                      //label #{ __("Address") }
+                      input#autocomplete(type='text', name='address', onfocus="geolocate()",  placeholder=__('Enter Your Address'), value="" required)
+                    //li
+                      label #{ __("House/Apartment No") }
+                      input#unitnumber(type='text', name='unitnumber', value='', placeholder=__('Enter Your House/Apartment Number'))
+                    //li
+                      label  #{ __("Zip code") }
+                      input#postal_code.field(type='text', name='zipcode', value='', placeholder=__('Enter Your zipcode'))
+                    li
+                      input#submit_btn.grn-btn.blu-btn(type='submit', value=__('Continue'),onclick='return dob()')
+
+    script(type='text/javascript', src=siteurl+'app/mobile/register/js/autofill.js')
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBL3iASzeEZc-2y0yRpgTJYbQDgXp0vDKE&libraries=places&callback=initAutocomplete", async="", defer="")

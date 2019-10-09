@@ -1,0 +1,58 @@
+extends layout
+
+block vars
+  - var title='Step 1'
+  - var description = 'Maidac Tasker Registration'
+block content
+    form(action='/mobile/provider/register/step2?lang='+lang, method='post', name="step1", id="step1")
+      .signup-page
+        .sign-up-holder.login-holder
+          .logo-container
+            a(href='#')
+              img(src=siteurl+logo)
+          ul.sign-btns.list-inline
+            li
+              label(for='username',class='control-label') #{ __("User Name") }
+                span.ast *
+              input#username.step_one_input(type='text', name='username', value=formdata.username required )
+            li
+              label
+                | #{ __("Email Address") }
+                span.ast *
+              | &#x9;
+              input#email.step_one_input(type='text', name='email', value=formdata.email)
+            li
+              label
+                | #{ __("Contact Number") }
+                span.ast *
+              input#phone.step_one_input( type="tel", name='phonenumber', value="",placeholder=__('Contact number') )
+              input#phonecode(type='hidden', name='phone[code]', value="")
+              input#phonenumber(type='hidden', name='phone[number]', value="")
+            //li
+              label
+                | #{ __("Gender") }
+                span.ast
+              select#Gender.step1_select(name='gender', value=formdata.gender  )
+                option#Genderr(value='' ) #{ __("Select a Gender") }
+                option(value='male' selected=formdata.gender=='Male') #{ __("Male") }
+                option(value='female' selected=formdata.gender=='Female') #{ __("Female") }
+                option(value='none' selected=formdata.gender=='None') #{ __("Rather Not Say") }
+            li
+              label
+                | #{ __("Password") }&#x9;
+                span.ast *
+              input#password.password.step_one_input(type='password', name='password')
+            //li
+              label
+                | #{ __("Confirm password") }
+                span.ast *
+              input#confirmpassword.password.step_one_input(type='password', name='confirmpassword')
+            li
+              input#terms(type='checkbox', name='terms')
+              small
+                | #{ __("I have read and agree to the") }
+                a(href=siteurl+'mobile/terms-condition') #{ __("Terms of Service") }
+                |    #{ __("and") }
+                a(href=siteurl+'mobile/privacy-policy')  #{ __("Privacy Policy") }.
+            li
+          input#submit_btn.btn.btn-default.grn-btn.blu-btn(type='submit', value=__('Continue'))

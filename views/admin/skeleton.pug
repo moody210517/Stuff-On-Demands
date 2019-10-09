@@ -1,0 +1,72 @@
+section#header(class='{{main.settings.navbarHeaderColor}}')
+  header.clearfix
+    .branding(class='{{main.settings.brandingColor}}')
+      a.brand(ui-sref='app.dashboard')
+        img(ng-src='{{rc.logo}}', style='width: 200px;')
+    ul.nav-left.pull-left.list-unstyled.list-inline
+      li.sidebar-collapse.divided-right
+        a(href='javascript:;', collapse-sidebar='')
+          fa(name='outdent')
+    ul.nav-right.pull-right.list-inline
+      li.dropdown.users(dropdown='')
+        a.dropdown-toggle(href='', dropdown-toggle='')
+          fa(name='user')
+          span.badge.bg-lightred(ng-if='pendingTaskerLength != 0') {{pendingTaskerLength}}
+        .dropdown-menu.pull-right.with-arrow.panel.panel-default.animated.littleFadeInUp(role='menu')
+          .panel-heading
+            | You have 
+            span(style="color: #fff;") {{pendingTaskerLength}} 
+            | requests
+          ul#table-scroll.list-group.header-scroll(slimscroll="{height: '100%'}")
+            li.list-group-item(ng-repeat='ptasker in pendingTaskers')
+              a.media(ui-sref="app.taskers.edit({'id':ptasker._id})")
+                .media-left
+                .media-body
+                  span.block {{ptasker.username}}
+                  small.text-muted {{ptasker.createdAt|timeago}}
+          .panel-footer(ng-if='pendingTaskers.length')
+            a(ui-sref='app.taskers.list')
+              | Show all requests
+              fa.pull-right(name='angle-right')
+      li.dropdown.nav-profile(dropdown='')
+        a.dropdown-toggle(href='', dropdown-toggle='')
+          span(style='font-size: 17px;')
+            | {{globals.currentUser.username}}
+            fa(name='angle-down')
+        ul.dropdown-menu.animated.littleFadeInRight.pull-marginleft-100(role='menu')
+          li
+            a(ng-if=" presentUser.role == 'admin' ", ui-sref='app.admins.add({id:CurrentUser._id})')
+              fa(name='user')
+              | Profile
+            a(ng-if=" presentUser.role == 'subadmin' && Profiledata.edit!=false", ui-sref='app.admins.subadd({id:CurrentUser._id})')
+              fa(name='user')
+              | Profile
+          li
+            a(href='{{siteUrl}}', target='_blank')
+              fa(name='check')
+              | Visit Site
+          li
+            a(ng-if='settingdata.view !=false', ui-sref='app.settings.generalSettings')
+              fa(name='cog')
+              | Settings
+          li
+            a(ui-sref='logout')
+              fa(name='sign-out')
+              | Logout
+#controls
+  aside#sidebar.back(class='{{main.settings.sidebarColor}}')
+    #sidebar-wrap
+      accordion(slimscroll="{height: '100%'}")
+        accordion-group
+          ul#navigation(nav-collapse='', ripple='')
+            li(ng-repeat='menu in menus', ui-sref-active='active')
+              a(ui-sref='{{menu.state}}')
+                fa(name='{{menu.icon}}')
+                span {{ menu.name | translate }}
+              ul(ng-if='menu.childs')
+                li(ng-repeat='submenu in menu.childs', ui-sref-active='active')
+                  a(ui-sref='{{submenu.state}}')
+                    fa(name='caret-right')
+                    |                     {{ submenu.name | translate }}
+.view-container(ui-view-container='')
+  section#content(ui-view='', autoscroll='false')

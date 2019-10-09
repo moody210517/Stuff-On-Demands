@@ -1,0 +1,178 @@
+doctype html
+html(ng-controller='rootCtrl as rc')
+  head
+    base(href='/')
+    title(ng-bind='ngMeta.title') #{title}
+    meta(name='description', content='{{ngMeta.description}}')
+    meta(name='keyword', content='{{ngMeta.keyword}}')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no')
+
+    meta(property='og:title', content=title)
+    meta(property='og:type', content="article")
+    meta(property='og:image', content=image)
+    meta(property='og:url', content=siteUrl)
+    meta(property='og:description', content=description)
+
+    link(rel='icon', href='{{rc.favicon}}')
+
+    //- inject:css
+    link(rel="stylesheet", href="/app/site/public/css/library/bootstrap.css")
+    link(rel="stylesheet", href="/app/site/public/css/library/angular-material.css")
+    link(rel="stylesheet", href="/app/site/public/css/library/font-awesome.css")
+    link(rel="stylesheet", href="/app/site/public/css/main.css")
+    link(rel="stylesheet", href="/app/site/public/css/font-awesome1.min.css")
+    link(rel="stylesheet", href="/app/site/public/css/style1.css")
+    link(rel="stylesheet", href="/app/site/public/css/design.css")
+    link(rel="stylesheet", href="/app/site/public/css/submain.css")
+    link(rel="stylesheet", href="/app/site/public/css/style-responsive.css")
+    link(rel="stylesheet", href="/app/site/public/css/responsive-new.css")
+    link(rel="stylesheet", href="/app/admin/public/css/lib/angular-toastr.min.css")
+    link(rel="stylesheet", href="/app/site/public/css/library/intlTelInput.css")
+    link(rel="stylesheet", href="/app/site/public/css/library/ng-img-crop.css")
+    link(rel="stylesheet", href="/app/site/public/css/select.css")
+    link(rel="stylesheet", href="/app/site/public/css/sweetalert2.css")
+    link(rel="stylesheet", href="/app/site/public/css/library/lazy-image-style.css")
+    link(rel="stylesheet", href="/app/site/public/css/library/jquery-ui.css")
+    link(rel="stylesheet", href="/app/site/public/css/slick/slick.css")
+    link(rel="stylesheet", href="/app/site/public/css/slick/slick-theme.css")
+    link(rel="stylesheet", href="/app/site/public/css/rzslider.css")
+    link(rel="stylesheet", href="/app/site/public/css/multipleDatePicker.css")
+    //- endinject
+
+    //link(rel="stylesheet", href="/app/site/public/css/customization.css")
+
+  body
+
+    section(ui-view='commonview')
+      section(ng-include="'app/site/modules/common/views/header.html'")
+      section(ui-view='content', autoscroll='true')
+      section(ng-include="'app/site/modules/common/views/footer.html'" )
+    section(ui-view='specialview')
+
+    section(ui-view='becometasker')
+
+    span.load-fade(ng-if='imgSrc')
+      //img.loader(img-preload='', src='/app/site/public/images/loader.gif')
+      .cssload-loader
+        .cssload-inner.cssload-one
+        .cssload-inner.cssload-two
+        .cssload-inner.cssload-three
+
+
+
+    script(src='/app/site/public/scripts/library/jquery-2.2.3.min.js')
+    script(src='/app/site/public/scripts/library/angular/angular.min.js')
+
+    //- inject:js
+    script(src="/app/site/public/scripts/library/angular-slugify.js")
+    script(src="/app/site/public/scripts/library/angular-cookies.js")
+    script(src="/app/site/public/scripts/library/angular-ui-router/angular-ui-router.js")
+    script(src="/app/site/public/scripts/library/lazy-image.js")
+    script(src="/app/site/public/scripts/library/socket.io.js")
+    script(src="/app/site/public/scripts/library/angular-sanitize.js")
+    script(src="/app/site/public/scripts/library/ui-bootstrap-tpls.js")
+    script(src="/app/site/public/scripts/library/angular-toastr.tpls.js")
+    script(src="/app/site/public/scripts/library/jquery-ui.js")
+    script(src="/app/site/public/scripts/library/ng-map.js")
+    script(src="/app/site/public/scripts/library/ng-img-crop.js")
+    script(src="/app/site/public/scripts/library/calendar.js")
+    script(src="/app/site/public/scripts/library/ng-file-upload-shim.js")
+    script(src="/app/site/public/scripts/library/ng-file-upload.js")
+    script(src="/app/site/public/scripts/library/angular-animate/angular-animate.js")
+    script(src="/app/site/public/scripts/library/angular-aria/angular-aria.js")
+    script(src="/app/site/public/scripts/library/angular-messages/angular-messages.js")
+    script(src="/app/site/public/scripts/library/angular-material/angular-material.js")
+    script(src="/app/site/public/scripts/library/ng-intl-tel-input/intlTelInput.js")
+    script(src="/app/site/public/scripts/library/ng-intl-tel-input/utils.js")
+    script(src="/app/site/public/scripts/library/multipleDatePicker.min.js")
+    script(src="/app/site/public/scripts/library/multipleDatePicker.js")
+    script(src="/app/site/public/scripts/library/select.js")
+    script(src="/app/site/public/scripts/sweetalert2.js")
+    script(src="/app/site/public/scripts/ngSweetAlert2.js")
+    script(src="/app/site/public/scripts/angular-scroll.js")
+    script(src="/app/site/public/scripts/angular-translate.js")
+    script(src="/app/site/public/scripts/angular-translate-storage-cookie.js")
+    script(src="/app/site/public/scripts/angular-translate-storage-local.js")
+    script(src="/app/site/public/scripts/angular-translate-loader-static-files.js")
+    script(src="/app/site/public/scripts/validate.js")
+    script(src="/app/site/public/scripts/moment.js")
+    script(src="/app/site/public/scripts/moment-timezone-with-data-2010-2020.js")
+    script(src="/app/site/public/scripts/angular-moment.js")
+    script(src="/app/site/public/scripts/ngMeta.js")
+    script(src="/app/site/public/scripts/slider.js")
+    script(src="/app/site/public/scripts/slick.min.js")
+    script(src="/app/site/public/scripts/angular-slick.js")
+    script(src="/app/site/public/scripts/rzslider.js")
+    script(src="/app/site/bootstrap.js")
+    script(src="/app/site/modules/app.js")
+    script(src="/app/site/modules/common/models/app_factory.js")
+    script(src="/app/site/modules/common/models/notifications.js")
+    script(src="/app/site/modules/users/controllers/controllers.js")
+    script(src="/app/site/modules/users/controllers/services.js")
+    script(src="/app/site/modules/common/directives/submitvalidate.js")
+    script(src="/app/site/modules/common/directives/onblurvalidation.js")
+    script(src="/app/site/modules/common/directives/checklist-model.js")
+    script(src="/app/site/modules/common/directives/ng-intl-tel-input.js")
+    script(src="/app/site/modules/tasker/controllers/becomeTasker.js")
+    script(src="/app/site/modules/common/controllers/contact.js")
+    script(src="/app/site/modules/common/models/contact_factory.js")
+    script(src="/app/site/modules/category/controllers/category.js")
+    script(src="/app/site/modules/category/models/category_factory.js")
+    script(src="/app/site/modules/task-step/controllers/task.js")
+    script(src="/app/site/modules/task-step/controllers/task_profile.js")
+    script(src="/app/site/modules/task-step/controllers/task_complet.js")
+    script(src="/app/site/modules/task-step/models/task_factory.js")
+    script(src="/app/site/modules/accounts/controllers/accounts.js")
+    script(src="/app/site/modules/accounts/models/accounts.js")
+    script(src="/app/site/modules/accounts/controllers/account.wallet.js")
+    script(src="/app/site/modules/accounts/controllers/account.password.js")
+    script(src="/app/site/modules/accounts/controllers/account.tasks.js")
+    script(src="/app/site/modules/accounts/controllers/account.profile.js")
+    script(src="/app/site/modules/accounts/controllers/account.invite-friends.js")
+    script(src="/app/site/modules/accounts/controllers/account.deactive.js")
+    script(src="/app/site/modules/accounts/controllers/account.transaction.js")
+    script(src="/app/site/modules/accounts/controllers/account.reviews.js")
+    script(src="/app/site/modules/accounts/controllers/account.header.js")
+    script(src="/app/site/modules/accounts/controllers/account.information.js")
+    script(src="/app/site/modules/accounts/controllers/account.category.js")
+    script(src="/app/site/modules/accounts/controllers/account.availabity.js")
+    script(src="/app/site/modules/accounts/controllers/account.unavailability.js")
+    script(src="/app/site/modules/accounts/controllers/account.job.js")
+    script(src="/app/site/modules/messages/controllers/messages.js")
+    script(src="/app/site/modules/messages/controllers/chat.js")
+    script(src="/app/site/modules/messages/models/socket.js")
+    script(src="/app/site/modules/messages/models/messages.js")
+    script(src="/app/site/modules/notifications/controllers/notifications.js")
+    script(src="/app/site/modules/notifications/models/notifications.js")
+    script(src="/app/site/modules/carddetail/controllers/carddetail.js")
+    script(src="/app/site/modules/carddetail/controllers/paypalfailed.js")
+    script(src="/app/site/modules/carddetail/models/carddetail_factory.js")
+    script(src="/app/site/modules/pages/controllers/pages.js")
+    script(src="/app/site/modules/pages/models/pages_factory.js")
+    script(src="/app/site/modules/common/controllers/faq.js")
+    script(src="/app/site/modules/common/controllers/emergency.js")
+    script(src="/app/site/modules/common/models/Faq_factory.js")
+    script(src="/app/site/modules/common/controllers/forgotpwd.js")
+    script(src="/app/site/modules/common/models/Forgotpassword_factory.js")
+    script(src="/app/site/modules/common/controllers/otpsignup.js")
+    //- endinject
+
+    //script(src="/app/site/public/scripts/jarallax.min.js")
+    script(src='https://maps.google.com/maps/api/js?key=' + googleMapAPI + '&libraries=placeses,visualization,drawing,geometry,places')
+    script(src='//connect.facebook.net/en_US/all.js')
+    script.
+      FB.init({
+        appId:'#{fbappId}',
+        cookie:true,
+        status:true,
+        xfbml:true,
+        version:'v2.8'
+      });
+
+    script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-67555013-1')
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '#{gaTrackingID}');

@@ -1,0 +1,42 @@
+doctype transitional
+html(xmlns='http://www.w3.org/1999/xhtml')
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title= 'Payment Failed'
+        link(rel='stylesheet', href=site_url+'app/mobile/styles/style.css', type='text/css', media='all')
+    body
+        section
+            .shipping_address
+               h1.top-textsinput(class='backbutton',action='action', type='button', value='Back', onclick='history.go(-1);') #{ __("Back") } | #{ __("Apply To Be A ") }  #{Tasker}
+                .main
+                    .app-content-box
+                        h1
+                            | #{ __("Server Timeout,Please try again") }
+                            a.close_btn(href= '#')
+                        .payment-success
+                            img(src= image, alt='failed', title='failed')
+        style.
+             .app-content-box {
+                  text-align: center;
+                  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+           }
+            body {
+                    margin: 0px;
+                }
+                .shipping_address {
+                    width: 100%;
+                    float: left;
+                }
+                .backbutton{
+                    float: left;
+                    text-align: center;
+                    width: 100%;
+                    margin: 0;
+                    font-size: 20px;
+                    background: #FC7800;
+                    padding: 15px 0px;
+                    color: #fff;
+                    height: 100vh;
+
+                }
