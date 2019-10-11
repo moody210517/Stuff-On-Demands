@@ -1,0 +1,10 @@
+{
+    "port": "3003",
+    "mongodb": {
+        "host": "165.227.93.136",
+        "port": "27017",
+        "database": "stufondemandonline",
+        "username": "admin",
+        "password": "admin"
+    }
+}
